@@ -10,16 +10,15 @@ import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
-import com.sun.deploy.uitoolkit.impl.fx.Utils;
 import com.wlwl.utils.ByteUtils;
 
 public class MyTextDecoder extends CumulativeProtocolDecoder {
 
-	private byte[] temp;
+	// private byte[] temp;
 
 	private IFilterControl control;
-	
-	private Map<Long ,Long> times=new HashMap<Long ,Long>();
+
+	// private Map<Long, Long> times = new HashMap<Long, Long>();
 
 	public MyTextDecoder(IFilterControl _control) {
 		this.control = _control;
@@ -57,68 +56,62 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
-		
-//	    Long now=	new Date().getTime();
-//	    Long last=times.get(session.getId());
-//		if(!times.containsKey(session.getId()))
-//		{
-//			times.put(session.getId(), now);
-//		}
-//		else if(now-last<800)
-//		{
-//			return true;
-//		}
-//		times.replace(session.getId(), now);
-		
+
+		in.mark();// 标记当前位置，以便reset
 		ByteBuffer buf = in.buf();
 		byte[] msg = new byte[buf.limit()];
 		buf.get(msg);
-		this.control.setMsg(msg);
-		
+		this.control.setMsg(msg);//为协议解析对象添加数据
 		// 判断是否是完整包
-		// 如果不是，判断后续还有没有，不带7e（除7e结尾）的包，拼包解析
-		// 如果有7e结尾的包，合并传递到下一个流程
 		if (this.control.isHeader()) {
-			if (this.control.isEnd()) {
-				
-				if (this.control.checkRight()) {
-					out.write(msg);
-				}
-				if(temp!=null)
-				{
-					//temp数据即将丢失，记录日志
-				}	
-			} else {
+			if (msg.length > this.control.getMessageMinLength()) {//是否大于最小包体长度
+				// 获取一组数据的长度
+				int dataLength = this.control.getLength();
+				if (msg.length == dataLength) {
+					if (this.control.isEnd()) {//判断是否有结尾
+						if (this.control.checkRight()) {
+							out.write(this.control);
+						} else {
+							// 不符合协议要求
+							System.out.println("数据检查没有通过，原始数据为："+ByteUtils.byte2HexStr(msg));
+							session.close();
+						}
+					} else {
+						// 不符合协议要求
+						System.out.println("数据没有闭合，原始数据为："+ByteUtils.byte2HexStr(msg));
+						session.close();
+					}
 
-				if (temp == null) {
-					temp = msg;
+				} else if (msg.length > dataLength) {
+					byte[] temp = ByteUtils.getSubBytes(msg, 0, dataLength);
+					this.control.setMsg(temp);
+					if (this.control.isEnd()) {
+						if (this.control.checkRight()) {
+							out.write(this.control);
+						} else {
+							// 不符合协议要求
+							System.out.println("数据检查没有通过，原始数据为："+ByteUtils.byte2HexStr(msg));
+							session.close();
+						}
+					} else {
+						System.out.println("数据没有闭合，原始数据为："+ByteUtils.byte2HexStr(msg));
+						session.close();
+					}
+					in.reset();
+					in.position(dataLength + 1);
+					return false;
+
+				} else {//小于包体长度，继续获取
+					return false;
 				}
+			} else {//小于最小长度，继续获取
 				return false;
 			}
 		} else {
-			if (this.control.isEnd()) {
-
-				temp = ByteUtils.byteMerger(temp, msg);
-
-				// 檢查數據的正確性
-				if (control.checkRight()) {
-					// 把數據變成传递到下一个流程
-
-					out.write(temp);
-				}
-			} else {
-				if (temp == null) {
-					temp = msg;
-				} else {
-					temp = ByteUtils.byteMerger(temp, msg);
-				}
-				return false;
-
-			}
+			System.out.println("数据包头不正确，原始数据为："+ByteUtils.byte2HexStr(msg));
+			session.close();
 		}
-		msg=null;
-		temp = null;
-		return true;
+		msg = null;
+		return true;	
 	}
-
 }

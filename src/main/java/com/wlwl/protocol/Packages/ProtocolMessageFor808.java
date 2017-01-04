@@ -161,4 +161,14 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return false;
 	}
 
+	public int getLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getMinLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

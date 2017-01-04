@@ -75,11 +75,11 @@ public class Protocol implements IFilterControl, IServerHandler {
 	}
 
 	// 检查报的长度和头部文件的长度是否匹配
-	public Boolean checkLength() {
-
-		return analysis.checkLength();
-
-	}
+//	public int checkLength() {
+//
+//		return analysis.getLength();
+//
+//	}
 
 	/*
 	 * (non-Javadoc)
@@ -138,7 +138,7 @@ public class Protocol implements IFilterControl, IServerHandler {
 		// VehicleInfo vi=this._vehicles.
 
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
-		pm.setProto_unid(vi.getROOT_PROTO_UNID());
+		pm.setProto_unid(this.analysis.getProtocol());
 		pm.setUnid(vi.getUNID());
 		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(this.msg));
 		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
@@ -164,6 +164,42 @@ public class Protocol implements IFilterControl, IServerHandler {
 	public Boolean isEnd() {
 
 		return analysis.isEnd();
+	}
+
+	/* 获取超长数据
+	 * @see com.wlwl.filter.IFilterControl#getMsg()
+	 */
+	public byte[] getExMsg() {
+		
+		int length= analysis.getLength();
+		byte[] temp =ByteUtils.getSubBytes(this.msg, 0, length);
+	    byte[] result=ByteUtils.getSubBytes(this.msg, length-1, this.msg.length-length);
+	     this.msg=temp;
+		// TODO Auto-generated method stub
+		return result;
+	}
+	
+	public byte[] getMsg()
+	{
+		int length= analysis.getLength();
+		this.msg =ByteUtils.getSubBytes(this.msg, 0, length);
+		return this.msg;
+		
+	}
+
+	public Boolean checkLength() {
+		// TODO Auto-generated method stub
+		return this.msg.length>=analysis.getLength();
+	}
+
+	public int getLength() {
+		
+		return analysis.getLength();
+	}
+
+	public int getMessageMinLength() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

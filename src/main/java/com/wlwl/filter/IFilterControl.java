@@ -5,6 +5,10 @@ package com.wlwl.filter;
  * @author FH
  *
  */
+/**
+ * @author FH
+ *
+ */
 public interface IFilterControl {
 	
 
@@ -32,10 +36,26 @@ public interface IFilterControl {
 	 */
 	Boolean checkRight();
 	
-	Boolean	checkLength();
+//	/**
+//	 * @return  检查是否超过单例长度
+//	 */
+//	Boolean	checkLength();
+	
+	int  getLength();
+	
+	/**
+	 * 获取协议体的最小长度
+	 * @return
+	 */
+	int getMessageMinLength();
 
 	/**
 	 * @param msg  設置數據信息
 	 */
 	void setMsg(byte[] msg);
+	
+//	/**
+//	 * @return 获取多余的字节数，并保存独立的解析单体  （保存整个信息）
+//	 */
+//	byte[] getMsg();
 }

@@ -10,9 +10,15 @@ public interface IProtocolAnalysis {
 
 	/**
 	 * @return 
-	 * 检查总长度是否正确
+	 *获取数据的总长度
 	 */
-	Boolean checkLength();
+	int getLength();
+	
+	/**
+	 * 获取协议最小长度
+	 * @return
+	 */
+	int getMinLength();
 
 	/**
 	 * @return 

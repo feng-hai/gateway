@@ -10,7 +10,7 @@ import com.wlwl.utils.CRCUtil;
 
 public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Cloneable {
 
-	private String Protocol = "3G";// 协议标识
+	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识
 
 	/**
 	 * 頭部數據
@@ -305,6 +305,23 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			return true;
 		}
 		return false;
+	}
+
+	/* 获取单例长度
+	 * @see com.wlwl.protocol.IProtocolAnalysis#getLength()
+	 */
+	public int getLength() {
+		int headerLength=20;//头部长度
+		int endLength=3;//尾部长度
+		int gpsLength=ByteUtils.getShort(this.msg, 3);//gps长度
+		int canLength=ByteUtils.getShort(this.msg, 7);//can 长度	
+		
+		return headerLength+endLength+gpsLength+canLength;
+	}
+
+	public int getMinLength() {
+		// TODO Auto-generated method stub
+		return 23;
 	}
 
 }

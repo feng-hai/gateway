@@ -81,7 +81,7 @@ public class ProtocolModel implements Serializable {
 				.replace("device_ID", "DEVICE_ID")
 				.replace("timestamp", "TIMESTAMP")
 				.replace("ip4", "IP4")
-				.replace("raw_OCTETS", "RAW_OCTETS");
+				.replace("raw_OCTETS", "raw_octets");
 		
 	}
 	

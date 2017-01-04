@@ -1,8 +1,5 @@
 package com.wlwl.one;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.mina.common.IoHandlerAdapter;
 import org.apache.mina.common.IoSession;
 
@@ -18,12 +15,9 @@ public class ServerHandler extends IoHandlerAdapter {
 		this.handler = _handler;
 		this.manager = _manager;
 	}
-
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		
-
 		// 解析类赋值
 		if (message instanceof byte[]) {
 			byte[] data = (byte[]) message;
@@ -31,6 +25,7 @@ public class ServerHandler extends IoHandlerAdapter {
 			data=null;
 			
 		}
+		//检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi=this.handler.checkLegitimacy();
 		if (vi==null) {
 			// 不合法终端端口连接
@@ -38,16 +33,15 @@ public class ServerHandler extends IoHandlerAdapter {
 			return;
 		}
 		// 终端合法后，保存连接session
-		
 		this.manager.addSession(this.handler.getDeviceId(), session);
 		//System.out.println(this.manager.getCount());
 		// 保存信息到kafka
 		this.handler.toJson(vi,session);
-
+        //如果是登录指令自动回复
 		if (this.handler.answerLogin(session)) {
 			return;
 		}
-
+        //普通上传指令应答
 		if (this.handler.answerMsg(session)) {
 			return;
 		}
