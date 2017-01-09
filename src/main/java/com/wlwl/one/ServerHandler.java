@@ -4,6 +4,7 @@ import org.apache.mina.common.IoHandlerAdapter;
 import org.apache.mina.common.IoSession;
 
 import com.wlwl.model.VehicleInfo;
+import com.wlwl.utils.ByteUtils;
 
 public class ServerHandler extends IoHandlerAdapter {
 
@@ -21,22 +22,27 @@ public class ServerHandler extends IoHandlerAdapter {
 		// 解析类赋值
 		if (message instanceof byte[]) {
 			byte[] data = (byte[]) message;
+			//System.out.println(ByteUtils.byte2HexStr(data));
 			this.handler.setMsg(data);
 			data=null;
-			
+
+		}else
+		{
+			return;
 		}
 		//检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi=this.handler.checkLegitimacy();
-		if (vi==null) {
-			// 不合法终端端口连接
-			session.close(true);
-			return;
-		}
+//		if (vi==null) {
+//			// 不合法终端端口连接
+//			System.out.println("车辆在数据库中不存在："+this.handler.getDeviceId());
+//			session.close(true);
+//			return;
+//		}
 		// 终端合法后，保存连接session
 		this.manager.addSession(this.handler.getDeviceId(), session);
 		//System.out.println(this.manager.getCount());
 		// 保存信息到kafka
-		this.handler.toJson(vi,session);
+		//this.handler.toJson(vi,session);
         //如果是登录指令自动回复
 		if (this.handler.answerLogin(session)) {
 			return;

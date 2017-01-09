@@ -37,8 +37,8 @@ public class ServerMain {
 		//从数据库中获取车辆信息数据，并把数据存储到list列表中，设备列表
 		List<VehicleInfo> vehicles=new Vector<VehicleInfo>();
 		 //定期获取车辆信息的，定时器
-		 Timer timer = new Timer();
-	     timer.schedule(new MyTask(vehicles),new Date(),300000);
+		// Timer timer = new Timer();
+	    // timer.schedule(new MyTask(vehicles),new Date(),300000);
 
 		// 把原始数据插入kafka中
 		SendDataTokafka sendData = new SendDataTokafka(config, sendQueue);
@@ -46,8 +46,8 @@ public class ServerMain {
 		sendData.start();
 
 		// 消费者--从kafka中读取数据，并把数据存入队列中
-		CommandConsumer commandConsumer = new CommandConsumer(config, cmdQueue);
-		commandConsumer.run();
+		//CommandConsumer commandConsumer = new CommandConsumer(config, cmdQueue);
+		//commandConsumer.run();
 //
 //		// 发送命令---从数据队列中获取数据，并把数据发送出去
 		SendCommandThread sendCommmandThread = new SendCommandThread(sessionManager, cmdQueue);
@@ -55,11 +55,12 @@ public class ServerMain {
 		sendCommmandThread.start();
 		
         //启动3G协议网关
-		Protocol g3 = new Protocol(7078,new ProtocolMessgeFor3G(),sendQueue,vehicles);
+		Protocol g3 = new Protocol(18081,new ProtocolMessgeFor3G(),sendQueue,vehicles);
 		
 		ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager);
 		smt.start();
-		
+		 Timer timer = new Timer();
+	     timer.schedule(new CheckSession(sessionManager),new Date(),5000);
 		//启动808协议网关
 //		My808Protocol g808 = new My808Protocol(9014);
 //		ServerMainThread smt808 = new ServerMainThread(g808, g808, sessionManager);

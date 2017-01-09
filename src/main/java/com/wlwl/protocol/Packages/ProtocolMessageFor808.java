@@ -63,7 +63,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return true;
 	}
 
-	public Boolean checkRight() {
+	public Boolean checkRight(byte[] bys) {
 
 		return true;
 	}
@@ -154,8 +154,8 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return false;
 	}
 
-	public Boolean isEnd() {
-		if (this.msg[this.msg.length - 1] == (byte) 0x7e) {
+	public Boolean isEnd(byte[]msg) {
+		if (msg[msg.length - 1] == (byte) 0x7e) {
 			return true;
 		}
 		return false;
@@ -170,5 +170,15 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override  
+    public Object clone()  {  
+        try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;  
+    }  
 
 }

@@ -150,10 +150,6 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 
 	}
 
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
 
 	/*
 	 * 尾部數據
@@ -196,16 +192,16 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		}
 	}
 
-	public Boolean checkRight() {
+	public Boolean checkRight(byte[] bys) {
 
-		if (this.msg.length < 23) {
+		if (bys.length < 23) {
 			return false;
 		}
 
-		byte[] temp = new byte[this.msg.length - 4];
+		byte[] temp = new byte[bys.length - 4];
 
-		for (int i = 1; i < this.msg.length - 3; i++) {
-			temp[i-1] = this.msg[i];
+		for (int i = 1; i < bys.length - 3; i++) {
+			temp[i-1] = bys[i];
 		}
 
 		int tempCrc = CRCUtil.parseCRCMessageTail(temp);
@@ -259,10 +255,12 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return false;
 	}
 
-	public Boolean isEnd() {
-		if (this.msg[this.msg.length - 1] == (byte) 0x7e) {
+	public Boolean isEnd(byte[] msg) {
+		byte test=msg[this.msg.length - 1] ;
+		if (msg[msg.length - 1] == (byte) 0x7e) {
 			return true;
 		}
+		System.out.println("判断不正确"+ByteUtils.byte2HexStr(msg));
 		return false;
 	}
 
@@ -323,5 +321,17 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		// TODO Auto-generated method stub
 		return 23;
 	}
+	@Override  
+    public Object clone()  {  
+        try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;  
+    }  
+
+
 
 }

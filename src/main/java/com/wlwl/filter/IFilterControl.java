@@ -9,7 +9,7 @@ package com.wlwl.filter;
  * @author FH
  *
  */
-public interface IFilterControl {
+public interface IFilterControl extends Cloneable{
 	
 
 
@@ -24,7 +24,7 @@ public interface IFilterControl {
 	 * @return
 	 * 判断结尾
 	 */
-	Boolean isEnd();
+	Boolean isEnd(byte[] msg);
 
 	/**
 	 * @return
@@ -57,5 +57,7 @@ public interface IFilterControl {
 //	/**
 //	 * @return 获取多余的字节数，并保存独立的解析单体  （保存整个信息）
 //	 */
-//	byte[] getMsg();
+	byte[] getMsg();
+	
+	Object clone() throws CloneNotSupportedException ;
 }

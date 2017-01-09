@@ -24,7 +24,7 @@ public interface IProtocolAnalysis {
 	 * @return 
 	 * 校验码是否正确
 	 */
-	Boolean checkRight();
+	Boolean checkRight(byte[] bys);
 
 	/**
 	 * @return 
@@ -59,5 +59,5 @@ public interface IProtocolAnalysis {
 	 * @return
 	 * 判断结尾
 	 */
-	Boolean isEnd();
+	Boolean isEnd(byte[] msg);
 }

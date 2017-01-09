@@ -19,7 +19,7 @@ import com.wlwl.utils.JsonUtils;
  * @author FH
  *
  */
-public class Protocol implements IFilterControl, IServerHandler {
+public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 
 	private IProtocolAnalysis analysis;
 	BlockingQueue<ProtocolModel> _sendQueue;
@@ -51,7 +51,7 @@ public class Protocol implements IFilterControl, IServerHandler {
 	 * 
 	 * @see com.wlwl.filter.IFilterControl#setMsg(byte[]) 设置二进制码流
 	 */
-	public void setMsg(byte[] msg) {
+	public void setMsg(byte[] msg) {	
 		analysis.setMsg(msg);
 		this.msg = msg;
 	}
@@ -71,7 +71,8 @@ public class Protocol implements IFilterControl, IServerHandler {
 
 	// 尾部校验是否通过
 	public Boolean checkRight() {
-		return analysis.checkRight();
+		//return analysis.checkRight( bys);
+		return true;
 	}
 
 	// 检查报的长度和头部文件的长度是否匹配
@@ -161,9 +162,9 @@ public class Protocol implements IFilterControl, IServerHandler {
 		return analysis.isHeader();
 	}
 
-	public Boolean isEnd() {
+	public Boolean isEnd(byte[] msg) {
 
-		return analysis.isEnd();
+		return analysis.isEnd(msg);
 	}
 
 	/* 获取超长数据
@@ -199,7 +200,19 @@ public class Protocol implements IFilterControl, IServerHandler {
 
 	public int getMessageMinLength() {
 		// TODO Auto-generated method stub
+		return analysis.getMinLength();
+	}
+
+	public int getExtraLengh(byte[] msg) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override  
+    public Object clone() throws CloneNotSupportedException  {  
+        return super.clone();  
+    }  
+
+	
 
 }
