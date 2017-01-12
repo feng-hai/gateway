@@ -43,13 +43,10 @@ public class ServerMainThread extends Thread{
 	
 	
 	public void run() {			
-		IoAcceptor acceptor = new NioSocketAcceptor(20);
+		IoAcceptor acceptor = new NioSocketAcceptor();
 		acceptor.getSessionConfig().setReadBufferSize(1024);
-		
-		acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MyTextFactory(this.control)));
-		
-		
+		//acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
 		acceptor.setHandler(new ServerHandler(this.handler,this.manager));
 		try {
 			acceptor.bind(new InetSocketAddress(this.handler.getPort()));

@@ -82,7 +82,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		  return teleStr;
 	}
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 
 		this.msg = bytes;
 		
@@ -161,7 +161,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return false;
 	}
 
-	public int getLength() {
+	public int getLength(byte[] msg) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -180,5 +180,18 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		}
 		return null;  
     }  
+	
+	public	Boolean isMarker(byte msg)
+	{
+		if (msg == (byte) 0x7e) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean answerLogin(IoSession session) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

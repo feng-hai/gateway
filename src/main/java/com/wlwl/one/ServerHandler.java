@@ -23,30 +23,42 @@ public class ServerHandler extends IoHandlerAdapter {
 		if (message instanceof byte[]) {
 			byte[] data = (byte[]) message;
 			//System.out.println(ByteUtils.byte2HexStr(data));
-			this.handler.setMsg(data);
+			this.handler.setMsg(data,session);
 			data=null;
 
 		}else
 		{
 			return;
 		}
+		if (this.handler.answerLogin(session)) {//终端登录保存终端信息
+			//return;
+		}
 		//检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi=this.handler.checkLegitimacy();
-//		if (vi==null) {
-//			// 不合法终端端口连接
-//			System.out.println("车辆在数据库中不存在："+this.handler.getDeviceId());
-//			session.close(true);
-//			return;
-//		}
-		// 终端合法后，保存连接session
-		this.manager.addSession(this.handler.getDeviceId(), session);
-		//System.out.println(this.manager.getCount());
-		// 保存信息到kafka
-		//this.handler.toJson(vi,session);
-        //如果是登录指令自动回复
-		if (this.handler.answerLogin(session)) {
+		if (vi==null) {
+			// 不合法终端端口连接
+			System.out.println("车辆在数据库中不存在："+this.handler.getDeviceId());
+			//session.close(true);
 			return;
 		}
+		IoSession iSession=this.manager.getSession(this.handler.getDeviceId());
+		if(iSession!=null)
+		{
+			if(!iSession.equals(session))
+			{
+			//有些协议断开之前要发送，断开原因
+			 iSession.close();
+			 this.manager.removeSession(iSession);
+				// 终端合法后，保存连接session
+			  this.manager.addSession(this.handler.getDeviceId(), session);
+			}
+		}
+	
+		//System.out.println(this.manager.getCount());
+		// 保存信息到kafka
+		this.handler.toJson(vi,session);
+        //如果是登录指令自动回复
+		
         //普通上传指令应答
 		if (this.handler.answerMsg(session)) {
 			return;

@@ -51,8 +51,8 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	 * 
 	 * @see com.wlwl.filter.IFilterControl#setMsg(byte[]) 设置二进制码流
 	 */
-	public void setMsg(byte[] msg) {	
-		analysis.setMsg(msg);
+	public void setMsg(byte[] msg,IoSession session) {	
+		analysis.setMsg(msg,session);
 		this.msg = msg;
 	}
 
@@ -167,51 +167,60 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 		return analysis.isEnd(msg);
 	}
 
-	/* 获取超长数据
-	 * @see com.wlwl.filter.IFilterControl#getMsg()
-	 */
-	public byte[] getExMsg() {
-		
-		int length= analysis.getLength();
-		byte[] temp =ByteUtils.getSubBytes(this.msg, 0, length);
-	    byte[] result=ByteUtils.getSubBytes(this.msg, length-1, this.msg.length-length);
-	     this.msg=temp;
-		// TODO Auto-generated method stub
-		return result;
-	}
+//	/* 获取超长数据
+//	 * @see com.wlwl.filter.IFilterControl#getMsg()
+//	 */
+//	public byte[] getExMsg() {
+//		
+//		int length= analysis.getLength();
+//		byte[] temp =ByteUtils.getSubBytes(this.msg, 0, length);
+//	    byte[] result=ByteUtils.getSubBytes(this.msg, length-1, this.msg.length-length);
+//	     this.msg=temp;
+//		// TODO Auto-generated method stub
+//		return result;
+//	}
 	
 	public byte[] getMsg()
 	{
-		int length= analysis.getLength();
-		this.msg =ByteUtils.getSubBytes(this.msg, 0, length);
+//		int length= analysis.getLength();
+//		this.msg =ByteUtils.getSubBytes(this.msg, 0, length);
 		return this.msg;
 		
 	}
 
-	public Boolean checkLength() {
-		// TODO Auto-generated method stub
-		return this.msg.length>=analysis.getLength();
-	}
+//	public Boolean checkLength() {
+//		// TODO Auto-generated method stub
+//		//return this.msg.length>=analysis.getLength();
+//		return true;
+//	}
+//
+//	public int getLength(byte[] msg) {
+//		
+//		return analysis.getLength(msg);
+//	}
+//
+//	public int getMessageMinLength() {
+//		// TODO Auto-generated method stub
+//		return analysis.getMinLength();
+//	}
+//
+//	public int getExtraLengh(byte[] msg) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//	
+//	@Override  
+//    public Object clone() throws CloneNotSupportedException  {  
+//        return super.clone();  
+//    }
 
-	public int getLength() {
+	/* 判断是否是开始和结束标识符号
+	 * @see com.wlwl.filter.IFilterControl#isMarker(byte)
+	 */
+	public Boolean isMarker(byte msg) {
 		
-		return analysis.getLength();
-	}
-
-	public int getMessageMinLength() {
-		// TODO Auto-generated method stub
-		return analysis.getMinLength();
-	}
-
-	public int getExtraLengh(byte[] msg) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override  
-    public Object clone() throws CloneNotSupportedException  {  
-        return super.clone();  
-    }  
+		return analysis.isMarker(msg);
+	}  
 
 	
 

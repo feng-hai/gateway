@@ -25,10 +25,12 @@ D:\workspace\gateway01\src\main\java\com\wlwl\mysql\JdbcUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\SessionManager.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\MyTask.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\DefaultHeader.java
+D:\workspace\gateway01\src\main\java\com\wlwl\one\CheckSession.java
 D:\workspace\gateway01\src\main\java\com\wlwl\kafka\SendDataTokafka.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\CANBody.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\FaultData.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\GPSBody.java
+D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\ProtocolMessgeForJinLong.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\ProtocolMessageFor808.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\DefaultMessage.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\MessageConstants.java

@@ -10,7 +10,7 @@ import com.wlwl.utils.CRCUtil;
 
 public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Cloneable {
 
-	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识
+	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识，3协议的网关
 
 	/**
 	 * 頭部數據
@@ -215,18 +215,20 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 
 	public String getDeviceId() {
 
-		return ByteUtils.bytesToAsciiString(this.msg, 11, 6);
+		return ByteUtils.bytesToAsciiString(this.msg,  11, 6);
 
 	}
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 		this.msg = bytes;
-		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);
+		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);//获取消息id
+		
+		
 		this.gpsLength = ByteUtils.getShort(this.msg, 3);
 		this.attachmentId = ByteUtils.getShort(this.msg, 5);
 		this.attachmentLength = ByteUtils.getShort(this.msg, 7);
 		this.sequenceId = ByteUtils.getShort(this.msg, 9);
-		this.gpsId = this.getDeviceId();
+		
 		this.subDeviceId = this.msg[17];
 		this.gpsManufacturers=this.msg[18];
 		this.hostCompanies = this.msg[19];
@@ -308,13 +310,38 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	/* 获取单例长度
 	 * @see com.wlwl.protocol.IProtocolAnalysis#getLength()
 	 */
-	public int getLength() {
+	public int getLength(byte[] msg) {
+		
+		
 		int headerLength=20;//头部长度
 		int endLength=3;//尾部长度
 		int gpsLength=ByteUtils.getShort(this.msg, 3);//gps长度
 		int canLength=ByteUtils.getShort(this.msg, 7);//can 长度	
+		int allLength=headerLength+endLength+gpsLength+canLength;
+		if(msg.length>allLength&&msg[allLength-1]!=0x7e)
+		{
+			int tempResult=0;
+			Boolean isture=false;
+			for(int i=allLength;i<msg.length;i++)
+			{
+				tempResult=i;
+				if(msg[i]==0x7e)
+				{
+					isture=true;
+					break;
+				}
+			}
+			
+			if(isture)
+			{
+				allLength=tempResult+1;
+			}else
+			{	
+				allLength= 10000000;
+			}
+		}
 		
-		return headerLength+endLength+gpsLength+canLength;
+		return allLength;
 	}
 
 	public int getMinLength() {
@@ -331,6 +358,19 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		}
 		return null;  
     }  
+	
+	public	Boolean isMarker(byte msg)
+	{
+		if (msg == (byte) 0x7e) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean answerLogin(IoSession session) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 

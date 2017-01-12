@@ -45,7 +45,7 @@ public interface IServerHandler {
 	/**
 	 * @param bytes 设置原始数据
 	 */
-	void setMsg(byte[] bytes);
+	void setMsg(byte[] bytes,IoSession session);
 	
 	/**
 	 * @return

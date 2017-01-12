@@ -12,7 +12,7 @@ public interface IProtocolAnalysis {
 	 * @return 
 	 *获取数据的总长度
 	 */
-	int getLength();
+	int getLength(byte[] msg);
 	
 	/**
 	 * 获取协议最小长度
@@ -36,11 +36,18 @@ public interface IProtocolAnalysis {
 	 * @param bytes
 	 *            设置原始数据信息
 	 */
-	void setMsg(byte[] bytes);
+	void setMsg(byte[] bytes,IoSession session);
 
 	String getProtocol();
 
 	Boolean answerMsg(IoSession session);
+	
+	/**
+	 * 终端登录应答
+	 * @param session
+	 * @return
+	 */
+	public Boolean answerLogin(IoSession session);
 
 	/**
 	 * @return
@@ -60,4 +67,11 @@ public interface IProtocolAnalysis {
 	 * 判断结尾
 	 */
 	Boolean isEnd(byte[] msg);
+	
+	//
+	/**判断是否是标识字符
+	 * @param msg
+	 * @return
+	 */
+	Boolean isMarker(byte msg);
 }

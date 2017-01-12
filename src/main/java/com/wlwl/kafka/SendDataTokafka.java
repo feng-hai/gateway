@@ -54,7 +54,7 @@ public class SendDataTokafka extends Thread{
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(config.getSourcecodeTopic(), strMessage);
 				
 				if(config.getIsDebug()==1){
-					System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
+					//System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
 				}
 				
 				producer.send(myrecord, new Callback() {
@@ -65,8 +65,8 @@ public class SendDataTokafka extends Thread{
 						}
 						if(config.getIsDebug()==1){
 							
-							System.out.println("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
-						    logger.info("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
+							//System.out.println("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
+						   // logger.info("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
 						}
 					}
 				});
