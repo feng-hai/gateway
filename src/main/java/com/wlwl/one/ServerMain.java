@@ -13,6 +13,7 @@ import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.Protocol;
 import com.wlwl.protocol.Packages.ProtocolMessageFor808;
 import com.wlwl.protocol.Packages.ProtocolMessgeFor3G;
+import com.wlwl.protocol.Packages.ProtocolMessgeForJinLong;
 import com.wlwl.utils.Config;
 import com.wlwl.utils.SourceMessage;
 
@@ -59,6 +60,8 @@ public class ServerMain {
 		
 		 ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager);
 		 smt.start();
+		 
+		 
 		 Timer timer1 = new Timer();
 	     timer1.schedule(new CheckSession(sessionManager),new Date(),5000);
 		//启动808协议网关
@@ -66,9 +69,13 @@ public class ServerMain {
 //		ServerMainThread smt808 = new ServerMainThread(g808, g808, sessionManager);
 //		smt808.start();
 		
-//		Protocol g808 = new Protocol(9014,new ProtocolMessageFor808(),sendQueue);
+//		Protocol g808 = new Protocol(9014,new ProtocolMessageFor808(),sendQueue,vehicles);
 //		ServerMainThread smt808 = new ServerMainThread(g808, g808, sessionManager);
 //		smt808.start();
+	   
+			Protocol jinlong = new Protocol(8989,new ProtocolMessgeForJinLong(),sendQueue,vehicles);
+			ServerMainThread smtJinLong = new ServerMainThread(jinlong, jinlong, sessionManager);
+			smtJinLong.start();
 		
 		
 		

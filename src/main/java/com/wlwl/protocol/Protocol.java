@@ -124,7 +124,7 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 						return vi;
 					}
 				} else {
-					if (vi.getDEVICE_ID().equals(deviceId)) {
+					if (deviceId.startsWith(vi.getDEVICE_ID())) {
 						return vi;
 					}
 				}
@@ -140,6 +140,7 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
 		pm.setProto_unid(this.analysis.getProtocol());
+		pm.setNode_unid(this.analysis.getNode());
 		pm.setUnid(vi.getUNID());
 		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(this.msg));
 		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));

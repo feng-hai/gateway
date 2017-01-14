@@ -15,6 +15,9 @@ public class ProtocolModel implements Serializable {
 	private String RAW_OCTETS;// 	十六进制码流
 	private String unid;// 	唯一编号
 	private String proto_unid;//协议唯一编号
+	private String node_unid;//节点唯一编号
+	
+
 	private String length;// 	长度(Byte)
 	private Long TIMESTAMP;// 	UNIX时间戳(毫秒)
 	public Long getTIMESTAMP() {
@@ -29,7 +32,12 @@ public class ProtocolModel implements Serializable {
 
 
 
-	
+	public String getNode_unid() {
+		return node_unid;
+	}
+	public void setNode_unid(String node_unid) {
+		this.node_unid = node_unid;
+	}
 	public String getDEVICE_ID() {
 		return DEVICE_ID;
 	}

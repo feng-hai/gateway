@@ -11,6 +11,8 @@ import com.wlwl.utils.CRCUtil;
 
 public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, Cloneable {
 
+	private String Protocol = "AF27DA9036174426A2E2F7C19A9A959C";// 协议标识，3协议的网关
+	 private String Node="3CE0CF193D67408E80346E0C20263DC6";//节点标识
 	/**
 	 * 
 	 */
@@ -91,7 +93,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	}
 
 	public String getProtocol() {
-		return "808";
+		return this.Protocol;
 	}
 
 	public Boolean answerMsg(IoSession session) {
@@ -192,6 +194,11 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	public Boolean answerLogin(IoSession session) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public String getNode() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

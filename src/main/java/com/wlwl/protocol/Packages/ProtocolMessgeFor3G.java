@@ -11,7 +11,7 @@ import com.wlwl.utils.CRCUtil;
 public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Cloneable {
 
 	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识，3协议的网关
-
+	  private String Node="3CE0CF193D67408E80346E0C20263DC6";//节点标识
 	/**
 	 * 頭部數據
 	 */
@@ -370,6 +370,11 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	public Boolean answerLogin(IoSession session) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public String getNode() {
+		// TODO Auto-generated method stub
+		return this.Node;
 	}
 
 

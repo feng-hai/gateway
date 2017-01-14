@@ -39,6 +39,8 @@ public interface IProtocolAnalysis {
 	void setMsg(byte[] bytes,IoSession session);
 
 	String getProtocol();
+	
+	String getNode();
 
 	Boolean answerMsg(IoSession session);
 	

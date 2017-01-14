@@ -1,33 +1,34 @@
 package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.apache.mina.common.IoSession;
 
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.BCCUtils;
+import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
 
 public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable, Cloneable {
 
 	private String Protocol = "10714621291D4F018DA9F498077AD8BD";// 协议标识，金龙
-
+	private String Node = "3CE0CF193D67408E80346E0C20263DC6";// 节点标识
 	/**
 	 * 頭部數據
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private short gpsCommandId;
+	private byte gpsCommandId;
 
 	private short gpsLength;
 
-	// 属性
 	private short attachmentId;
 
 	private short attachmentLength;
 
-	private int sequenceId;
+	private short sequenceId;
 
 	private String gpsId;
 
@@ -41,7 +42,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		return gpsCommandId;
 	}
 
-	public void setGpsCommandId(short gpsCommandId) {
+	public void setGpsCommandId(byte gpsCommandId) {
 		this.gpsCommandId = gpsCommandId;
 	}
 
@@ -69,7 +70,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		this.attachmentLength = attachmentLength;
 	}
 
-	public int getSequenceId() {
+	public short getSequenceId() {
 		return sequenceId;
 	}
 
@@ -120,24 +121,35 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		return builder.toString();
 	}
 
-	public byte[] getData(short result) {
-		byte[] heart = new byte[15];
-		heart[0] = 0x23;
-		heart[1] = 0x00;// 消息ID
-		heart[2] = 0x00;// 消息体属性
-		heart[3] = (byte) 5;// 消息体长度
-		heart[4] = 0x00;// 消息体长度1
-		heart[5] = (byte) this.getSequenceId();// 消息流水号
-		heart[6] = (byte) (this.getSequenceId() >> 8);// 消息流水号1
-		heart[8] = (byte) (this.getGpsCommandId());// 原消息ID
-		heart[9] = (byte) this.getSequenceId();// 原消息流水号
-		heart[10] = (byte) (this.getSequenceId() >> 8);// 原消息流水号1
-		heart[11] = (byte) result;// 消息结果 成功
-		heart[12] = (byte) (result >> 8);// 消息结果 成功
-		heart[13] = BCCUtils.enVerbCode(heart);//
-		heart[14] = 0x23;
+	public byte[] getData(byte commondId) {
+		byte[] data = new byte[19];
+//
+//		data[0] = (byte) gpsCommandId;
+//		data[1] = (byte) (gpsCommandId >> 8);
+//		data[2] = (byte) gpsLength;
+//		data[3] = (byte) (gpsLength >> 8);
+//		data[4] = (byte) attachmentId;
+//		data[5] = (byte) (attachmentId >> 8);
+//		data[6] = (byte) attachmentLength;
+//		data[7] = (byte) (attachmentLength >> 8);
+//		data[8] = (byte) sequenceId;
+//		data[9] = (byte) (sequenceId >> 8);
+//
+//		if (gpsId.length() >= 6) {
+//			for (int i = 0; i < 6; i++) {
+//				data[i + 10] = (byte) gpsId.charAt(i);
+//			}
+//		} else {
+//			for (int i = 0; i < gpsId.length(); i++) {
+//				data[i + 10] = (byte) gpsId.charAt(i);
+//			}
+//		}
+//
+//		data[16] = (byte) subDeviceId;
+//		data[17] = (byte) gpsManufacturers;
+//		data[18] = (byte) hostCompanies;
 
-		return heart;
+		return data;
 
 	}
 
@@ -161,85 +173,93 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 	private byte[] msg;
 
 	public Boolean checkLength() {
-		return true;
+		if (this.msg.length > 23) {
+			// 固定长度 头部20 +尾部3个字节
+			short fixLength = 23;
+			// gps信息长度 3-4字节
+			short gpsLng = ByteUtils.getShort(this.msg, 4);
+			// Can网络消息长度/PLC消息长度 5-6字节
+			short canLng = ByteUtils.getShort(this.msg, 6);
+
+			int allLng = fixLength + gpsLng + canLng;
+
+			if (allLng >= this.msg.length) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+
+			return true;
+		}
 	}
 
 	public Boolean checkRight(byte[] bys) {
 
-//		if (bys.length < 23) {
-//			return false;
-//		}
-//
-//		byte[] temp = new byte[bys.length - 4];
-//
-//		for (int i = 1; i < bys.length - 3; i++) {
-//			temp[i - 1] = bys[i];
-//		}
-//
-//		int tempCrc = CRCUtil.parseCRCMessageTail(temp);
-//
-//		if (this.getCrcCode() == tempCrc) {
-//			return true;
-//		}
+		if (bys.length < 23) {
+			return false;
+		}
 
-		return true;
+		byte[] temp = new byte[bys.length - 4];
+
+		for (int i = 1; i < bys.length - 3; i++) {
+			temp[i - 1] = bys[i];
+		}
+
+		int tempCrc = CRCUtil.parseCRCMessageTail(temp);
+
+		if (this.getCrcCode() == tempCrc) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public String getDeviceId() {
 
-		return ByteUtils.bytesToAsciiString(this.msg, 10, 10);
+		return ByteUtils.bytesToAsciiString(this.msg, 7, 17);
 
 	}
 
 	public void setMsg(byte[] bytes, IoSession session) {
 		this.msg = bytes;
-		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);
-		if (this.gpsCommandId == 0x11) {
-			this.gpsId = this.getDeviceId();
-			session.setAttribute("ID", this.gpsId);
-		} else {
-			Object temp = session.getAttribute("ID");
-			if (temp != null) {
-				this.gpsId = temp.toString();
-			} else {
-				// 终端没有登录
-				System.out.println("终端没有登录，就上传信息");
-				session.close();
-				
-				
+		this.gpsCommandId = this.msg[1];// 获取消息id
 
-			}
+		this.gpsLength = ByteUtils.getShort(this.msg, 3);// 消息体长度
 
-		}
-		this.sequenceId = ByteUtils.getInt(this.msg, 4);
-		this.attachmentId = this.msg[1];
-		// this.gpsLength = ByteUtils.getShort(this.msg, 3);
 		// this.attachmentId = ByteUtils.getShort(this.msg, 5);
 		// this.attachmentLength = ByteUtils.getShort(this.msg, 7);
-		// this.sequenceId = ByteUtils.getShort(this.msg, 9);
-		// this.gpsId = this.getDeviceId();
+		this.sequenceId = ByteUtils.getShort(this.msg, 5);// 流水号id
+
 		// this.subDeviceId = this.msg[17];
 		// this.gpsManufacturers=this.msg[18];
 		// this.hostCompanies = this.msg[19];
-		//
-		// //System.out.println(ByteUtils.byte2HexStr(this.msg));
+
+		// System.out.println(ByteUtils.byte2HexStr(this.msg));
 		// this.crcCode = ByteUtils.getShort(this.msg, this.msg.length - 3);
 		// TODO Auto-generated method stub
+		
+		this.gpsId=ByteUtils.bytesToAsciiString(this.msg, 7, 17);
+		
+		
+		
+		byte temp=BCCUtils.enVerbCode(this.msg);
 
 	}
 
 	public Boolean isFull() {
 
-		if (this.msg[0] == (byte) 0x7e && this.msg[this.msg.length - 1] == (byte) 0x7e) {
-			return true;
-		}
+		// if (this.msg[0] == (byte) 0x7e && this.msg[this.msg.length - 1] ==
+		// (byte) 0x7e) {
+		// return true;
+		// }
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public Boolean isHeader() {
 
-		if (this.msg[0] == (byte) 0x7e) {
+		if (this.msg[0] == (byte) 0x23) {
 			return true;
 		}
 		// TODO Auto-generated method stub
@@ -248,7 +268,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	public Boolean isEnd(byte[] msg) {
 		byte test = msg[this.msg.length - 1];
-		if (msg[msg.length - 1] == (byte) 0x7e) {
+		if (msg[msg.length - 1] == (byte) 0x23) {
 			return true;
 		}
 		System.out.println("判断不正确" + ByteUtils.byte2HexStr(msg));
@@ -261,98 +281,169 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 	}
 
 	public Boolean answerMsg(IoSession session) {
-
-		// 默认消息结果见：
-		// 0x0000 表示命令执行成功
-		// 0x0001 表示命令执行失败
-		// 0xFFFF 表示无效
-		switch (this.msg[1]) {
-			case 0x01: {// 心跳
-				byte[] data = getData((short) 0x0000);
-				session.write(data);
-				// 0x00
-				break;
+     
+		switch (this.gpsCommandId) {
+		case 0x01:// 心跳
+		{
+			byte[] heart = new byte[31];
+			heart[0] = 0x23;
+			heart[1] = 0x00;
+			heart[2] = 0x00;
+			heart[3] = 5;
+			heart[4] = 0;
+			heart[5] = (byte) this.sequenceId;
+			heart[6] = (byte) (this.sequenceId >> 8);
+			if (gpsId.length() >= 17) {
+				for (int i = 0; i < 17; i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
+			} else {
+				for (int i = 0; i < gpsId.length(); i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
 			}
-			case 0x11: {// 终端注册
-				// 0x00
-				// 0x0101 注册成功
-				// 0x0102 生产商代码不存在
-				// 0x0103 车载终端编号不存在
-				// 0x0104 生产商、识别码与系统中以有设备信息冲突
-				// 0x0105 终端信息、识别码与系统中以有设备信息冲突
-	
-				byte[] data = getData((short) 0x0101);
-				session.write(data);
-	
-				break;
+			heart[24] =(byte) this.gpsCommandId;
+			heart[25] = (byte) this.sequenceId;
+			heart[26] = (byte) (this.sequenceId >> 8);
+			heart[27] = (byte) 0x0000;
+			heart[28] = (byte) (0x0000 >> 8);			
+			heart[29]=BCCUtils.enVerbCode(heart);
+			heart[30] = 0x23;
+			session.write(heart);
+			break;
+		}
+		case 0x20:// 终端鉴权
+		{	
+			byte[] heart = new byte[33];
+			heart[0] = 0x23;
+			heart[1] = 0x00;
+			heart[2] = 0x00;
+			heart[3] = 8;
+			heart[4] = 0;
+			heart[5] = (byte) this.sequenceId;
+			heart[6] = (byte) (this.sequenceId >> 8);
+			if (gpsId.length() >= 17) {
+				for (int i = 0; i < 17; i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
+			} else {
+				for (int i = 0; i < gpsId.length(); i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
 			}
-			case 0x12: {// 终端注销
-				// 0x00
-	
-				// 0x0101 注销成功
-				// 0x0102 终端与系统数据库中记录不匹配
-				// 0x0103 生产商代码不存在
-				// 0x0104 不支持注销_请联系平台管理员在平台注销
-				byte[] data = getData((short) 0x0101);
-				session.write(data);
-				break;
+			heart[24] =(byte) 1;
+			byte[] dataBytes=new byte[6];
+			dataBytes=BCDUtils.dateToBytes(new Date());
+			heart[25] = dataBytes[0];
+			heart[26] = dataBytes[1];
+			heart[27] = dataBytes[2];
+			heart[28] = dataBytes[3];	
+			heart[29] = dataBytes[4];
+			heart[30] = dataBytes[5];	
+			heart[31]=0;
+			heart[32]=BCCUtils.enVerbCode(heart);
+			heart[33] = 0x23;
+			session.write(heart);
+			break;
+			
+		}
+		case (byte)0x84:// 数据汇报
+		{
+			
+			byte[] heart = new byte[26];
+			heart[0] = 0x23;
+			heart[1] = 0x00;
+			heart[2] = 0x00;
+			heart[3] = 0;
+			heart[4] = 0;
+			heart[5] = (byte) this.sequenceId;
+			heart[6] = (byte) (this.sequenceId >> 8);
+			if (gpsId.length() >= 17) {
+				for (int i = 0; i < 17; i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
+			} else {
+				for (int i = 0; i < gpsId.length(); i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
+			}		
+			heart[24]=BCCUtils.enVerbCode(heart);
+			heart[25] = 0x23;
+			session.write(heart);
+			break;
+		}
+		case (byte)0xE0:// 故障/事件/报警汇报
+		{
+			byte[] heart = new byte[31];
+			heart[0] = 0x23;
+			heart[1] = 0x00;
+			heart[2] = 0x00;
+			heart[3] = 5;
+			heart[4] = 0;
+			heart[5] = (byte) this.sequenceId;
+			heart[6] = (byte) (this.sequenceId >> 8);
+			if (gpsId.length() >= 17) {
+				for (int i = 0; i < 17; i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
+			} else {
+				for (int i = 0; i < gpsId.length(); i++) {
+					heart[i + 7] = (byte) gpsId.charAt(i);
+				}
 			}
-			case (byte) 0x83: {// 数据汇报
-				// 0x00
-	
-				byte[] data = getData((short) 0x0000);
-				session.write(data);
-				break;
-			}
-			case (byte) 0xB1: {// 故障汇报
-				// 0x00
-				byte[] heart = new byte[9];
-				heart[0] = 0x23;
-				heart[1] = 0x00;// 消息ID
-				heart[2] = 0x00;// 消息体属性
-				heart[3] = (byte) 5;// 消息体长度
-				heart[4] = 0x00;// 消息体长度1
-				heart[5] = (byte) this.getSequenceId();// 消息流水号
-				heart[6] = (byte) (this.getSequenceId() >> 8);// 消息流水号1
-				heart[7] = BCCUtils.enVerbCode(heart);//
-				heart[8] = 0x23;
-				session.write(heart);
-				break;
-			}
+			heart[24] =(byte) this.gpsCommandId;
+			heart[25] = (byte) this.sequenceId;
+			heart[26] = (byte) (this.sequenceId >> 8);
+			heart[27] = (byte) 0x0000;
+			heart[28] = (byte) (0x0000 >> 8);			
+			heart[29]=BCCUtils.enVerbCode(heart);
+			heart[30] = 0x23;
+			session.write(heart);
+			break;
+		}
+			// case 0x20://终端鉴权
+			// {
+			// break;
+			// }
+			// case 0x20://终端鉴权
+			// {
+			// break;
+			// }
 
 		}
 
-		return true;
-
-		// if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
-		// this.gpsCommandId = (short) 0x0101;
-		// } else {
-		// this.gpsCommandId = (short) 0x0403;
-		// }
-		//
-		// this.attachmentId = 0;
-		// this.attachmentLength = 0;
-		// this.gpsLength = 0;
-		//
-		// byte[] temp = this.getData();
-		// short tempCrc = (short) CRCUtil.evalCRC16(temp);
-		// byte[] crc = new byte[3];
-		// crc[0] = (byte) tempCrc;
-		// crc[1] = (byte) (tempCrc >> 8);
-		// crc[2] = (byte) (0x7e);
-		//
-		// byte[] last = ByteUtils.byteMerger(temp, crc);
-		//
-		// byte[] all = ByteUtils.byteMerger(new byte[] { (byte) 0x7e }, last);
-		//
-		// session.write(all);
-		// temp = null;
-		// crc = null;
-		// last = null;
-		// all = null;
-		//
-		// return true;
-
+//		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 1) == (short) 0x0483) {
+//
+//			if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
+//				this.gpsCommandId = (short) 0x0101;
+//			} else {
+//				this.gpsCommandId = (short) 0x0403;
+//			}
+//
+//			this.attachmentId = 0;
+//			this.attachmentLength = 0;
+//			this.gpsLength = 0;
+//
+//			byte[] temp = this.getData();
+//			short tempCrc = (short) CRCUtil.evalCRC16(temp);
+//			byte[] crc = new byte[3];
+//			crc[0] = (byte) tempCrc;
+//			crc[1] = (byte) (tempCrc >> 8);
+//			crc[2] = (byte) (0x7e);
+//
+//			byte[] last = ByteUtils.byteMerger(temp, crc);
+//
+//			byte[] all = ByteUtils.byteMerger(new byte[] { (byte) 0x7e }, last);
+//
+//			session.write(all);
+//			temp = null;
+//			crc = null;
+//			last = null;
+//			all = null;
+//
+//			return true;
+//		}
+		return false;
 	}
 
 	/*
@@ -362,35 +453,51 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 	 */
 	public int getLength(byte[] msg) {
 
-//		int headerLength = 20;// 头部长度
-//		int endLength = 3;// 尾部长度
-//		int gpsLength = ByteUtils.getShort(this.msg, 3);// gps长度
-//		int canLength = ByteUtils.getShort(this.msg, 7);// can 长度
-//		int allLength = headerLength + endLength + gpsLength + canLength;
-//		if (msg.length > allLength && msg[allLength - 1] != 0x7e) {
-//			int tempResult = 0;
-//			Boolean isture = false;
-//			for (int i = allLength; i < msg.length; i++) {
-//				tempResult = i;
-//				if (msg[i] == 0x7e) {
-//					isture = true;
-//					break;
-//				}
-//			}
-//
-//			if (isture) {
-//				allLength = tempResult + 1;
-//			} else {
-//				allLength = 10000000;
-//			}
-//		}
+		// int headerLength=20;//头部长度
+		// int endLength=3;//尾部长度
+		// int gpsLength=ByteUtils.getShort(this.msg, 3);//gps长度
+		// int canLength=ByteUtils.getShort(this.msg, 7);//can 长度
+		// int allLength=headerLength+endLength+gpsLength+canLength;
+		// if(msg.length>allLength&&msg[allLength-1]!=0x7e)
+		// {
+		// int tempResult=0;
+		// Boolean isture=false;
+		// for(int i=allLength;i<msg.length;i++)
+		// {
+		// tempResult=i;
+		// if(msg[i]==0x7e)
+		// {
+		// isture=true;
+		// break;
+		// }
+		// }
+		//
+		// if(isture)
+		// {
+		// allLength=tempResult+1;
+		// }else
+		// {
+		// allLength= 10000000;
+		// }
+		// }
 
 		return 0;
 	}
 
 	public int getMinLength() {
 		// TODO Auto-generated method stub
-		return 8;
+		return 23;
+	}
+
+	@Override
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Boolean isMarker(byte msg) {
@@ -402,9 +509,12 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	public Boolean answerLogin(IoSession session) {
 		// TODO Auto-generated method stub
-		//String deviceId = this.getDeviceId();
+		return false;
+	}
 
-	return true;
+	public String getNode() {
+		// TODO Auto-generated method stub
+		return this.Node;
 	}
 
 }

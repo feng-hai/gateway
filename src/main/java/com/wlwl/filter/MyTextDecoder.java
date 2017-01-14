@@ -6,6 +6,8 @@ import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
+import com.wlwl.utils.ByteUtils;
+
 
 public class MyTextDecoder extends CumulativeProtocolDecoder {
 
@@ -28,6 +30,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
         int remain = in.remaining();
         byte[] temp = new byte[remain];
         in.get(temp);
+    // System.out.println( ByteUtils.byte2HexStr(temp));
         in.reset();
         int startIndex = -1;
         int endIndex = -1;
