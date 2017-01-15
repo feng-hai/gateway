@@ -273,12 +273,12 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 
 	public Boolean answerMsg(IoSession session) {
 
-		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 1) == (short) 0x0483) {
+		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 1) == (short) 0x02E7) {
 
 			if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
 				this.gpsCommandId = (short) 0x0101;
 			} else {
-				this.gpsCommandId = (short) 0x0403;
+				this.gpsCommandId = (short) 0x0267;
 			}
 
 			this.attachmentId = 0;
