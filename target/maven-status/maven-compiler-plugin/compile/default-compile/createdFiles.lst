@@ -22,7 +22,6 @@ com\wlwl\model\VehicleInfo.class
 com\wlwl\protocol\Packages\GPSBody.class
 com\wlwl\protocol\Packages\DefaultEnd.class
 com\wlwl\protocol\IProtocolAnalysis.class
-com\wlwl\commons\Conf.class
 com\wlwl\protocol\Packages\DefaultHeader.class
 com\wlwl\protocol\Packages\DefaultMessage.class
 com\wlwl\utils\BCDUtils.class

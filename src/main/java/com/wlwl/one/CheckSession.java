@@ -1,19 +1,6 @@
 package com.wlwl.one;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TimerTask;
-
-import com.wlwl.model.VehicleInfo;
-import com.wlwl.mysql.JdbcUtils;
-import com.wlwl.mysql.SingletonJDBC;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 public class CheckSession extends TimerTask {
 

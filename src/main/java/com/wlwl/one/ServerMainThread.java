@@ -11,18 +11,21 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import com.wlwl.filter.IFilterControl;
 import com.wlwl.filter.MyTextFactory;
 import com.wlwl.protocol.Protocol;
+import com.wlwl.utils.Config;
 
 public class ServerMainThread extends Thread{
 	
 	private IServerHandler handler;
 	private IFilterControl control;
 	private SessionManager manager;
+	private Config _config;
 	
-	public ServerMainThread(IServerHandler _handler,IFilterControl _control,SessionManager _manager)
+	public ServerMainThread(IServerHandler _handler,IFilterControl _control,SessionManager _manager,Config config)
 	{
 		this.handler=_handler;
 		this.control=_control;
 		this.manager=_manager;
+		this._config=config;
 	}
 
 //	/**
@@ -47,7 +50,7 @@ public class ServerMainThread extends Thread{
 		acceptor.getSessionConfig().setReadBufferSize(1024);
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MyTextFactory(this.control)));
 		//acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
-		acceptor.setHandler(new ServerHandler(this.handler,this.manager));
+		acceptor.setHandler(new ServerHandler(this.handler,this.manager,this._config));
 		try {
 			acceptor.bind(new InetSocketAddress(this.handler.getPort()));
 			System.out.println("=========  server bind :: " + this.handler.getPort());

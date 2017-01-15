@@ -1,5 +1,6 @@
 package com.wlwl.one;
 
+import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.mina.common.IoSession;
@@ -11,18 +12,18 @@ public class SessionManager {
 	private static final Logger logger = LoggerFactory.getLogger(SessionManager.class);
 
 	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
-
+	
 	public void addSession(String deviceID, IoSession session) {
-		try {
-			if (!map.containsKey(deviceID)) {
+		try {			
+			//if (!map.containsKey(deviceID)) {
 				map.put(deviceID, session);
-			}else
-			{
-				if(!map.get(deviceID).isConnected())
-				{
-					map.put(deviceID, session);
-				}
-			}
+//			}else
+//			{
+//				if(!map.get(deviceID).isConnected())
+//				{
+//					map.put(deviceID, session);
+//				}
+//			}
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
 			}
@@ -52,7 +53,7 @@ public class SessionManager {
 			Object o = session.getAttribute("ID");
 			if (o != null && o instanceof String) {
 				String ID = (String) o;
-				map.remove(ID);
+				map.remove(ID,session);
 			}
 		} catch (Exception e) {
 			logger.error("removeSession2 exception!" + e.toString());

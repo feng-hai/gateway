@@ -30,7 +30,6 @@ D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\FaultData.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\ByteUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\MessageConstants.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\ServerHandler.java
-D:\workspace\gateway01\src\main\java\com\wlwl\commons\Conf.java
 D:\workspace\gateway01\src\main\java\com\wlwl\kafka\CommandConsumerThread.java
 D:\workspace\gateway01\src\main\java\com\wlwl\filter\MyTextFactory.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\SendCommandThread.java

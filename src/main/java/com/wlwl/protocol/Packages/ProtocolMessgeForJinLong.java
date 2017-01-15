@@ -243,7 +243,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		
 		
 		
-		byte temp=BCCUtils.enVerbCode(this.msg);
+ 		byte temp=BCCUtils.enVerbCode(this.msg);
 
 	}
 
@@ -453,40 +453,14 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 	 */
 	public int getLength(byte[] msg) {
 
-		// int headerLength=20;//头部长度
-		// int endLength=3;//尾部长度
-		// int gpsLength=ByteUtils.getShort(this.msg, 3);//gps长度
-		// int canLength=ByteUtils.getShort(this.msg, 7);//can 长度
-		// int allLength=headerLength+endLength+gpsLength+canLength;
-		// if(msg.length>allLength&&msg[allLength-1]!=0x7e)
-		// {
-		// int tempResult=0;
-		// Boolean isture=false;
-		// for(int i=allLength;i<msg.length;i++)
-		// {
-		// tempResult=i;
-		// if(msg[i]==0x7e)
-		// {
-		// isture=true;
-		// break;
-		// }
-		// }
-		//
-		// if(isture)
-		// {
-		// allLength=tempResult+1;
-		// }else
-		// {
-		// allLength= 10000000;
-		// }
-		// }
+		int bodyLength = ByteUtils.getShort(msg, 3);// 消息体长度
 
-		return 0;
+		return bodyLength;
 	}
 
 	public int getMinLength() {
 		// TODO Auto-generated method stub
-		return 23;
+		return 26;
 	}
 
 	@Override

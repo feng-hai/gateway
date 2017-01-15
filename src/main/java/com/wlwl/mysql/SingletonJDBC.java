@@ -10,6 +10,8 @@ package com.wlwl.mysql;
 
 import java.sql.Connection;
 
+import com.wlwl.utils.Config;
+
 
 
 public class SingletonJDBC {
@@ -19,11 +21,11 @@ public class SingletonJDBC {
 	private static JdbcUtils jdbcUtils = null;
 	private static Connection connection = null;
 
-	public static JdbcUtils getJDBC() {
+	public static JdbcUtils getJDBC(Config config) {
 
 		if (connection == null) {
 			try {
-				jdbcUtils = new JdbcUtils();
+				jdbcUtils = new JdbcUtils(config);
 				connection = jdbcUtils.getConnection();
 			} catch (Exception e) {
 				e.printStackTrace();

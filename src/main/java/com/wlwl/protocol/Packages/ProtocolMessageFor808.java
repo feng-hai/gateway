@@ -9,6 +9,10 @@ import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
 
+/**
+ * @author FH
+ *
+ */
 public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, Cloneable {
 
 	private String Protocol = "AF27DA9036174426A2E2F7C19A9A959C";// 协议标识，3协议的网关
@@ -72,7 +76,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 
 	/* (non-Javadoc)
 	 * @see com.wlwl.protocol.IProtocolAnalysis#getDeviceId()
-	 * // 终端唯一标识，808 是用手机号码作为终端的唯一标识的
+	 * // 终端唯一标识，AF27DA9036174426A2E2F7C19A9A959C 是用手机号码作为终端的唯一标识的
 	 */
 	public String getDeviceId() {
 		
@@ -133,7 +137,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		answerBytes[15] = (byte) this.commandId;
 		answerBytes[16] = (byte) (this.commandId >> 8);
 
-		answerBytes[17] = (byte) 1;
+		answerBytes[17] = (byte) 0;//0：成功/确认；1：失败；2：消息有误；3：不支持
 		// 设置验证码
 		answerBytes[18] = CRCUtil.crc808(answerBytes);
 
@@ -162,15 +166,21 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		}
 		return false;
 	}
-
+   
+	/* 消息体长度
+	 * @see com.wlwl.protocol.IProtocolAnalysis#getLength(byte[])
+	 */
 	public int getLength(byte[] msg) {
-		// TODO Auto-generated method stub
-		return 0;
+		short length=ByteUtils.getShort(msg, 3);
+		return length;
 	}
-
+     
+	/* 最小长度
+	 * @see com.wlwl.protocol.IProtocolAnalysis#getMinLength()
+	 */
 	public int getMinLength() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 16;
 	}
 	@Override  
     public Object clone()  {  

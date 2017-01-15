@@ -114,12 +114,14 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	public VehicleInfo checkLegitimacy() {
 
 		String deviceId = this.analysis.getDeviceId();
+		
+		//System.out.println(deviceId);
 
 		synchronized (this._vehicles) {
 			Iterator<VehicleInfo> it = this._vehicles.iterator();
 			while (it.hasNext()) {
 				VehicleInfo vi = it.next();
-				if (this.analysis.getProtocol().equals("808")) {
+				if (this.analysis.getProtocol().equals("AF27DA9036174426A2E2F7C19A9A959C")) {
 					if (vi.getCELLPHONE().equals(deviceId)) {
 						return vi;
 					}
@@ -195,15 +197,15 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 //		return true;
 //	}
 //
-//	public int getLength(byte[] msg) {
-//		
-//		return analysis.getLength(msg);
-//	}
+	public int getLength(byte[] msg) {
+		
+		return analysis.getLength(msg);
+	}
 //
-//	public int getMessageMinLength() {
-//		// TODO Auto-generated method stub
-//		return analysis.getMinLength();
-//	}
+	public int getMessageMinLength() {
+		// TODO Auto-generated method stub
+		return analysis.getMinLength();
+	}
 //
 //	public int getExtraLengh(byte[] msg) {
 //		// TODO Auto-generated method stub

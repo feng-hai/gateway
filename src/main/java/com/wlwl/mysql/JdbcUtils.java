@@ -18,32 +18,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import com.wlwl.commons.Conf;
 import com.wlwl.model.VehicleInfo;
+import com.wlwl.utils.Config;
 
 import java.lang.reflect.Field;  
  
 
 public class JdbcUtils {  
     //数据库用户名  
-    private static final String USERNAME = "cube";  
+    private static  String USERNAME ;  
     //数据库密码  
-    private static final String PASSWORD = Conf.MYSQLPASSWORD;  
+    private static  String PASSWORD ;  
     //驱动信息   
     private static final String DRIVER = "com.mysql.jdbc.Driver";  
     //数据库地址  
-    private static final String URL = "jdbc:mysql://"+Conf.MYSQLURL+"/cube";  
+    private static  String URL ;  
     private Connection connection;  
     private PreparedStatement pstmt;  
 
     private ResultSet resultSet;  
+    //private Config _config;
     /**
     * <p>Title: </p>
     * <p>Description: </p>
     */ 
-    public JdbcUtils() {  
+    public JdbcUtils(Config config) {  
+    	//this._config=config;
+    	
+    	USERNAME=config.getMySQLUserName();
+    	
+    	PASSWORD = config.getMySQLpwd();
+    	
+    	URL = config.getMySQLUrl();
+    	
+    	
         // TODO Auto-generated constructor stub  
         try{  
             Class.forName(DRIVER);  
@@ -281,7 +289,9 @@ public class JdbcUtils {
      */  
     public static void main(String[] args) throws SQLException { 
     	
-      JdbcUtils jdbcUtils = new JdbcUtils();  
+    	
+    	Config config=new Config();
+      JdbcUtils jdbcUtils = new JdbcUtils(config);  
       jdbcUtils.getConnection();
     	
     	String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "

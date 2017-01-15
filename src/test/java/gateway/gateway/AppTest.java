@@ -1,5 +1,7 @@
 package gateway.gateway;
 
+import org.apache.log4j.Logger;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -10,6 +12,9 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
+	
+	static Logger logger = Logger.getLogger(AppTest.class);
+  
     /**
      * Create the test case
      *
@@ -25,6 +30,7 @@ public class AppTest
      */
     public static Test suite()
     {
+    	logger.debug("开始");
         return new TestSuite( AppTest.class );
     }
 
@@ -33,6 +39,8 @@ public class AppTest
      */
     public void testApp()
     {
+    	
+    	logger.debug("开始");
         assertTrue( true );
     }
 }

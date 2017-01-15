@@ -36,18 +36,18 @@ public interface IFilterControl {
 //	 */
 //	Boolean checkRight();
 //	
-////	/**
-////	 * @return  检查是否超过单例长度
-////	 */
-////	Boolean	checkLength();
-//	
-//	int  getLength(byte[] msg);
-//	
 //	/**
-//	 * 获取协议体的最小长度
-//	 * @return
+//	 * @return  检查是否超过单例长度
 //	 */
-//	int getMessageMinLength();
+//	Boolean	checkLength();
+	
+	int  getLength(byte[] msg);
+//	
+	/**
+	 * 获取协议体的最小长度
+	 * @return
+	 */
+	int getMessageMinLength();
 //
 //	/**
 //	 * @param msg  設置數據信息

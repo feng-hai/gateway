@@ -54,7 +54,7 @@ public class SendDataTokafka extends Thread{
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(config.getSourcecodeTopic(), strMessage);
 				
 				if(config.getIsDebug()==1){
-					//System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
+					System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
 				}
 				
 				producer.send(myrecord, new Callback() {
