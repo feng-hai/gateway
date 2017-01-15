@@ -51,7 +51,7 @@ public class ServerMain {
 		commandConsumer.run();
 		//
 		// // 发送命令---从数据队列中获取数据，并把数据发送出去
-		SendCommandThread sendCommmandThread = new SendCommandThread(sessionManager, cmdQueue);
+		SendCommandThread sendCommmandThread = new SendCommandThread(sessionManager, cmdQueue,config);
 		sendCommmandThread.setDaemon(true);
 		sendCommmandThread.start();
 
