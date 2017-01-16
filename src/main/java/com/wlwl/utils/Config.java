@@ -1,10 +1,16 @@
 package com.wlwl.utils;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 
 public class Config {
 
@@ -48,13 +54,25 @@ public class Config {
 	private String watchVehicles;
 
 	public Config() {
-		loadMessage() ;
+		loadMessage();
 	}
 
 	public void loadMessage() {
 		Properties prop = new Properties();
 		// 查找classpath根目录下的配置文件 没有/表示当前类目录下
-		InputStream in = Config.class.getResourceAsStream("/com/wlwl/config/cfg.properties");
+
+		String userUrl = System.getProperty("user.dir");
+		System.out.println(userUrl);
+		// InputStream in =
+		// Config.class.getResourceAsStream(userUrl+"/cfg.properties");
+		InputStream in = null;
+		try {
+			in = new BufferedInputStream(new FileInputStream(userUrl+"/cfg.properties"));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		try {
 			try {
 				prop.load(in);

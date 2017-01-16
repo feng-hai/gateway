@@ -197,33 +197,34 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		if (bys.length < 23) {
 			return false;
 		}
-
 		byte[] temp = new byte[bys.length - 4];
 
 		for (int i = 1; i < bys.length - 3; i++) {
 			temp[i-1] = bys[i];
 		}
-
 		int tempCrc = CRCUtil.parseCRCMessageTail(temp);
 
 		if (this.getCrcCode() == tempCrc) {
 			return true;
 		}
-
 		return false;
 	}
 
 	public String getDeviceId() {
-
-		return ByteUtils.bytesToAsciiString(this.msg,  11, 6);
+		String temp=ByteUtils.byte2HexStr(this.msg);
+		temp=temp.replaceAll("7D02", "7E");
+	 	temp=temp.replaceAll("7D01", "7D");
+		return ByteUtils.bytesToAsciiString(ByteUtils.hexStr2Bytes(temp),  11, 6);
 
 	}
 
 	public void setMsg(byte[] bytes,IoSession session) {
 		this.msg = bytes;
+		String temp=ByteUtils.byte2HexStr(this.msg);
+		temp=temp.replaceAll("7D02", "7E");
+	 	temp=temp.replaceAll("7D01", "7D");
+	 	this.msg=ByteUtils.hexStr2Bytes(temp);
 		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);//获取消息id
-		
-		
 		this.gpsLength = ByteUtils.getShort(this.msg, 3);
 		this.attachmentId = ByteUtils.getShort(this.msg, 5);
 		this.attachmentLength = ByteUtils.getShort(this.msg, 7);
@@ -311,6 +312,9 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	 * @see com.wlwl.protocol.IProtocolAnalysis#getLength()
 	 */
 	public int getLength(byte[] msg) {
+		
+		String temp=ByteUtils.byte2HexStr(this.msg);
+	
 
 		int gpsLength=ByteUtils.getShort(this.msg, 3);//gps长度
 		int canLength=ByteUtils.getShort(this.msg, 7);//can 长度	

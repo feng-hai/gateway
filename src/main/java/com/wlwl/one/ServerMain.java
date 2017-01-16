@@ -74,6 +74,10 @@ public class ServerMain {
 		// ServerMainThread smt808 = new ServerMainThread(g808, g808,
 		// sessionManager);
 		// smt808.start();
+		
+		Protocol s808 = new Protocol(8888, new ProtocolMessageFor808(), sendQueue, vehicles);
+		ServerMainThread smt808 = new ServerMainThread(s808, s808, sessionManager,config);
+		smt808.start();
 
 		Protocol jinlong = new Protocol(8989, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
 		ServerMainThread smtJinLong = new ServerMainThread(jinlong, jinlong, sessionManager,config);

@@ -1,5 +1,6 @@
 package com.wlwl.filter;
 
+import org.apache.mina.common.IoSession;
 
 /**
  * @author FH
@@ -41,7 +42,7 @@ public interface IFilterControl {
 //	 */
 //	Boolean	checkLength();
 	
-	int  getLength(byte[] msg);
+	int  getLength();
 //	
 	/**
 	 * 获取协议体的最小长度
@@ -49,10 +50,10 @@ public interface IFilterControl {
 	 */
 	int getMessageMinLength();
 //
-//	/**
-//	 * @param msg  設置數據信息
-//	 */
-//	void setMsg(byte[] msg);
+	/**
+	 * @param msg  設置數據信息
+	 */
+	void setMsg(byte[] msg,IoSession session);
 //	
 ////	/**
 ////	 * @return 获取多余的字节数，并保存独立的解析单体  （保存整个信息）

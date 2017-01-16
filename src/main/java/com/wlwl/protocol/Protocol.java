@@ -197,9 +197,9 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 //		return true;
 //	}
 //
-	public int getLength(byte[] msg) {
+	public int getLength() {
 		
-		return analysis.getLength(msg);
+		return analysis.getLength(this.msg);
 	}
 //
 	public int getMessageMinLength() {

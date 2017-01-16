@@ -80,10 +80,14 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	 */
 	public String getDeviceId() {
 		
+		String temp=ByteUtils.byte2HexStr(this.msg);
+		temp=temp.replaceAll("7D02", "7E");
+	 	temp=temp.replaceAll("7D01", "7D");
+		
 		  //第五位是手机号码的开始位
-		  byte[] telephone=ByteUtils.getSubBytes(this.msg, 5, 6);
+		byte[] telephone=ByteUtils.getSubBytes(ByteUtils.hexStr2Bytes(temp), 5, 6);
 		  
-		  String teleStr=BCDUtils.bcd2Str(telephone);
+		String teleStr=BCDUtils.bcd2Str(telephone);
 		
 		  return teleStr;
 	}

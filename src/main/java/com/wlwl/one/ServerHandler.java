@@ -51,10 +51,12 @@ public class ServerHandler extends IoHandlerAdapter {
 			// 不合法终端端口连接
 			if (this._config.getWatchVehiclesList().contains(this.handler.getDeviceId().trim())) {
 				logger.info("车辆在数据库中不存在:" + this.handler.getDeviceId());
+				byte[] data = (byte[]) message;
+				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
+
 			} else {
-				return;
+				// return;
 			}
-			// logger.info("终端源码："+ByteUtils.byte2HexStr(data));
 
 			// System.out.println("车辆在数据库中不存在：" + this.handler.getDeviceId());
 			// session.close(true);
@@ -99,8 +101,7 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
-		// System.out.println("========= server send msg:: "
-		// +ByteUtils.byte2HexStr((byte[])message) );
+		System.out.println("========= server send msg:: " + ByteUtils.byte2HexStr((byte[]) message));
 	}
 
 	@Override
@@ -113,6 +114,11 @@ public class ServerHandler extends IoHandlerAdapter {
 		// 清除已经关闭的连接
 		this.manager.removeSession(session);
 
+	}
+
+	@Override
+	public void exceptionCaught(IoSession session, Throwable cause) {
+		// this.manager.removeSession(session);
 	}
 
 }

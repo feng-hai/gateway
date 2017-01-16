@@ -217,7 +217,10 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	public String getDeviceId() {
 
-		return ByteUtils.bytesToAsciiString(this.msg, 7, 17);
+		String temp=ByteUtils.byte2HexStr(this.msg);
+	   String temp2=	temp.replaceAll("2202", "23");
+		String result=temp2.replaceAll("2201", "22");
+		return ByteUtils.bytesToAsciiString(ByteUtils.hexStr2Bytes(result), 7, 17);
 
 	}
 
