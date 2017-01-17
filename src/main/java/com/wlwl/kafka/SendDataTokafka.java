@@ -66,7 +66,7 @@ public class SendDataTokafka extends Thread{
 						if(config.getIsDebug()==1){
 							
 							//System.out.println("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
-						   // logger.info("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
+						    logger.info("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
 						}
 					}
 				});

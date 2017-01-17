@@ -31,6 +31,7 @@ public class AppTest
     public static Test suite()
     {
     	logger.debug("开始");
+    	logger.error("dd");
         return new TestSuite( AppTest.class );
     }
 

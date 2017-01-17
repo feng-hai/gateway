@@ -55,7 +55,7 @@ public class ServerHandler extends IoHandlerAdapter {
 				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
 
 			} else {
-				// return;
+				 return;
 			}
 
 			// System.out.println("车辆在数据库中不存在：" + this.handler.getDeviceId());
@@ -92,9 +92,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		// 如果是登录指令自动回复
 
 		// 普通上传指令应答
-		if (this.handler.answerMsg(session)) {
-			return;
-		}
+		this.handler.answerMsg(session);
 		// this.handler=null;
 
 	}

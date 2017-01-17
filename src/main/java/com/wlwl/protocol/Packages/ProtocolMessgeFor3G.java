@@ -225,6 +225,8 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	 	temp=temp.replaceAll("7D01", "7D");
 	 	this.msg=ByteUtils.hexStr2Bytes(temp);
 		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);//获取消息id
+		
+		
 		this.gpsLength = ByteUtils.getShort(this.msg, 3);
 		this.attachmentId = ByteUtils.getShort(this.msg, 5);
 		this.attachmentLength = ByteUtils.getShort(this.msg, 7);

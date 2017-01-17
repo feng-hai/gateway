@@ -30,7 +30,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 		}
 		byte[] temp = new byte[remain];
 		in.get(temp);
-		this.control.setMsg(temp, session);
+		//this.control.setMsg(temp, session);
 
 		if (!this.control.isMarker(temp[0]))// 标识符不对
 		{
@@ -41,14 +41,14 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 		
 	
 		// 获取消息体长度
-		int allMinLength = this.control.getLength();
+		//int allMinLength = this.control.getLength();
 //
-		if (temp.length < allMinLength + this.control.getMessageMinLength()) {
-			// 数据长度不够
-			return false;
-		}
+//		if (temp.length < allMinLength + this.control.getMessageMinLength()) {
+//			// 数据长度不够
+//			return false;
+//		}
 //
-		int allMaxlength = this.control.getMessageMinLength() + 2 * allMinLength;
+		//int allMaxlength = this.control.getMessageMinLength() + 2 * allMinLength;
 
 		// System.out.println( ByteUtils.byte2HexStr(temp));
 		in.reset();
@@ -80,7 +80,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 					return true;
 				}
 			}
-			if (i >= allMaxlength) {
+			if (i >= 0xffff) {
 				in.position(temp.length);
 				session.close(true);
 				System.out.println("消息体长度不匹配：" + ByteUtils.byte2HexStr(temp));
