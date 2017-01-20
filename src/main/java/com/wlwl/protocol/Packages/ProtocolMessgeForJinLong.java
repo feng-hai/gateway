@@ -1,6 +1,7 @@
 package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.Date;
 
 import org.apache.mina.common.IoSession;
@@ -217,17 +218,17 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	public String getDeviceId() {
 
-		String temp=ByteUtils.byte2HexStr(this.msg);
-	   String temp2=	temp.replaceAll("2202", "23");
-		String result=temp2.replaceAll("2201", "22");
-		return ByteUtils.bytesToAsciiString(ByteUtils.hexStr2Bytes(result), 7, 17);
+//		String temp=ByteUtils.byte2HexStr(this.msg);
+//	    String temp2=	temp.replaceAll("2202", "23");
+//		String result=temp2.replaceAll("2201", "22");
+		return ByteUtils.bytesToAsciiString(this.msg, 7, 17);
 
 	}
 
 	public void setMsg(byte[] bytes, IoSession session) {
 		this.msg = bytes;
 		this.gpsCommandId = this.msg[1];// 获取消息id
-
+		this.msg=descape(this.msg);
 		this.gpsLength = ByteUtils.getShort(this.msg, 3);// 消息体长度
 
 		// this.attachmentId = ByteUtils.getShort(this.msg, 5);
@@ -246,7 +247,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		
 		
 		
- 		byte temp=BCCUtils.enVerbCode(this.msg);
+ 		//byte temp=BCCUtils.enVerbCode(this.msg);
 
 	}
 
@@ -312,7 +313,10 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[28] = (byte) (0x0000 >> 8);			
 			heart[29]=BCCUtils.enVerbCode(heart);
 			heart[30] = 0x23;
-			session.write(heart);
+			
+			
+			
+			session.write(escape(heart));
 			break;
 		}
 		case 0x20:// 终端鉴权
@@ -346,7 +350,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[31]=0;
 			heart[32]=BCCUtils.enVerbCode(heart);
 			heart[33] = 0x23;
-			session.write(heart);
+			session.write(escape(heart));
 			break;
 			
 		}
@@ -372,7 +376,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			}		
 			heart[24]=BCCUtils.enVerbCode(heart);
 			heart[25] = 0x23;
-			session.write(heart);
+			session.write(escape(heart));
 			break;
 		}
 		case (byte)0xE0:// 故障/事件/报警汇报
@@ -401,7 +405,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[28] = (byte) (0x0000 >> 8);			
 			heart[29]=BCCUtils.enVerbCode(heart);
 			heart[30] = 0x23;
-			session.write(heart);
+			session.write(escape(heart));
 			break;
 		}
 			// case 0x20://终端鉴权
@@ -492,6 +496,75 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 	public String getNode() {
 		// TODO Auto-generated method stub
 		return this.Node;
+	}
+	
+	private static final byte OX7D = 0x22;
+
+	private static final byte[] OX7D_ESCAPE = { 0x22, 0x01 };
+
+	public static final byte OX7E = 0x23;
+
+	private static final byte[] OX7E_ESCAPE = { 0x22, 0x02 };
+
+	/**
+	 * 还原转义
+	 */
+	protected byte[] descape(byte[] octets) {
+		if (octets != null && octets.length > 2) {
+			ByteBuffer buffer = ByteBuffer.allocate(octets.length);
+			buffer.put(octets[0]);// head
+			int i = 1;
+			for (; i < octets.length - 2; i++) {
+				if (octets[i] == OX7D) {
+					if (octets[i + 1] == OX7E_ESCAPE[1]) {
+						buffer.put(OX7E);
+						i++;
+					} else if (octets[i + 1] == OX7D_ESCAPE[1]) {
+						buffer.put(OX7D);
+						i++;
+					} else {
+						buffer.put(octets[i]);
+					}
+				} else {
+					buffer.put(octets[i]);
+				}
+			}
+			if (i == octets.length - 2)
+				buffer.put(octets[octets.length - 2]);
+			buffer.put(octets[octets.length - 1]);
+			buffer.flip();
+			byte[] octetsDescaped = new byte[buffer.remaining()];
+			buffer.get(octetsDescaped);
+			return octetsDescaped;
+		}
+		return null;
+	}
+
+	// private byte[] messageType = new byte[2];
+
+	/**
+	 * 转义
+	 */
+	protected byte[] escape(byte[] octets) {
+		if (octets != null && octets.length > 2) {
+			byte[] octetsDescaped = octets;
+			ByteBuffer buffer = ByteBuffer.allocate(octetsDescaped.length * 2);
+			buffer.put(octetsDescaped[0]);// head
+			for (int i = 1; i < octetsDescaped.length - 1; i++) {
+				if (octetsDescaped[i] == OX7E)
+					buffer.put(OX7E_ESCAPE);
+				else if (octetsDescaped[i] == OX7D)
+					buffer.put(OX7D_ESCAPE);
+				else
+					buffer.put(octetsDescaped[i]);
+			}
+			buffer.put(octetsDescaped[octetsDescaped.length - 1]);// tail
+			buffer.flip();
+			byte[] octetsEscaped = new byte[buffer.remaining()];
+			buffer.get(octetsEscaped);
+			return octetsEscaped;
+		}
+		return new byte[0];
 	}
 
 }

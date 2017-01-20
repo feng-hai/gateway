@@ -1,6 +1,7 @@
 package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 
 import org.apache.mina.common.IoSession;
 
@@ -80,12 +81,10 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	 */
 	public String getDeviceId() {
 		
-		String temp=ByteUtils.byte2HexStr(this.msg);
-		temp=temp.replaceAll("7D02", "7E");
-	 	temp=temp.replaceAll("7D01", "7D");
+		
 		
 		  //第五位是手机号码的开始位
-		byte[] telephone=ByteUtils.getSubBytes(ByteUtils.hexStr2Bytes(temp), 5, 6);
+		byte[] telephone=ByteUtils.getSubBytes(this.msg, 5, 6);
 		  
 		String teleStr=BCDUtils.bcd2Str(telephone);
 		
@@ -93,9 +92,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	}
 
 	public void setMsg(byte[] bytes,IoSession session) {
-
-		this.msg = bytes;
-		
+		this.msg = descape(bytes);
 		this.commandId=ByteUtils.getShort(this.msg, 1);
 		this.serialNumber=ByteUtils.getShort(this.msg, 11);
 	}
@@ -145,7 +142,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		// 设置验证码
 		answerBytes[18] = CRCUtil.crc808(answerBytes);
 
-		session.write(answerBytes);
+		session.write(escape(answerBytes));
 
 		return true;
 	}
@@ -213,6 +210,75 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	public String getNode() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private static final byte OX7D = 0x7d;
+
+	private static final byte[] OX7D_ESCAPE = { 0x7d, 0x01 };
+
+	public static final byte OX7E = 0x7e;
+
+	private static final byte[] OX7E_ESCAPE = { 0x7d, 0x02 };
+
+	/**
+	 * 还原转义
+	 */
+	protected byte[] descape(byte[] octets) {
+		if (octets != null && octets.length > 2) {
+			ByteBuffer buffer = ByteBuffer.allocate(octets.length);
+			buffer.put(octets[0]);// head
+			int i = 1;
+			for (; i < octets.length - 2; i++) {
+				if (octets[i] == OX7D) {
+					if (octets[i + 1] == OX7E_ESCAPE[1]) {
+						buffer.put(OX7E);
+						i++;
+					} else if (octets[i + 1] == OX7D_ESCAPE[1]) {
+						buffer.put(OX7D);
+						i++;
+					} else {
+						buffer.put(octets[i]);
+					}
+				} else {
+					buffer.put(octets[i]);
+				}
+			}
+			if (i == octets.length - 2)
+				buffer.put(octets[octets.length - 2]);
+			buffer.put(octets[octets.length - 1]);
+			buffer.flip();
+			byte[] octetsDescaped = new byte[buffer.remaining()];
+			buffer.get(octetsDescaped);
+			return octetsDescaped;
+		}
+		return null;
+	}
+
+	// private byte[] messageType = new byte[2];
+
+	/**
+	 * 转义
+	 */
+	protected byte[] escape(byte[] octets) {
+		if (octets != null && octets.length > 2) {
+			byte[] octetsDescaped = octets;
+			ByteBuffer buffer = ByteBuffer.allocate(octetsDescaped.length * 2);
+			buffer.put(octetsDescaped[0]);// head
+			for (int i = 1; i < octetsDescaped.length - 1; i++) {
+				if (octetsDescaped[i] == OX7E)
+					buffer.put(OX7E_ESCAPE);
+				else if (octetsDescaped[i] == OX7D)
+					buffer.put(OX7D_ESCAPE);
+				else
+					buffer.put(octetsDescaped[i]);
+			}
+			buffer.put(octetsDescaped[octetsDescaped.length - 1]);// tail
+			buffer.flip();
+			byte[] octetsEscaped = new byte[buffer.remaining()];
+			buffer.get(octetsEscaped);
+			return octetsEscaped;
+		}
+		return new byte[0];
 	}
 
 }

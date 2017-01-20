@@ -34,7 +34,7 @@ public class ServerHandler extends IoHandlerAdapter {
 			// System.out.println(ByteUtils.byte2HexStr(data));
 			this.handler.setMsg(data, session);
 			String deviceId = this.handler.getDeviceId();
-			if (this._config.getWatchVehiclesList().contains(deviceId.trim())) {
+			if (this._config.getIsDebug()==1) {
 				logger.info("终端ID:" + deviceId);
 				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
 			}

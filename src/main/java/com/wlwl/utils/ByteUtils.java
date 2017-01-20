@@ -3,6 +3,8 @@ package com.wlwl.utils;
 import java.io.UnsupportedEncodingException;
 
 public class ByteUtils {
+	
+	
 
 	public static byte[] byteMerger(byte[] byte_1, byte[] byte_2) {
 		byte[] byte_3 = new byte[byte_1.length + byte_2.length];
