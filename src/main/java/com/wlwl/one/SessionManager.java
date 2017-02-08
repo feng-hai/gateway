@@ -1,6 +1,7 @@
 package com.wlwl.one;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.mina.common.IoSession;
@@ -27,6 +28,8 @@ public class SessionManager {
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
 			}
+			
+			
 		} catch (Exception e) {
 			logger.error("addSession exception!" + e.toString());
 		}
@@ -72,6 +75,21 @@ public class SessionManager {
 	}
 
 	public int getCount() {
+
 		return map.size();
+	}
+	
+	public void  getDevices()
+	{
+		StringBuilder sb=new StringBuilder();
+		for (Map.Entry<String, IoSession> entry : map.entrySet()) {  
+			String time=entry.getValue().getAttribute("time").toString();
+			  
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+			sb.append(entry.getKey()+":"+time);
+			sb.append(",");
+		}  
+		logger.error(sb.toString());
+		
 	}
 }

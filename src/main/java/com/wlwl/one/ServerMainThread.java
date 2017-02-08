@@ -3,6 +3,7 @@ package com.wlwl.one;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 
+import org.apache.mina.common.IdleStatus;
 import org.apache.mina.common.IoAcceptor;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.executor.ExecutorFilter;
@@ -48,9 +49,11 @@ public class ServerMainThread extends Thread{
 	public void run() {			
 		IoAcceptor acceptor = new NioSocketAcceptor();
 		acceptor.getSessionConfig().setReadBufferSize(1024);
+		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,this._config.getReaderIdleTime()); 
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MyTextFactory(this.control)));
 		//acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
 		acceptor.setHandler(new ServerHandler(this.handler,this.manager,this._config));
+		
 		try {
 			acceptor.bind(new InetSocketAddress(this.handler.getPort()));
 			System.out.println("=========  server bind :: " + this.handler.getPort());

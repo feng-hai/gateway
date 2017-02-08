@@ -80,5 +80,16 @@ public class BCDUtils {
         c = null;
         return result;
     }
+    
+    public static Date bytesToDate(byte[] b) throws Exception
+    {
+        if (b == null || b.length < 6)
+        {
+            throw new Exception();
+        }
+        Calendar c = Calendar.getInstance();
+        c.set(2000 + b[0], b[1] - 1, b[2], b[3], b[4], b[5]);		
+        return c.getTime();
+    }
 
 }

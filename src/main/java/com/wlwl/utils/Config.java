@@ -60,7 +60,6 @@ public class Config {
 	public void loadMessage() {
 		Properties prop = new Properties();
 		// 查找classpath根目录下的配置文件 没有/表示当前类目录下
-
 		String userUrl = System.getProperty("user.dir");
 		System.out.println(userUrl);
 		// InputStream in =

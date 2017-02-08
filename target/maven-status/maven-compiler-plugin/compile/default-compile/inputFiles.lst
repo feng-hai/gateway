@@ -9,6 +9,7 @@ D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\FaultBody.java
 D:\workspace\gateway01\src\main\java\com\wlwl\filter\MyTextDecoder.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\DefaultHeader.java
 D:\workspace\gateway01\src\main\java\com\wlwl\mysql\JdbcUtils.java
+D:\workspace\gateway01\src\main\java\com\wlwl\utils\AychWriter.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\BCCUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\ServerMain.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\LockBody.java
@@ -18,6 +19,7 @@ D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\DefaultEnd.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\MessageTail.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\JsonUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\CRCUtil.java
+D:\workspace\gateway01\src\main\java\com\wlwl\model\PossionInfo.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\Config.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\IServerHandler.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\Packages\ProtocolMessageFor808.java
@@ -31,6 +33,7 @@ D:\workspace\gateway01\src\main\java\com\wlwl\utils\ByteUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\MessageConstants.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\ServerHandler.java
 D:\workspace\gateway01\src\main\java\com\wlwl\kafka\CommandConsumerThread.java
+D:\workspace\gateway01\src\main\java\com\wlwl\utils\AMapConvertService.java
 D:\workspace\gateway01\src\main\java\com\wlwl\filter\MyTextFactory.java
 D:\workspace\gateway01\src\main\java\com\wlwl\one\SendCommandThread.java
 D:\workspace\gateway01\src\main\java\com\wlwl\model\VehicleInfo.java
@@ -41,3 +44,4 @@ D:\workspace\gateway01\src\main\java\com\wlwl\one\SessionManager.java
 D:\workspace\gateway01\src\main\java\com\wlwl\protocol\IProtocolAnalysis.java
 D:\workspace\gateway01\src\main\java\com\wlwl\utils\BCDUtils.java
 D:\workspace\gateway01\src\main\java\com\wlwl\filter\MyTextEncoder.java
+D:\workspace\gateway01\src\main\java\com\wlwl\utils\LogWriter.java

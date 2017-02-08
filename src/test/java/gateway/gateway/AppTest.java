@@ -2,6 +2,8 @@ package gateway.gateway;
 
 import org.apache.log4j.Logger;
 
+import com.wlwl.utils.ByteUtils;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -32,6 +34,8 @@ public class AppTest
     {
     	logger.debug("开始");
     	logger.error("dd");
+    	
+    	logger.error(ByteUtils.getShort(ByteUtils.hexStr2Bytes("E702"), 0) == (short) 0x02E7);
         return new TestSuite( AppTest.class );
     }
 

@@ -31,7 +31,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 		byte[] temp = new byte[remain];
 		in.get(temp);
 		//this.control.setMsg(temp, session);
-
+		
 		if (!this.control.isMarker(temp[0]))// 标识符不对
 		{
 			session.close(true);

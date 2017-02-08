@@ -215,7 +215,8 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		// String temp = ByteUtils.byte2HexStr(this.msg);
 		// temp = temp.replaceAll("7D02", "7E");
 		// temp = temp.replaceAll("7D01", "7D");
-		return ByteUtils.bytesToAsciiString(this.msg, 11, 6);
+		this.gpsId=ByteUtils.bytesToAsciiString(this.msg, 11, 6);
+		return this.gpsId;
 
 	}
 
@@ -274,18 +275,24 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	}
 
 	public Boolean answerMsg(IoSession session) {
-		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 1) == (short) 0x02E7
-				|| ByteUtils.getShort(this.msg, 1) == (short) 0x038B) {
+		
+		 
+		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 6) == (short) 0x02E7
+				|| ByteUtils.getShort(this.msg, 6) == (short) 0x038B) {
 
 			if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
 				this.gpsCommandId = (short) 0x0101;
-			} else if (ByteUtils.getShort(this.msg, 1) == (short) 0x02E7) {
-				this.gpsCommandId = (short) 0x0267;
-			} else {
-				this.gpsCommandId = (short) 0x030B;
+				this.attachmentId = 0;
+			} 
+			if (ByteUtils.getShort(this.msg, 6) == (short) 0x02E7) {
+				this.attachmentId= (short) 0x0267;
+				this.gpsCommandId =0;
+			} else if (ByteUtils.getShort(this.msg, 6) == (short) 0x038B)  {
+				this.attachmentId = (short) 0x030B;
+				this.gpsCommandId =0;
 			}
 
-			this.attachmentId = 0;
+			//this.attachmentId = 0;
 			this.attachmentLength = 0;
 			this.gpsLength = 0;
 			byte[] temp = this.getData();

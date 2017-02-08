@@ -2,6 +2,7 @@ package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.mina.common.IoSession;
@@ -313,19 +314,18 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[28] = (byte) (0x0000 >> 8);			
 			heart[29]=BCCUtils.enVerbCode(heart);
 			heart[30] = 0x23;
-			
-			
-			
+		
+			//System.out.println("心跳："+escape(heart));
 			session.write(escape(heart));
 			break;
 		}
 		case 0x20:// 终端鉴权
 		{	
-			byte[] heart = new byte[33];
+			byte[] heart = new byte[36];
 			heart[0] = 0x23;
-			heart[1] = 0x00;
+			heart[1] = 0x21;
 			heart[2] = 0x00;
-			heart[3] = 8;
+			heart[3] = 10;
 			heart[4] = 0;
 			heart[5] = (byte) this.sequenceId;
 			heart[6] = (byte) (this.sequenceId >> 8);
@@ -340,7 +340,9 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			}
 			heart[24] =(byte) 1;
 			byte[] dataBytes=new byte[6];
-			dataBytes=BCDUtils.dateToBytes(new Date());
+			
+			 SimpleDateFormat sdf =   new SimpleDateFormat( "yyMMddHHmmss" );
+			dataBytes=BCDUtils.str2Bcd(sdf.format(new Date()));
 			heart[25] = dataBytes[0];
 			heart[26] = dataBytes[1];
 			heart[27] = dataBytes[2];
@@ -348,8 +350,11 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[29] = dataBytes[4];
 			heart[30] = dataBytes[5];	
 			heart[31]=0;
-			heart[32]=BCCUtils.enVerbCode(heart);
-			heart[33] = 0x23;
+			heart[32]=0;
+			heart[33]=0;
+			heart[34]=BCCUtils.enVerbCode(heart);
+			heart[35] = 0x23;
+			//System.out.println("鉴权："+escape(heart));
 			session.write(escape(heart));
 			break;
 			
@@ -376,6 +381,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			}		
 			heart[24]=BCCUtils.enVerbCode(heart);
 			heart[25] = 0x23;
+			//System.out.println("数据汇报："+escape(heart));
 			session.write(escape(heart));
 			break;
 		}
@@ -405,6 +411,8 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[28] = (byte) (0x0000 >> 8);			
 			heart[29]=BCCUtils.enVerbCode(heart);
 			heart[30] = 0x23;
+			
+			//System.out.println("故障/事件/报警汇报："+escape(heart));
 			session.write(escape(heart));
 			break;
 		}

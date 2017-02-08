@@ -32,6 +32,10 @@ public class ServerMain {
 
 		// 从kafka中读取数据，并把数据存储到当前队列中 下发的命令队列
 		BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
+		
+		BlockingQueue<String> cmdLogQueue = new LinkedBlockingQueue<String>();
+		
+		
 
 		// 把客户端连接的session存入队列中 session管理
 		SessionManager sessionManager = new SessionManager();
@@ -56,7 +60,7 @@ public class ServerMain {
 		sendCommmandThread.start();
 
 		// 启动3G协议网关
-		Protocol g3 = new Protocol(18081, new ProtocolMessgeFor3G(), sendQueue, vehicles);
+		Protocol g3 = new Protocol(4443, new ProtocolMessgeFor3G(), sendQueue, vehicles);
 
 		ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager,config);
 		smt.start();
@@ -79,7 +83,7 @@ public class ServerMain {
 		ServerMainThread smt808 = new ServerMainThread(s808, s808, sessionManager,config);
 		smt808.start();
 
-		Protocol jinlong = new Protocol(8989, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
+		Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
 		ServerMainThread smtJinLong = new ServerMainThread(jinlong, jinlong, sessionManager,config);
 		smtJinLong.start();
 
