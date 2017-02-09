@@ -296,7 +296,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			this.attachmentLength = 0;
 			this.gpsLength = 0;
 			byte[] temp = this.getData();
-			short tempCrc = (short) CRCUtil.evalCRC16(temp);
+			short tempCrc = (short) CRCUtil.parseCRCMessageTail(temp);
 			byte[] crc = new byte[3];
 			crc[0] = (byte) tempCrc;
 			crc[1] = (byte) (tempCrc >> 8);

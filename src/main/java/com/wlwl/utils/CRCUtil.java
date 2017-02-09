@@ -57,15 +57,15 @@ public class CRCUtil {
 	    public static void main(String[] args) {  
 	        // 一个db44测试样本数据  
 	        byte p[] = {71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,68,31,32,0,1,2};  
-	       
+	       // 29067E
 
-			String temp="81012000000000006B22423330303138020100004C1B3A073F18D901020010006F009F4B5B02780001010609100B1307100F277D";
+			String temp="81012000000000008D0230303530303002010000C5621407C004E80100007A0033005FA40200790001011B021102080D08172F";
 			
 			byte[] data =ByteUtils. hexStr2Bytes(temp);
 	        
-	        int crc = evalCRC16(data); 
+	        int crc = parseCRCMessageTail(data); 
 	        // 65336  
-	        System.out.println(crc);  
+	        System.out.println(Integer.toHexString(crc));  
 	          
 	    }  
 }

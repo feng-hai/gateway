@@ -150,7 +150,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		}
 		if (this._config.getIsDebug() == 2) {
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			new AychWriter("关闭链接：" + df.format(new Date()) + "--" + session, "closeSession").start();
+			new AychWriter("关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session, "closeSession").start();
 		}
 	}
 
