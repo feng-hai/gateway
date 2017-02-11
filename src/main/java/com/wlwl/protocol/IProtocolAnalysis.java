@@ -36,20 +36,20 @@ public interface IProtocolAnalysis {
 	 * @param bytes
 	 *            设置原始数据信息
 	 */
-	void setMsg(byte[] bytes,IoSession session);
+	void setMsg(byte[] bytes);
 
 	String getProtocol();
 	
 	String getNode();
 
-	Boolean answerMsg(IoSession session);
+	byte[] answerMsg();
 	
 	/**
 	 * 终端登录应答
 	 * @param session
 	 * @return
 	 */
-	public Boolean answerLogin(IoSession session);
+	public byte[] answerLogin();
 
 	/**
 	 * @return

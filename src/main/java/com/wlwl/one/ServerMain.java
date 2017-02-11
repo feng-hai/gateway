@@ -60,7 +60,7 @@ public class ServerMain {
 		sendCommmandThread.start();
 
 		// 启动3G协议网关
-		Protocol g3 = new Protocol(4443, new ProtocolMessgeFor3G(), sendQueue, vehicles);
+		Protocol g3 = new Protocol(20291, new ProtocolMessgeFor3G(), sendQueue, vehicles);
 
 		ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager,config);
 		smt.start();

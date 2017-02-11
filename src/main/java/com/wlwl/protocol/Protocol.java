@@ -51,8 +51,8 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	 * 
 	 * @see com.wlwl.filter.IFilterControl#setMsg(byte[]) 设置二进制码流
 	 */
-	public void setMsg(byte[] msg,IoSession session) {	
-		analysis.setMsg(msg,session);
+	public void setMsg(byte[] msg) {	
+		analysis.setMsg(msg);
 		this.msg = msg;
 	}
 
@@ -89,14 +89,14 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	 * com.wlwl.one.IServerHandler#answerLogin(org.apache.mina.core.session.
 	 * IoSession) 验证是否是登录数据，如果是登录数据，返回true，否则返回false
 	 */
-	public Boolean answerLogin(IoSession session) {
+	public Boolean answerLogin() {
 		// TODO Auto-generated method stub
 
 		// String msgRe = new RegisterReMsg().createDocument();
 
 		// session.write(msgRe);
 
-		return false;
+		return null;
 	}
 
 	/*
@@ -105,9 +105,9 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	 * @see com.wlwl.one.IServerHandler#heartMsg(org.apache.mina.core.session.
 	 * IoSession) 验证是否是心跳数据，如果是心跳数据返回true，并给出想要， 否则返回false
 	 */
-	public Boolean answerMsg(IoSession session) {
+	public byte[] answerMsg() {
 		// TODO Auto-generated method stub
-		return this.analysis.answerMsg(session);
+		return this.analysis.answerMsg();
 	}
 
 	// 验证终端的合法性
@@ -223,7 +223,16 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 	public Boolean isMarker(byte msg) {
 		
 		return analysis.isMarker(msg);
-	}  
+	}
+
+	public int getMinLength() {
+		// TODO Auto-generated method stub
+		return analysis.getMinLength();
+	}
+
+
+
+
 
 	
 

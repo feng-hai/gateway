@@ -13,23 +13,26 @@ public class SessionManager {
 	private static final Logger logger = LoggerFactory.getLogger(SessionManager.class);
 
 	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
-	
+
 	public void addSession(String deviceID, IoSession session) {
-		try {			
-			//if (!map.containsKey(deviceID)) {
-				map.put(deviceID, session);
-//			}else
-//			{
-//				if(!map.get(deviceID).isConnected())
-//				{
-//					map.put(deviceID, session);
-//				}
-//			}
+		try {
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
 			}
+			// if (!map.containsKey(deviceID)) {
+			IoSession temp = map.replace(deviceID, session);
+			if (temp == null) {
+				map.put(deviceID, session);
+			}
+			// }else
+			// {
+			// if(!map.get(deviceID).isConnected())
+			// {
+			// map.put(deviceID, session);
+			// }
+			// }
 			
-			
+
 		} catch (Exception e) {
 			logger.error("addSession exception!" + e.toString());
 		}
@@ -56,7 +59,7 @@ public class SessionManager {
 			Object o = session.getAttribute("ID");
 			if (o != null && o instanceof String) {
 				String ID = (String) o;
-				map.remove(ID,session);
+				map.remove(ID, session);
 			}
 		} catch (Exception e) {
 			logger.error("removeSession2 exception!" + e.toString());
@@ -78,18 +81,17 @@ public class SessionManager {
 
 		return map.size();
 	}
-	
-	public void  getDevices()
-	{
-		StringBuilder sb=new StringBuilder();
-		for (Map.Entry<String, IoSession> entry : map.entrySet()) {  
-			String time=entry.getValue().getAttribute("time").toString();
-			  
-		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
-			sb.append(entry.getKey()+":"+time);
+
+	public void getDevices() {
+		StringBuilder sb = new StringBuilder();
+		for (Map.Entry<String, IoSession> entry : map.entrySet()) {
+			String time = entry.getValue().getAttribute("time").toString();
+
+			//System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+			sb.append(entry.getKey() + ":" + time);
 			sb.append(",");
-		}  
+		}
 		logger.error(sb.toString());
-		
+
 	}
 }

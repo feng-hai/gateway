@@ -53,7 +53,7 @@ public interface IFilterControl {
 	/**
 	 * @param msg  設置數據信息
 	 */
-	void setMsg(byte[] msg,IoSession session);
+	void setMsg(byte[] msg);
 //	
 ////	/**
 ////	 * @return 获取多余的字节数，并保存独立的解析单体  （保存整个信息）

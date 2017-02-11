@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.mina.common.IoSession;
+
 
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.BCCUtils;
@@ -226,7 +226,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	}
 
-	public void setMsg(byte[] bytes, IoSession session) {
+	public void setMsg(byte[] bytes) {
 		this.msg = bytes;
 		this.gpsCommandId = this.msg[1];// 获取消息id
 		this.msg=descape(this.msg);
@@ -285,7 +285,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	}
 
-	public Boolean answerMsg(IoSession session) {
+	public byte[] answerMsg() {
      
 		switch (this.gpsCommandId) {
 		case 0x01:// 心跳
@@ -316,8 +316,8 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[30] = 0x23;
 		
 			//System.out.println("心跳："+escape(heart));
-			session.write(escape(heart));
-			break;
+			return (escape(heart));
+			
 		}
 		case 0x20:// 终端鉴权
 		{	
@@ -355,8 +355,8 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[34]=BCCUtils.enVerbCode(heart);
 			heart[35] = 0x23;
 			//System.out.println("鉴权："+escape(heart));
-			session.write(escape(heart));
-			break;
+			return(escape(heart));
+			
 			
 		}
 		case (byte)0x84:// 数据汇报
@@ -382,8 +382,8 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[24]=BCCUtils.enVerbCode(heart);
 			heart[25] = 0x23;
 			//System.out.println("数据汇报："+escape(heart));
-			session.write(escape(heart));
-			break;
+			return(escape(heart));
+			
 		}
 		case (byte)0xE0:// 故障/事件/报警汇报
 		{
@@ -413,8 +413,8 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			heart[30] = 0x23;
 			
 			//System.out.println("故障/事件/报警汇报："+escape(heart));
-			session.write(escape(heart));
-			break;
+			return(escape(heart));
+			
 		}
 			// case 0x20://终端鉴权
 			// {
@@ -458,7 +458,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 //
 //			return true;
 //		}
-		return false;
+		return null;
 	}
 
 	/*
@@ -496,9 +496,9 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		return false;
 	}
 
-	public Boolean answerLogin(IoSession session) {
+	public byte[] answerLogin() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	public String getNode() {

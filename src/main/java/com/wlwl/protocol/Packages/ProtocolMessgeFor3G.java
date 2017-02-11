@@ -2,11 +2,14 @@ package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.mina.common.IoSession;
 
 import com.wlwl.protocol.IProtocolAnalysis;
-
+import com.wlwl.utils.AychWriter;
+import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
 
@@ -215,24 +218,26 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		// String temp = ByteUtils.byte2HexStr(this.msg);
 		// temp = temp.replaceAll("7D02", "7E");
 		// temp = temp.replaceAll("7D01", "7D");
-		this.gpsId=ByteUtils.bytesToAsciiString(this.msg, 11, 6);
+		//this.gpsId=ByteUtils.bytesToAsciiString(this.msg, 11, 6);
 		return this.gpsId;
 
 	}
 
-	public void setMsg(byte[] bytes, IoSession session) {
+	public void setMsg(byte[] bytes) {
+		
 		this.msg = descape(bytes);
 		// String temp = ByteUtils.byte2HexStr(this.msg);
 		// temp = temp.replaceAll("7D02", "7E");
 		// temp = temp.replaceAll("7D01", "7D");
 		// this.msg = ByteUtils.hexStr2Bytes(temp);
+		
 		this.gpsCommandId = ByteUtils.getShort(this.msg, 1);// 获取消息id
-
+		
 		this.gpsLength = ByteUtils.getShort(this.msg, 3);
 		this.attachmentId = ByteUtils.getShort(this.msg, 5);
 		this.attachmentLength = ByteUtils.getShort(this.msg, 7);
 		this.sequenceId = ByteUtils.getShort(this.msg, 9);
-
+		this.gpsId=ByteUtils.bytesToAsciiString(this.msg, 11, 6);
 		this.subDeviceId = this.msg[17];
 		this.gpsManufacturers = this.msg[18];
 		this.hostCompanies = this.msg[19];
@@ -274,28 +279,40 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return this.Protocol;
 	}
 
-	public Boolean answerMsg(IoSession session) {
+	public byte[] answerMsg() {
 		
-		 
-		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181 || ByteUtils.getShort(this.msg, 6) == (short) 0x02E7
-				|| ByteUtils.getShort(this.msg, 6) == (short) 0x038B) {
+	
+		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181||ByteUtils.getShort(this.msg, 1) == (short) 0x038F || ByteUtils.getShort(this.msg, 5) == (short) 0x02E7
+				|| ByteUtils.getShort(this.msg, 5) == (short) 0x038B) {
 
 			if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
 				this.gpsCommandId = (short) 0x0101;
 				this.attachmentId = 0;
-			} 
-			if (ByteUtils.getShort(this.msg, 6) == (short) 0x02E7) {
+				this.gpsLength = 0;
+			} else if(ByteUtils.getShort(this.msg, 1) == (short) 0x038F)
+			{
+				this.gpsLength = 7;
+				this.gpsCommandId = (short) 0x030F;
+			}
+			if (ByteUtils.getShort(this.msg, 5) == (short) 0x02E7) {
 				this.attachmentId= (short) 0x0267;
 				this.gpsCommandId =0;
-			} else if (ByteUtils.getShort(this.msg, 6) == (short) 0x038B)  {
+				this.gpsLength = 0;
+			} else if (ByteUtils.getShort(this.msg, 5) == (short) 0x038B)  {
 				this.attachmentId = (short) 0x030B;
 				this.gpsCommandId =0;
+				this.gpsLength = 0;
 			}
 
 			//this.attachmentId = 0;
 			this.attachmentLength = 0;
-			this.gpsLength = 0;
+			
 			byte[] temp = this.getData();
+			if(ByteUtils.getShort(this.msg, 1) == (short) 0x038F)
+			{
+				byte[] dataBytes=BCDUtils.dateMsToBytes(new Date());
+				temp=ByteUtils.byteMerger(temp, dataBytes);
+			}
 			short tempCrc = (short) CRCUtil.parseCRCMessageTail(temp);
 			byte[] crc = new byte[3];
 			crc[0] = (byte) tempCrc;
@@ -303,15 +320,21 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			crc[2] = (byte) (0x7e);
 			byte[] last = ByteUtils.byteMerger(temp, crc);
 			byte[] all = ByteUtils.byteMerger(new byte[] { (byte) 0x7e }, last);
-			session.write(escape(all));
-			temp = null;
-			crc = null;
-			last = null;
-			all = null;
+//			if (this._config.getIsDebug() == 2) {
+//				String id = session.getAttribute("ID").toString();
+//				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//
+//				new AychWriter("生成数据" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr((byte[]) message), id)
+//						.start();
+//			}
+		
+			return escape(all);
+			
 
-			return true;
+			
 		}
-		return false;
+		return null;
+		
 	}
 
 	/*
@@ -351,9 +374,9 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return false;
 	}
 
-	public Boolean answerLogin(IoSession session) {
+	public byte[] answerLogin() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	public String getNode() {

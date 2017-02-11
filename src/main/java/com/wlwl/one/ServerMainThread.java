@@ -50,10 +50,9 @@ public class ServerMainThread extends Thread{
 		IoAcceptor acceptor = new NioSocketAcceptor();
 		acceptor.getSessionConfig().setReadBufferSize(1024);
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,this._config.getReaderIdleTime()); 
+		acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter());//用默认的OrderedThreadPoolExecutor保证同一个session在同一个线程中运行
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MyTextFactory(this.control)));
-		//acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
 		acceptor.setHandler(new ServerHandler(this.handler,this.manager,this._config));
-		
 		try {
 			acceptor.bind(new InetSocketAddress(this.handler.getPort()));
 			System.out.println("=========  server bind :: " + this.handler.getPort());

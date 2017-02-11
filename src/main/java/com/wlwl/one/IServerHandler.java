@@ -12,6 +12,10 @@ import com.wlwl.model.VehicleInfo;
  * @author FH
  *
  */
+/**
+ * @author FH
+ *
+ */
 public interface IServerHandler {
 	
 
@@ -19,7 +23,7 @@ public interface IServerHandler {
 	 * @param session  登录回码
 	 * @return
 	 */
-	Boolean answerLogin(IoSession session);
+	Boolean answerLogin();
 	
 
 	/**
@@ -27,7 +31,7 @@ public interface IServerHandler {
 	 * @param session
 	 * @return
 	 */
-	Boolean answerMsg(IoSession session);
+	byte[] answerMsg();
 	
 
 	/**
@@ -45,8 +49,12 @@ public interface IServerHandler {
 	/**
 	 * @param bytes 设置原始数据
 	 */
-	void setMsg(byte[] bytes,IoSession session);
+	void setMsg(byte[] bytes);
 	
+	/**
+	 * @return 实体的最小长度
+	 */
+	int getMinLength();
 	/**
 	 * @return
 	 * 获取终端Id

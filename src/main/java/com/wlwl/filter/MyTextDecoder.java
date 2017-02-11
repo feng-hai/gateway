@@ -81,7 +81,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 				}
 			}
 			if (i >= 0xffff) {
-				in.position(temp.length);
+				in.position(temp.length-1);
 				session.close(true);
 				System.out.println("消息体长度不匹配：" + ByteUtils.byte2HexStr(temp));
 				return true;

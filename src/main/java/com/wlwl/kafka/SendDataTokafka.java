@@ -33,6 +33,13 @@ public class SendDataTokafka extends Thread{
 	public SendDataTokafka(Config config,BlockingQueue<ProtocolModel> queue){
 		this.config=config;
 		this.sendQueue=queue;
+		initKafka();
+ 
+	}
+	
+	private void initKafka()
+	{
+		
 		Properties props = new Properties();
 		props.put("bootstrap.servers", config.getKafkaServer());
 		props.put("acks", "1");
@@ -43,7 +50,7 @@ public class SendDataTokafka extends Thread{
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 	    producer = new KafkaProducer<String, String>(props);
- 
+		
 	}
  
 	public void run() {		
@@ -61,8 +68,9 @@ public class SendDataTokafka extends Thread{
 					
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null){
-							logger.error(e.toString());
-						}
+							  initKafka();//重新创建一个kafka对象
+							  logger.error(e.toString());
+		            	    }
 						if(config.getIsDebug()==1){
 							
 							//System.out.println("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());

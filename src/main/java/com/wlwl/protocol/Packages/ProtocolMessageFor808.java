@@ -3,7 +3,7 @@ package com.wlwl.protocol.Packages;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 
-import org.apache.mina.common.IoSession;
+
 
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.BCDUtils;
@@ -91,7 +91,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		  return teleStr;
 	}
 
-	public void setMsg(byte[] bytes,IoSession session) {
+	public void setMsg(byte[] bytes) {
 		this.msg = descape(bytes);
 		this.commandId=ByteUtils.getShort(this.msg, 1);
 		this.serialNumber=ByteUtils.getShort(this.msg, 11);
@@ -101,7 +101,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return this.Protocol;
 	}
 
-	public Boolean answerMsg(IoSession session) {
+	public byte[] answerMsg() {
 		byte[] answerBytes = new byte[20];
 		answerBytes[0] = 0x7e;// 标识符
 		answerBytes[answerBytes.length - 1] = 0x7e;// 标识符
@@ -118,7 +118,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 			break;
 		}
 		default:
-			return false;
+			return null;
 		}
 
 		// 设置信息体长度
@@ -142,9 +142,9 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		// 设置验证码
 		answerBytes[18] = CRCUtil.crc808(answerBytes);
 
-		session.write(escape(answerBytes));
+		//session.write(escape(answerBytes));
 
-		return true;
+		return null;
 	}
 
 	public Boolean isFull() {
@@ -202,9 +202,9 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return false;
 	}
 
-	public Boolean answerLogin(IoSession session) {
+	public byte[] answerLogin() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	public String getNode() {

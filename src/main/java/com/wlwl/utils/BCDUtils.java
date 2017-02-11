@@ -80,6 +80,25 @@ public class BCDUtils {
         c = null;
         return result;
     }
+    public static byte[] dateMsToBytes(Date d) throws NullPointerException
+    {
+        if (d == null)
+        {
+            throw new NullPointerException("Null Date value.");
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        byte[] result = new byte[7];
+        result[0] = (byte) (c.get(Calendar.YEAR) - 2000);
+        result[1] = (byte) (c.get(Calendar.MONTH) + 1);
+        result[2] = (byte) c.get(Calendar.DAY_OF_MONTH);
+        result[3] = (byte) c.get(Calendar.HOUR_OF_DAY);
+        result[4] = (byte) c.get(Calendar.MINUTE);
+        result[5] = (byte) c.get(Calendar.SECOND);
+        result[6] = (byte) c.get(Calendar.MILLISECOND);
+        c = null;
+        return result;
+    }
     
     public static Date bytesToDate(byte[] b) throws Exception
     {
