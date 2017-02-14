@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import org.apache.mina.common.IoSession;
@@ -22,11 +23,11 @@ import com.wlwl.utils.JsonUtils;
 public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 
 	private IProtocolAnalysis analysis;
-	BlockingQueue<ProtocolModel> _sendQueue;
-	private  List<VehicleInfo> _vehicles;
+	private BlockingQueue<ProtocolModel> _sendQueue;
+	private  Map<String,VehicleInfo> _vehicles;
 
 	public Protocol(int port, IProtocolAnalysis _analysis, BlockingQueue<ProtocolModel> sendQueue,
-			List<VehicleInfo> vehicles) {
+			Map<String,VehicleInfo> vehicles) {
 		this.setPort(port);
 		this.analysis = _analysis;
 		this._sendQueue = sendQueue;
@@ -117,22 +118,9 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 		
 		//System.out.println(deviceId);
 
-		synchronized (this._vehicles) {
-			Iterator<VehicleInfo> it = this._vehicles.iterator();
-			while (it.hasNext()) {
-				VehicleInfo vi = it.next();
-				if (this.analysis.getProtocol().equals("AF27DA9036174426A2E2F7C19A9A959C")) {
-					if (vi.getCELLPHONE().equals(deviceId)) {
-						return vi;
-					}
-				} else {
-					if (deviceId.startsWith(vi.getDEVICE_ID())) {
-						return vi;
-					}
-				}
-			}
-			return null;
-		}
+		//synchronized (this._vehicles) {
+			return this._vehicles.get(deviceId);
+		//}
 		// return true;
 	}
 
@@ -230,6 +218,7 @@ public class Protocol implements IFilterControl, IServerHandler, Cloneable {
 		return analysis.getMinLength();
 	}
 
+	
 
 
 

@@ -1,7 +1,9 @@
 package com.wlwl.one;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
@@ -40,7 +42,7 @@ public class ServerMain {
 		// 把客户端连接的session存入队列中 session管理
 		SessionManager sessionManager = new SessionManager();
 		// 从数据库中获取车辆信息数据，并把数据存储到list列表中，设备列表
-		List<VehicleInfo> vehicles = new Vector<VehicleInfo>();
+		Map<String,VehicleInfo> vehicles = new HashMap<String,VehicleInfo>();
 		// 定期获取车辆信息的，定时器
 		Timer timer = new Timer();
 		timer.schedule(new MyTask(vehicles, config), new Date(), 300000);

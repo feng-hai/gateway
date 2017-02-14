@@ -1,64 +1,71 @@
 package com.wlwl.utils;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /*
  * 源码消息体
  */
-public class SourceMessage {
 
-	// 终端地址
-	private String deviceID;
+public class SourceMessage implements Serializable{
 
-	// 网关号
-	private String gateWayID;
-	// 數據協議
-	private String protocolType;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	// 终端数据
-	private byte[] data;
+	
+	
+	private String raw_octets;
 
-	// 时间
-	private String DT;
+	public String getRaw_octets() {
+		return raw_octets;
+	}
 
+	public void setRaw_octets(String raw_octets) {
+		this.raw_octets = raw_octets;
+	}
+	
+	private String device_ID;
+
+	public String getDEVICE_ID() {
+		return device_ID;
+	}
+
+	public void setDEVICE_ID(String dEVICE_ID) {
+		device_ID = dEVICE_ID;
+	}
+
+	public SourceMessage()
+	{
+		
+	}
+
+	/**
+	 * @param str   数据格式  {"raw_octets": "0102030405060708090A", "DEVICE_ID": "TEST01"}
+	 */
 	public SourceMessage(String str) {
-		String[] strArray = str.split(",");
+		
+		str=str.replaceAll("DEVICE_ID", "device_ID");
+		SourceMessage temp=JsonUtils.deserialize(str,SourceMessage.class );
+		this.device_ID=temp.getDEVICE_ID();
+		this.raw_octets=temp.getRaw_octets();
+		//String[] strArray = str.split(",");
 		// if(strArray!=null && strArray.length==4){
 		// gateWayID=strArray[0];
 		// DT=strArray[1];
 		// address=strArray[2];
-		// data=MessageTools.hexStringToByte(strArray[3]);
+	      //data=MessageTools.hexStringToByte(strArray[3]);
 		// }
+		
 	}
 
-	public String getProtocolType() {
-		return protocolType;
-	}
 
-	public void setProtocolType(String protocolType) {
-		this.protocolType = protocolType;
-	}
-
-	public String getDeviceID() {
-		return deviceID;
-	}
-
-	public byte[] getData() {
-		return data;
-	}
-
-	public SourceMessage(String gateWayID, String deviceID, byte[] data) {
-		this.gateWayID = gateWayID;
-		this.deviceID = deviceID;
-		this.data = data;
-		DT = (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date());
-	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		// sb.append(gateWayID);
-		// sb.append(",").append(DT);
-		// sb.append(",").append(address);
+		 sb.append(this.device_ID);
+		 sb.append(",").append(this.raw_octets);
 		//
 		// String strData=MessageTools.bytesToString(data);
 		// sb.append(",").append(strData);

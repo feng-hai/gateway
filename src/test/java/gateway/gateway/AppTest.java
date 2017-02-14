@@ -3,6 +3,7 @@ package gateway.gateway;
 import org.apache.log4j.Logger;
 
 import com.wlwl.utils.ByteUtils;
+import com.wlwl.utils.SourceMessage;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -36,6 +37,8 @@ public class AppTest
     	logger.error("dd");
     	
     	logger.error(ByteUtils.getShort(ByteUtils.hexStr2Bytes("E702"), 0) == (short) 0x02E7);
+    	
+    
         return new TestSuite( AppTest.class );
     }
 
@@ -44,6 +47,9 @@ public class AppTest
      */
     public void testApp()
     {
+    	SourceMessage message=	new SourceMessage(" {\"raw_octets\": \"0102030405060708090A\", \"DEVICE_ID\": \"TEST01\"}");
+    	
+   
     	
     	logger.debug("开始");
         assertTrue( true );

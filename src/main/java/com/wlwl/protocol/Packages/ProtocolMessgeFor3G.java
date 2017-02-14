@@ -282,7 +282,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	public byte[] answerMsg() {
 		
 	
-		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181||ByteUtils.getShort(this.msg, 1) == (short) 0x038F || ByteUtils.getShort(this.msg, 5) == (short) 0x02E7
+		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181||ByteUtils.getShort(this.msg, 1) == (short) 0x02E7||ByteUtils.getShort(this.msg, 1) == (short) 0x038F || ByteUtils.getShort(this.msg, 5) == (short) 0x02E7
 				|| ByteUtils.getShort(this.msg, 5) == (short) 0x038B) {
 
 			if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181) {
@@ -293,7 +293,14 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			{
 				this.gpsLength = 7;
 				this.gpsCommandId = (short) 0x030F;
+			}else if(ByteUtils.getShort(this.msg, 1) == (short) 0x02E7)//非上汽的报警
+			{
+				this.gpsCommandId = (short) 0x0267;
+				this.attachmentId = 0;
+				this.gpsLength = 0;
 			}
+			
+			//上汽的报警
 			if (ByteUtils.getShort(this.msg, 5) == (short) 0x02E7) {
 				this.attachmentId= (short) 0x0267;
 				this.gpsCommandId =0;

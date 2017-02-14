@@ -6,10 +6,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.wlwl.one.SendCommandThread;
 import com.wlwl.utils.SourceMessage;
-
-
 
 public class CommandConsumerThread implements Runnable {
 
@@ -18,6 +19,7 @@ public class CommandConsumerThread implements Runnable {
 	private final AtomicBoolean closed = new AtomicBoolean(false);
 
 	private KafkaConsumer<String, String> consumer;
+	private static final Logger logger = LoggerFactory.getLogger(CommandConsumerThread.class);
 
 	public CommandConsumerThread(KafkaConsumer<String, String> consumer, BlockingQueue<SourceMessage> cmdQueue) {
 		this.consumer = consumer;
@@ -36,7 +38,8 @@ public class CommandConsumerThread implements Runnable {
 
 					SourceMessage message = new SourceMessage(record.value());
 
-					if (message.getDeviceID() != null) {
+					logger.trace(message.toString());
+					if (message.getDEVICE_ID() != null) {
 						cmdQueue.put(message);
 					}
 
@@ -45,9 +48,9 @@ public class CommandConsumerThread implements Runnable {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 				try {
-					Thread.sleep(1000); 
+					Thread.sleep(1000);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

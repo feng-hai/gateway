@@ -26,6 +26,8 @@ public interface IServerHandler {
 	Boolean answerLogin();
 	
 
+    
+    
 	/**
 	 * 应答信息
 	 * @param session

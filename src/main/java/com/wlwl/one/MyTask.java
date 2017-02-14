@@ -1,6 +1,7 @@
 package com.wlwl.one;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TimerTask;
 
 import org.slf4j.Logger;
@@ -18,11 +19,11 @@ public class MyTask extends TimerTask {
 
 
 
-	private static List<VehicleInfo> vehicles;
+	private static Map<String,VehicleInfo> vehicles;
 
 	private Config _config;
 
-	public MyTask(List<VehicleInfo> vis, Config config) {
+	public MyTask(Map<String,VehicleInfo> vis, Config config) {
 		this.vehicles = vis;
 		
 		
@@ -69,11 +70,11 @@ public class MyTask extends TimerTask {
 					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid  "
 					+ " inner join cube.BIG_FIBER  pro on vi.fiber_unid =pro.unid";
 			List<Object> params = new ArrayList<Object>();
-			List<VehicleInfo> list = new ArrayList();
-			list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
+			
+			List<VehicleInfo> list= (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			for (VehicleInfo vi : list) {
 				if (!isContains(vi)) {
-					this.vehicles.add(vi);
+					this.vehicles.put(vi.getDEVICE_ID(), vi);
 				}
 			}
 			logger.info("数据库加载成功，加载数据的个数为：{}",this.vehicles.size());
@@ -88,7 +89,7 @@ public class MyTask extends TimerTask {
 	}
 
 	private Boolean isContains(VehicleInfo vi) {
-		for (VehicleInfo vei : this.vehicles) {
+		for (VehicleInfo vei : this.vehicles.values()) {
 			if (vei.getDEVICE_ID().equals(vi.getDEVICE_ID())) {
 				return true;
 			}

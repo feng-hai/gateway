@@ -33,6 +33,9 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		List<String> watchs=this._config.getWatchVehiclesList();
+		
+		synchronized (this.handler)
+		{
 		// 解析类赋值
 		if (message instanceof byte[]) {
 			byte[] data = (byte[]) message;
@@ -140,6 +143,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		// System.out.println(this.manager.getCount());
 		// 保存信息到kafka
 		this.handler.toJson(vi, session);
+		}
 		// 如果是登录指令自动回复
 
 		// this.handler=null;

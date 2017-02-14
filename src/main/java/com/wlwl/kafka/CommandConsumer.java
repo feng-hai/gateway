@@ -44,10 +44,11 @@ public class CommandConsumer {
 		props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		consumer = new KafkaConsumer<String, String>(props);
 		consumer.subscribe(Arrays.asList(config.getCmdTopic()));
+		executor = Executors.newFixedThreadPool(5);
 	}
 
 	public void run() {
-		executor = Executors.newFixedThreadPool(1);
+		
 		thread = new CommandConsumerThread(consumer, cmdQueue);
 		executor.submit(thread);
 	}

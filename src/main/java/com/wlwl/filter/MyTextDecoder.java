@@ -34,9 +34,9 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 		
 		if (!this.control.isMarker(temp[0]))// 标识符不对
 		{
-			session.close(true);
+			//session.close(true);
 			System.out.println("消息头不对：" + ByteUtils.byte2HexStr(temp));
-			return true;
+			//return true;
 		}
 		
 	
