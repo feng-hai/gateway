@@ -19,16 +19,14 @@ public class MyTask extends TimerTask {
 
 
 
-	private static Map<String,VehicleInfo> vehicles;
+	private  Map<String,VehicleInfo> vehicles;
 
 	private Config _config;
 
 	public MyTask(Map<String,VehicleInfo> vis, Config config) {
 		this.vehicles = vis;
-		
-		
-		
 		this._config = config;
+		//loadData();
 	}
 	// public static List<String> getList() {
 	// List<String> temp = new ArrayList();
@@ -58,12 +56,19 @@ public class MyTask extends TimerTask {
 	@Override
 	public void run() {
 		
+		loadData();
+
+
+	}
+	
+	private void loadData()
+	{
 		this._config.loadMessage();
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;
 		try {
-			jdbcUtils = SingletonJDBC.getJDBC(this._config);
-			logger.info("数据库初始化成功，正在加载数据中...");
+			jdbcUtils =  SingletonJDBC.getJDBC(this._config);
+			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
 					+ " from cube.BIG_VEHICLE vi "
 					+ " inner join cube.BIG_DEVICE_VEHICLE_MAP map on vi.unid=map.vehicle_unid "

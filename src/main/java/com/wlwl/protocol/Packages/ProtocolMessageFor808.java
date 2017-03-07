@@ -93,59 +93,98 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 
 	public void setMsg(byte[] bytes) {
 		this.msg = descape(bytes);
-		this.commandId=ByteUtils.getShort(this.msg, 1);
-		this.serialNumber=ByteUtils.getShort(this.msg, 11);
+		this.commandId=ByteUtils.getShortForLarge(this.msg, 1);
+		this.serialNumber=ByteUtils.getShortForLarge(this.msg, 11);
 	}
 
 	public String getProtocol() {
 		return this.Protocol;
 	}
-
 	public byte[] answerMsg() {
-		byte[] answerBytes = new byte[20];
-		answerBytes[0] = 0x7e;// 标识符
-		answerBytes[answerBytes.length - 1] = 0x7e;// 标识符
-
+		byte[] answerBytes ;
 		switch (this.commandId) {
-
 		case (short) 0x0100:// 注册
+		{
+			answerBytes = new byte[19];
+			answerBytes[0] = 0x7e;// 标识符
+			answerBytes[answerBytes.length - 1] = 0x7e;// 标识符
+			// 命令ID
+			answerBytes[1] = (byte) 0x81;
+			answerBytes[2] = (byte) 0x00;
+			
+			// 设置信息体长度
+			answerBytes[4] = (byte) 4;
+			// 设置手机号码
+			for (int i = 5; i < 11; i++) {
+				answerBytes[i] = this.msg[i];
+			}
+			// 设置消息体
+			// 应答流水号-》终端上传流水号
+             short temp=(short)(this.serialNumber+1);
+             answerBytes[11] = (byte) (temp>> 8);
+ 			answerBytes[12] = (byte) temp ;
+			answerBytes[13] = (byte) (this.serialNumber>> 8);
+			answerBytes[14] = (byte) this.serialNumber ;
 
+			// 应答id -》终端上传命令id
+
+//			answerBytes[15] = (byte) (this.commandId>> 8);
+//			answerBytes[16] = (byte) (this.commandId );
+
+			answerBytes[15] = (byte) 0;//0：成功/确认；1：失败；2：消息有误；3：不支持
+			answerBytes[16] = (byte) 10;//鉴权码
+			// 设置验证码
+			answerBytes[17] = CRCUtil.crc808(answerBytes);
+			break;
+		}
+		case (short) 0x0102:
 		case (short) 0x0002:// 心跳
 		{
+			answerBytes = new byte[20];
+			answerBytes[0] = 0x7e;// 标识符
+			answerBytes[answerBytes.length - 1] = 0x7e;// 标识符
 			// 命令ID
-			answerBytes[1] = (byte) 0x8100;
-			answerBytes[2] = (byte) 0x8100 >> 8;
+			answerBytes[1] = (byte) 0x80;
+			answerBytes[2] = (byte) 0x01;
+			
+			// 设置信息体长度
+			answerBytes[4] = (byte) 5;
+			// 设置手机号码
+			for (int i = 5; i < 11; i++) {
+				answerBytes[i] = this.msg[i];
+			}
+			// 设置消息体
+			// 应答流水号-》终端上传流水号
+			short temp=(short)(this.serialNumber+1);
+			answerBytes[11] = (byte) (temp>> 8);
+			answerBytes[12] = (byte) temp ;
+			answerBytes[13] = (byte) (this.serialNumber>> 8);
+			answerBytes[14] = (byte) this.serialNumber ;
+
+			// 应答id -》终端上传命令id
+
+			answerBytes[15] = (byte) (this.commandId>> 8);
+			answerBytes[16] = (byte) (this.commandId );
+
+			answerBytes[17] = (byte) 0;//0：成功/确认；1：失败；2：消息有误；3：不支持
+			
+			// 设置验证码
+			answerBytes[18] = CRCUtil.crc808(answerBytes);
 			break;
+		}
+		case (short)0x0003://终端注销
+		{
+			
 		}
 		default:
 			return null;
 		}
-
-		// 设置信息体长度
-		answerBytes[4] = (byte) 5;
-		// 设置手机号码
-		for (int i = 5; i < 11; i++) {
-			answerBytes[i] = this.msg[i];
-		}
-		// 设置消息体
-		// 应答流水号-》终端上传流水号
-
-		answerBytes[13] = (byte) this.serialNumber;
-		answerBytes[14] = (byte) (this.serialNumber >> 8);
-
-		// 应答id -》终端上传命令id
-
-		answerBytes[15] = (byte) this.commandId;
-		answerBytes[16] = (byte) (this.commandId >> 8);
-
-		answerBytes[17] = (byte) 0;//0：成功/确认；1：失败；2：消息有误；3：不支持
-		// 设置验证码
-		answerBytes[18] = CRCUtil.crc808(answerBytes);
-
 		//session.write(escape(answerBytes));
 
-		return null;
+		return escape(answerBytes);
 	}
+	
+	
 
 	public Boolean isFull() {
 

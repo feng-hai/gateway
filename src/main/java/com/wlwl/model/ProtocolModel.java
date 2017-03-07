@@ -20,9 +20,20 @@ public class ProtocolModel implements Serializable {
 
 	private String length;// 	长度(Byte)
 	private Long TIMESTAMP;// 	UNIX时间戳(毫秒)
+	
+	private String cellphone;
 	public Long getTIMESTAMP() {
 		return TIMESTAMP;
 	}
+	
+	public String getCELLPHONE() {
+		return cellphone;
+	}
+
+	public void setCELLPHONE(String cELLPHONE) {
+		cellphone = cELLPHONE;
+	}
+
 	public void setTIMESTAMP(Long tIMESTAMP) {
 		TIMESTAMP = tIMESTAMP;
 	}

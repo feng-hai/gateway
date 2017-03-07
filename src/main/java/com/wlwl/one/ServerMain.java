@@ -28,6 +28,7 @@ public class ServerMain {
 
 		// 配置文件
 		Config config = new Config();
+		System.out.println(config.getCmdTopic()+"kafkaServser:"+config.getKafkaServer()+"kakagroup:"+config.getKafkaGroupID());
 
 		// 从终端获取车辆原始数据，并把原始数据存在当前数据队列中 发送收到的数据队列
 		BlockingQueue<ProtocolModel> sendQueue = new LinkedBlockingQueue<ProtocolModel>();
@@ -62,7 +63,7 @@ public class ServerMain {
 		sendCommmandThread.start();
 
 		// 启动3G协议网关
-		Protocol g3 = new Protocol(20291, new ProtocolMessgeFor3G(), sendQueue, vehicles);
+		Protocol g3 = new Protocol(config.getTerminalTCPPort(), new ProtocolMessgeFor3G(), sendQueue, vehicles);
 
 		ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager,config);
 		smt.start();
@@ -81,7 +82,7 @@ public class ServerMain {
 		// sessionManager);
 		// smt808.start();
 		
-		Protocol s808 = new Protocol(8888, new ProtocolMessageFor808(), sendQueue, vehicles);
+		Protocol s808 = new Protocol(4440, new ProtocolMessageFor808(), sendQueue, vehicles);
 		ServerMainThread smt808 = new ServerMainThread(s808, s808, sessionManager,config);
 		smt808.start();
 

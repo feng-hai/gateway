@@ -102,7 +102,8 @@ public class JdbcUtils {
             }  
         }  
         result = pstmt.executeUpdate();  
-        flag = result > 0 ? true : false;  
+        flag = result > 0 ? true : false; 
+        pstmt.close();
         return flag;  
     }  
   
@@ -139,6 +140,8 @@ public class JdbcUtils {
                 map.put(cols_name, cols_value);  
             }  
         }  
+        releaseConn();
+        pstmt.close();
         return map;  
     }  
   
@@ -176,7 +179,8 @@ public class JdbcUtils {
             }  
             list.add(map);  
         }  
-  
+        releaseConn();
+        pstmt.close();
         return list;  
     }  
   
@@ -218,6 +222,8 @@ public class JdbcUtils {
                 field.set(resultObject, cols_value);  
             }  
         }  
+        releaseConn();
+        pstmt.close();
         return resultObject;  
   
     }  
@@ -261,6 +267,8 @@ public class JdbcUtils {
             }  
             list.add(resultObject);  
         }  
+        releaseConn();
+        pstmt.close();
         return list;  
     }  
   
@@ -270,6 +278,10 @@ public class JdbcUtils {
     public void releaseConn(){  
         if(resultSet != null){  
             try{  
+            	if(connection!=null)
+            	{
+            	connection.close();
+            	}
                 resultSet.close();  
             }catch(SQLException e){  
                 e.printStackTrace();  

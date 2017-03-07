@@ -1,5 +1,6 @@
 package com.wlwl.kafka;
 
+import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wlwl.one.SendCommandThread;
+import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.SourceMessage;
 
 public class CommandConsumerThread implements Runnable {
@@ -31,14 +33,15 @@ public class CommandConsumerThread implements Runnable {
 
 		while (!closed.get()) {
 			try {
-				ConsumerRecords<String, String> records = consumer.poll(100);
+				consumer.subscribe(Arrays.asList("octets_down"));	
+				ConsumerRecords<String, String> records = consumer.poll(100); 
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(),
 							record.value());
-
+					 new AychWriter("收到kafka数据--：" + record.value(), "KafKaMessage").start();	
 					SourceMessage message = new SourceMessage(record.value());
 
-					logger.trace(message.toString());
+					//logger.trace(message.toString());
 					if (message.getDEVICE_ID() != null) {
 						cmdQueue.put(message);
 					}

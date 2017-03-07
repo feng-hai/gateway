@@ -1,5 +1,6 @@
 package com.wlwl.one;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,6 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.mina.common.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.wlwl.utils.AychWriter;
 
 public class SessionManager {
 
@@ -19,19 +22,17 @@ public class SessionManager {
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
 			}
-			// if (!map.containsKey(deviceID)) {
-			IoSession temp = map.replace(deviceID, session);
-			if (temp == null) {
-				map.put(deviceID, session);
+			if (map.containsKey(deviceID)) {
+				IoSession iSession = map.get(deviceID);
+				if (iSession.getId() != session.getId()) {
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					new AychWriter("重复连接关闭老的链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
+							"closeSession").start();
+				    iSession.setAttribute("old");
+					iSession.close(true);
+				}
 			}
-			// }else
-			// {
-			// if(!map.get(deviceID).isConnected())
-			// {
-			// map.put(deviceID, session);
-			// }
-			// }
-			
+			map.put(deviceID, session);
 
 		} catch (Exception e) {
 			logger.error("addSession exception!" + e.toString());
@@ -87,7 +88,8 @@ public class SessionManager {
 		for (Map.Entry<String, IoSession> entry : map.entrySet()) {
 			String time = entry.getValue().getAttribute("time").toString();
 
-			//System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+			// System.out.println("Key = " + entry.getKey() + ", Value = " +
+			// entry.getValue());
 			sb.append(entry.getKey() + ":" + time);
 			sb.append(",");
 		}

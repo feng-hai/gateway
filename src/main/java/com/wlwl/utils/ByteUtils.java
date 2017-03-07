@@ -51,6 +51,19 @@ public class ByteUtils {
 	public static short getShort(byte[] b, int index) {
 		return (short) (((b[index + 1] << 8) | b[index + 0] & 0xff));
 	}
+	
+	/**
+	 * 通过byte数组取到short 大端模式下
+	 * 
+	 * @param b
+	 * @param index
+	 *            第几位开始取
+	 * @return
+	 */
+	public static short getShortForLarge(byte[] b, int index) {
+		return (short) (((b[index + 0] << 8) | b[index + 1] & 0xff));
+	}
+
 
 	/**
 	 * 转换int为byte数组
@@ -437,6 +450,9 @@ public class ByteUtils {
 		}
 		return s;
 	}
+	
+	
+	
 	
 
 }

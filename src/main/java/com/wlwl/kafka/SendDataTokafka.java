@@ -1,5 +1,7 @@
 package com.wlwl.kafka;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
@@ -12,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wlwl.model.ProtocolModel;
+import com.wlwl.utils.AychWriter;
+import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.Config;
 import com.wlwl.utils.SourceMessage;
 
@@ -58,10 +62,16 @@ public class SendDataTokafka extends Thread{
 			try {
 				ProtocolModel message= sendQueue.take();
 				String strMessage=message.toString();
+				
+			
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(config.getSourcecodeTopic(), strMessage);
 				
 				if(config.getIsDebug()==1){
 					System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
+				}
+				List<String> watchs=this.config.getWatchVehiclesList();
+				if (watchs.contains(message.getDEVICE_ID())) {
+					new AychWriter( message.getRAW_OCTETS(), "Octests").start();
 				}
 				
 				producer.send(myrecord, new Callback() {

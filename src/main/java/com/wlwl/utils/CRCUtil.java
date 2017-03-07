@@ -46,7 +46,7 @@ public class CRCUtil {
 	 {
 		 byte temp=data[1];
 		 
-		 for(int i=2;i<data.length-4;i++)
+		 for(int i=2;i<data.length-2;i++)
 		 {
 			 temp=(byte)(temp^data[i]);
 		 }

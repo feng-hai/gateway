@@ -39,7 +39,7 @@ public class SingletonJDBC {
 	public static void clean() {
 		jdbcUtils.releaseConn();
 		jdbcUtils = null;
-
+		connection=null;
 	}
 
 }
