@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.mina.common.IdleStatus;
 import org.apache.mina.common.IoHandlerAdapter;
@@ -12,6 +14,9 @@ import org.apache.mina.common.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wlwl.enums.ProtocolEnum;
+import com.wlwl.handler.Handler;
+import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.ByteUtils;
@@ -19,13 +24,19 @@ import com.wlwl.utils.Config;
 
 public class ServerHandler extends IoHandlerAdapter {
 
-	private IServerHandler handler;
+	//private IServerHandler handler;
+	private ProtocolEnum pEnum;
 	private SessionManager manager;
 	private Config _config;
+	private BlockingQueue<ProtocolModel> _sendQueue;
+	private Map<String, VehicleInfo> _vehicles;
 	private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);
 
-	public ServerHandler(IServerHandler _handler, SessionManager _manager, Config config) {
-		this.handler = _handler;
+	public ServerHandler(ProtocolEnum pEnum,BlockingQueue<ProtocolModel> sendQueue,
+			Map<String, VehicleInfo> vehicles, SessionManager _manager, Config config) {
+		this._sendQueue=sendQueue;
+		this._vehicles=vehicles;
+		this.pEnum=pEnum;
 		this.manager = _manager;
 		this._config = config;
 	}
@@ -33,72 +44,8 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public  void messageReceived(IoSession session, Object message) throws Exception {
 		
-		List<String> watchs = this._config.getWatchVehiclesList();
-		synchronized(this.handler)
-		{
-		// 解析类赋值
-		if (message instanceof byte[]) {
-			byte[] data = (byte[]) message;
-			if (data == null || data.length < this.handler.getMinLength()) {
-				if (this._config.getIsDebug() == 2) {
-					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data),
-							"ExceptionData").start();
-				}
-				return;
-			}
-			this.handler.setMsg(data);
-			String deviceId = this.handler.getDeviceId();
-
-			// 普通上传指令应答
-			try {
-				byte[] answerMsg = this.handler.answerMsg();
-				if (answerMsg != null) {
-					session.write(answerMsg);
-					if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
-						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
-								deviceId).start();
-					}
-				}
-			} catch (Exception ex) {
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				ex.printStackTrace(pw);
-				logger.error(sw.toString());
-			}
-
-			this.manager.addSession(this.handler.getDeviceId(), session);
-			if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				new AychWriter("收到数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data), deviceId).start();
-			}
-			data = null;
-
-		} else {
-			return;
-		}
-		// 检查终端的合法性，和数据库中的数据对比
-		VehicleInfo vi = this.handler.checkLegitimacy();
-		if (vi == null) {
-			if (this._config.getIsDebug() == 2) {
-				logger.info("车辆在数据库中不存在:" + this.handler.getDeviceId());
-				byte[] data = (byte[]) message;
-				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
-			}
-			if (this._config.getIsDebug() == 2) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
-						"closeSession").start();
-			}
-			session.close(true);
-			return;
-		}
-		// 保存信息到kafka
-		this.handler.toJson(vi, session);
-		vi = null;
-		}
-
+		Handler handler=	new Handler(this.pEnum,this._sendQueue,this._vehicles,this.manager,this._config,message,session);
+		handler.excute();
 	}
 
 	@Override

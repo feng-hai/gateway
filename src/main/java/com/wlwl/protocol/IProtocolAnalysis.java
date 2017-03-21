@@ -1,6 +1,11 @@
 package com.wlwl.protocol;
 
+import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
+import org.apache.mina.filter.codec.ProtocolDecoderOutput;
+
+import com.wlwl.model.ProtocolModel;
+import com.wlwl.model.VehicleInfo;
 
 /**
  * @author FH
@@ -76,4 +81,7 @@ public interface IProtocolAnalysis {
 	 * @return
 	 */
 	Boolean isMarker(byte msg);
+	
+	Boolean filter(IoSession session,IoBuffer in,ProtocolDecoderOutput out);
+	
 }

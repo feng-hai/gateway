@@ -35,8 +35,8 @@ public class CommandConsumer {
 		this.cmdQueue = cmdQueue;
 
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "maria.cube:9092,namenode.cube:9092,datanode1.cube:9092,hyperrouter1.cube:9092,hyperrouter2.cube:9092");
-		props.put("group.id", "test0009");
+		props.put("bootstrap.servers",config.getKafkaServer());// "maria.cube:9092,namenode.cube:9092,datanode1.cube:9092,hyperrouter1.cube:9092,hyperrouter2.cube:9092"
+		props.put("group.id", config.getKafkaGroupID());
 		props.put("enable.auto.commit", "true");
 		props.put("auto.commit.interval.ms", "1000");
 		props.put("session.timeout.ms", "30000");

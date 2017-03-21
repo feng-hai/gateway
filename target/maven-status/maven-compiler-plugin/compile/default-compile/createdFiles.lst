@@ -2,11 +2,16 @@ com\wlwl\one\ServerMain.class
 com\wlwl\protocol\Packages\ProtocolMessageFor808.class
 com\wlwl\kafka\CommandConsumerThread.class
 com\wlwl\one\SessionManager.class
+com\wlwl\handler\Handler.class
 com\wlwl\utils\MessageTail.class
 com\wlwl\protocol\Packages\CANBody.class
+com\wlwl\protocol\ProtocolFactory$1.class
 com\wlwl\kafka\SendDataTokafka.class
+com\wlwl\utils\AychWriter.class
+com\wlwl\protocol\ProtocolFactory.class
 com\wlwl\utils\MessageConstants.class
 com\wlwl\utils\ByteUtils.class
+com\wlwl\utils\BCCUtils.class
 com\wlwl\utils\CRCUtil.class
 com\wlwl\filter\MyTextFactory.class
 com\wlwl\one\SendCommandThread.class
@@ -17,6 +22,7 @@ com\wlwl\utils\Config.class
 com\wlwl\model\ProtocolModel.class
 com\wlwl\kafka\CommandConsumer.class
 com\wlwl\one\ServerMainThread.class
+com\wlwl\utils\AMapConvertService.class
 com\wlwl\filter\MyTextDecoder.class
 com\wlwl\model\VehicleInfo.class
 com\wlwl\protocol\Packages\GPSBody.class
@@ -25,9 +31,12 @@ com\wlwl\protocol\IProtocolAnalysis.class
 com\wlwl\protocol\Packages\DefaultHeader.class
 com\wlwl\protocol\Packages\DefaultMessage.class
 com\wlwl\utils\BCDUtils.class
+com\wlwl\protocol\Packages\ProtocolMessgeForJinLong.class
 com\wlwl\filter\IFilterControl.class
+com\wlwl\model\PossionInfo.class
 com\wlwl\protocol\Packages\FaultData.class
 com\wlwl\one\ServerHandler.class
+com\wlwl\one\CheckSession.class
 com\wlwl\filter\MyTextEncoder.class
 com\wlwl\mysql\JdbcUtils.class
 com\wlwl\utils\MessageTools.class
@@ -35,6 +44,8 @@ com\wlwl\mysql\SingletonJDBC.class
 com\wlwl\protocol\Protocol.class
 com\wlwl\utils\JsonUtils.class
 com\wlwl\one\MyTask.class
+com\wlwl\utils\LogWriter.class
+com\wlwl\enums\ProtocolEnum.class
 com\wlwl\protocol\Packages\ProtocolMessgeFor3G.class
 com\wlwl\one\IServerHandler.class
 com\wlwl\protocol\Packages\FaultBody.class

@@ -1,4 +1,5 @@
 package com.wlwl.one;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,20 +14,17 @@ import com.wlwl.mysql.SingletonJDBC;
 import com.wlwl.utils.Config;
 
 public class MyTask extends TimerTask {
-	
 
-    private static final Logger logger = LoggerFactory.getLogger(MyTask.class);  
+	private static final Logger logger = LoggerFactory.getLogger(MyTask.class);
 
-
-
-	private  Map<String,VehicleInfo> vehicles;
+	private Map<String, VehicleInfo> vehicles;
 
 	private Config _config;
 
-	public MyTask(Map<String,VehicleInfo> vis, Config config) {
+	public MyTask(Map<String, VehicleInfo> vis, Config config) {
 		this.vehicles = vis;
 		this._config = config;
-		//loadData();
+		// loadData();
 	}
 	// public static List<String> getList() {
 	// List<String> temp = new ArrayList();
@@ -55,19 +53,17 @@ public class MyTask extends TimerTask {
 
 	@Override
 	public void run() {
-		
+
 		loadData();
 
-
 	}
-	
-	private void loadData()
-	{
+
+	private void loadData() {
 		this._config.loadMessage();
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;
 		try {
-			jdbcUtils =  SingletonJDBC.getJDBC(this._config);
+			jdbcUtils = SingletonJDBC.getJDBC(this._config);
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
 					+ " from cube.BIG_VEHICLE vi "
@@ -75,14 +71,17 @@ public class MyTask extends TimerTask {
 					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid  "
 					+ " inner join cube.BIG_FIBER  pro on vi.fiber_unid =pro.unid";
 			List<Object> params = new ArrayList<Object>();
-			
-			List<VehicleInfo> list= (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
+
+			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			for (VehicleInfo vi : list) {
 				if (!isContains(vi)) {
 					this.vehicles.put(vi.getDEVICE_ID(), vi);
 				}
+				if (!isContainsForPhone(vi)) {
+					this.vehicles.put(vi.getCELLPHONE(), vi);
+				}
 			}
-			logger.info("数据库加载成功，加载数据的个数为：{}",this.vehicles.size());
+			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -94,12 +93,11 @@ public class MyTask extends TimerTask {
 	}
 
 	private Boolean isContains(VehicleInfo vi) {
-		for (VehicleInfo vei : this.vehicles.values()) {
-			if (vei.getDEVICE_ID().equals(vi.getDEVICE_ID())) {
-				return true;
-			}
-		}
-		return false;
+		
+		return this.vehicles.containsKey(vi.getDEVICE_ID());
+	}
+	private Boolean isContainsForPhone(VehicleInfo vi) {
+		return this.vehicles.containsKey(vi.getCELLPHONE());
 	}
 
 }

@@ -8,11 +8,13 @@ import java.util.Timer;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
-import com.wlwl.protocol.Protocol;
+
 import com.wlwl.protocol.Packages.ProtocolMessageFor808;
 import com.wlwl.protocol.Packages.ProtocolMessgeFor3G;
 import com.wlwl.protocol.Packages.ProtocolMessgeForJinLong;
@@ -63,9 +65,9 @@ public class ServerMain {
 		sendCommmandThread.start();
 
 		// 启动3G协议网关
-		Protocol g3 = new Protocol(config.getTerminalTCPPort(), new ProtocolMessgeFor3G(), sendQueue, vehicles);
+		//Protocol g3 = new Protocol(config.getTerminalTCPPort(), new ProtocolMessgeFor3G(), sendQueue, vehicles);
 
-		ServerMainThread smt = new ServerMainThread(g3, g3, sessionManager,config);
+		ServerMainThread smt = new ServerMainThread(config.getTerminalTCPPort(),ProtocolEnum.P3G, sendQueue, vehicles,sessionManager,config);
 		smt.start();
 
 		Timer timer1 = new Timer();
@@ -81,13 +83,13 @@ public class ServerMain {
 		// ServerMainThread smt808 = new ServerMainThread(g808, g808,
 		// sessionManager);
 		// smt808.start();
-		
-		Protocol s808 = new Protocol(4440, new ProtocolMessageFor808(), sendQueue, vehicles);
-		ServerMainThread smt808 = new ServerMainThread(s808, s808, sessionManager,config);
+//		
+		//Protocol s808 = new Protocol(4440, new ProtocolMessageFor808(), sendQueue, vehicles);
+		ServerMainThread smt808 = new ServerMainThread(4440, ProtocolEnum.P808, sendQueue, vehicles,sessionManager,config);
 		smt808.start();
 
-		Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
-		ServerMainThread smtJinLong = new ServerMainThread(jinlong, jinlong, sessionManager,config);
+		//Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
+		ServerMainThread smtJinLong = new ServerMainThread(5442,ProtocolEnum.PJINLONG, sendQueue, vehicles,sessionManager,config);
 		smtJinLong.start();
 
 	}
