@@ -1,12 +1,17 @@
 package com.wlwl.protocol.Packages;
 
 import java.io.Serializable;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.util.Date;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
+import com.wlwl.model.ProtocolModel;
+import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
@@ -375,6 +380,26 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		in.reset();
 		return false;
 
+	}
+
+	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
+		// TODO Auto-generated method stub
+		ProtocolModel pm = new ProtocolModel();
+		pm.setDEVICE_ID(vi.getDEVICE_ID());
+		pm.setCELLPHONE(vi.getCELLPHONE());
+		pm.setProto_unid(getProtocol());
+		pm.setNode_unid(getNode());
+		pm.setUnid(vi.getUNID());
+		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
+		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
+		pm.setTIMESTAMP(new Date().getTime());
+	
+		pm.setIP4(ip);
+		try {
+			_sendQueue.put(pm);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

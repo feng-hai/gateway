@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
@@ -334,13 +335,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			crc[2] = (byte) (0x7e);
 			byte[] last = ByteUtils.byteMerger(temp, crc);
 			byte[] all = ByteUtils.byteMerger(new byte[] { (byte) 0x7e }, last);
-//			if (this._config.getIsDebug() == 2) {
-//				String id = session.getAttribute("ID").toString();
-//				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-//				new AychWriter("生成数据" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr((byte[]) message), id)
-//						.start();
-//			}
+
 		
 			return escape(all);
 			
@@ -518,6 +513,25 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		in.reset();
 		return false;
 
+	}
+	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
+		// TODO Auto-generated method stub
+		ProtocolModel pm = new ProtocolModel();
+		pm.setDEVICE_ID(vi.getDEVICE_ID());
+		pm.setCELLPHONE(vi.getCELLPHONE());
+		pm.setProto_unid(getProtocol());
+		pm.setNode_unid(getNode());
+		pm.setUnid(vi.getUNID());
+		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
+		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
+		pm.setTIMESTAMP(new Date().getTime());
+	
+		pm.setIP4(ip);
+		try {
+			_sendQueue.put(pm);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

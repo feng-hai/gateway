@@ -39,7 +39,7 @@ public class ServerMain {
 		BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
 		
 		BlockingQueue<String> cmdLogQueue = new LinkedBlockingQueue<String>();
-		
+		  
 		
 
 		// 把客户端连接的session存入队列中 session管理
@@ -91,6 +91,10 @@ public class ServerMain {
 		//Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(), sendQueue, vehicles);
 		ServerMainThread smtJinLong = new ServerMainThread(5442,ProtocolEnum.PJINLONG, sendQueue, vehicles,sessionManager,config);
 		smtJinLong.start();
+		
+		
+		ServerMainThread smtGuoBiao = new ServerMainThread(18081, ProtocolEnum.GUOBIAO, sendQueue, vehicles,sessionManager,config);
+		smtGuoBiao.start();
 
 	}
 

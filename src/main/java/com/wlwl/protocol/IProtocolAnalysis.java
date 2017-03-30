@@ -1,5 +1,7 @@
 package com.wlwl.protocol;
 
+import java.util.concurrent.BlockingQueue;
+
 import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
@@ -13,23 +15,23 @@ import com.wlwl.model.VehicleInfo;
  */
 public interface IProtocolAnalysis {
 
-	/**
-	 * @return 
-	 *获取数据的总长度
-	 */
-	int getLength(byte[] msg);
-	
+//	/**
+//	 * @return 
+//	 *获取数据的总长度
+//	 */
+//	int getLength(byte[] msg);
+//	
 	/**
 	 * 获取协议最小长度
 	 * @return
 	 */
 	int getMinLength();
-
-	/**
-	 * @return 
-	 * 校验码是否正确
-	 */
-	Boolean checkRight(byte[] bys);
+//
+//	/**
+//	 * @return 
+//	 * 校验码是否正确
+//	 */
+//	Boolean checkRight(byte[] bys);
 
 	/**
 	 * @return 
@@ -54,34 +56,42 @@ public interface IProtocolAnalysis {
 	 * @param session
 	 * @return
 	 */
-	public byte[] answerLogin();
+//	public byte[] answerLogin();
 
 	/**
 	 * @return
 	 * 
 	 * ，是否是閉合的原始嗎流
 	 */
-	Boolean isFull();
+	//Boolean isFull();
 
 	/**
 	 * @return
 	 * 判断开头
 	 */
-	Boolean isHeader();
+	//Boolean isHeader();
 
 	/**
 	 * @return
 	 * 判断结尾
 	 */
-	Boolean isEnd(byte[] msg);
+	//Boolean isEnd(byte[] msg);
 	
 	//
 	/**判断是否是标识字符
 	 * @param msg
 	 * @return
 	 */
-	Boolean isMarker(byte msg);
+	//Boolean isMarker(byte msg);
 	
 	Boolean filter(IoSession session,IoBuffer in,ProtocolDecoderOutput out);
+	
+	/**
+	 * 存入队列
+	 * @param vi
+	 * @param ip
+	 * @param bytes
+	 */
+	void toJson(VehicleInfo vi, String ip,byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue);
 	
 }

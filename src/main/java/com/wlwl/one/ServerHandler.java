@@ -44,7 +44,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public  void messageReceived(IoSession session, Object message) throws Exception {
 		
-		Handler handler=	new Handler(this.pEnum,this._sendQueue,this._vehicles,this.manager,this._config,message,session);
+		Handler handler=new Handler(this.pEnum,this._sendQueue,this._vehicles,this.manager,this._config,message,session);
 		handler.excute();
 	}
 

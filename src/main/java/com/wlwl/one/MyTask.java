@@ -12,6 +12,7 @@ import com.wlwl.model.VehicleInfo;
 import com.wlwl.mysql.JdbcUtils;
 import com.wlwl.mysql.SingletonJDBC;
 import com.wlwl.utils.Config;
+import com.wlwl.utils.StrFormat;
 
 public class MyTask extends TimerTask {
 
@@ -65,7 +66,7 @@ public class MyTask extends TimerTask {
 		try {
 			jdbcUtils = SingletonJDBC.getJDBC(this._config);
 			logger.info("数据库初始化，正在加载数据中...");
-			String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
+			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
 					+ " from cube.BIG_VEHICLE vi "
 					+ " inner join cube.BIG_DEVICE_VEHICLE_MAP map on vi.unid=map.vehicle_unid "
 					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid  "
@@ -80,8 +81,11 @@ public class MyTask extends TimerTask {
 				if (!isContainsForPhone(vi)) {
 					this.vehicles.put(vi.getCELLPHONE(), vi);
 				}
+				if (!isContainsForVIN(vi)) {
+					this.vehicles.put(StrFormat.addZeroForNum(vi.getVIN(), 17), vi);
+				}
 			}
-			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size());
+			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size()/3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -93,11 +97,16 @@ public class MyTask extends TimerTask {
 	}
 
 	private Boolean isContains(VehicleInfo vi) {
-		
+
 		return this.vehicles.containsKey(vi.getDEVICE_ID());
 	}
+
 	private Boolean isContainsForPhone(VehicleInfo vi) {
 		return this.vehicles.containsKey(vi.getCELLPHONE());
+	}
+
+	private Boolean isContainsForVIN(VehicleInfo vi) {
+		return this.vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN(), 17));
 	}
 
 }

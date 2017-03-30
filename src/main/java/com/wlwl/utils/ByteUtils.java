@@ -1,7 +1,13 @@
 package com.wlwl.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.Date;
 
+/**
+ * @author FH
+ *
+ */
 public class ByteUtils {
 	
 	
@@ -26,7 +32,31 @@ public class ByteUtils {
 		return sb.toString();
 
 	}
-
+	
+	/**
+	 * 日期转字节
+	 * @param d
+	 * @return
+	 * @throws NullPointerException
+	 */
+	public static byte[] dateToBytes(Date d) throws NullPointerException
+    {
+        if (d == null)
+        {
+            throw new NullPointerException("Null Date value.");
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        byte[] result = new byte[6];
+        result[0] = (byte) (c.get(Calendar.YEAR) - 2000);
+        result[1] = (byte) (c.get(Calendar.MONTH) + 1);
+        result[2] = (byte) c.get(Calendar.DAY_OF_MONTH);
+        result[3] = (byte) c.get(Calendar.HOUR_OF_DAY);
+        result[4] = (byte) c.get(Calendar.MINUTE);
+        result[5] = (byte) c.get(Calendar.SECOND);
+        c = null;
+        return result;
+    }
 	/**
 	 * 转换short为byte
 	 * 
@@ -377,6 +407,11 @@ public class ByteUtils {
 
 		}
 		return ss;
+	}
+	
+	public static byte[] str2bytes(String str)
+	{
+		return str.getBytes();
 	}
 
 	/**

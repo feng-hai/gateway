@@ -51,7 +51,7 @@ public class Handler {
 	{
 		List<String> watchs = this._config.getWatchVehiclesList();
 		
-		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
+		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,_vehicles);
 		byte[] data;
 	//	synchronized(this)
 		{
@@ -87,7 +87,6 @@ public class Handler {
 				logger.error(sw.toString());
 			}
 
-			this.manager.addSession(analysis.getDeviceId(), session);
 			if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				new AychWriter("收到数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data), deviceId).start();
@@ -110,9 +109,12 @@ public class Handler {
 				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
 						"closeSession").start();
 			}
-			session.close(true);
+			session.closeOnFlush();
 			return;
 		}
+		
+		this.manager.addSession(vi.getDEVICE_ID(), session);
+		
 		// 保存信息到kafka
 		toJson(analysis,vi,session,data);
 		vi = null;
@@ -120,24 +122,8 @@ public class Handler {
 	}
 	
 	public void toJson(IProtocolAnalysis analysis,VehicleInfo vi, IoSession session,byte[] bytes) {
-		ProtocolModel pm = new ProtocolModel();
-		// VehicleInfo vi=this._vehicles.
-
-		pm.setDEVICE_ID(vi.getDEVICE_ID());
-		pm.setCELLPHONE(vi.getCELLPHONE());
-		pm.setProto_unid(analysis.getProtocol());
-		pm.setNode_unid(analysis.getNode());
-		pm.setUnid(vi.getUNID());
-		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
-		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
-		pm.setTIMESTAMP(new Date().getTime());
 		String clientIP = ((InetSocketAddress) session.getRemoteAddress()).getAddress().getHostAddress();
-		pm.setIP4(clientIP);
-		try {
-			this._sendQueue.put(pm);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		analysis.toJson(vi, clientIP, bytes, _sendQueue);
 
 	}
 
