@@ -9,6 +9,10 @@ import org.apache.mina.common.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wlwl.enums.ProtocolEnum;
+import com.wlwl.model.VehicleInfo;
+import com.wlwl.protocol.IProtocolAnalysis;
+import com.wlwl.protocol.ProtocolFactory;
 import com.wlwl.utils.AychWriter;
 
 public class SessionManager {
@@ -71,7 +75,11 @@ public class SessionManager {
 		IoSession session = this.getSession(deviceID);
 		try {
 			if (session != null) {
-				session.write(data);
+
+				ProtocolEnum pEnum=(ProtocolEnum)session.getAttribute("pEnum");
+				VehicleInfo vehicle=(VehicleInfo)session.getAttribute("vehicleObject");
+				IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,null);
+				session.write(analysis.sendBefore(data,vehicle));
 			}
 		} catch (Exception e) {
 			logger.error("write session exception!" + e.toString());

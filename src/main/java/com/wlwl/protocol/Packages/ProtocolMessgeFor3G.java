@@ -533,5 +533,9 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 			e.printStackTrace();
 		}
 	}
+	public byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle) {
+		// TODO Auto-generated method stub
+		return sendBytes;
+	}
 
 }

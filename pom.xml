@@ -4,10 +4,10 @@
 
 	<groupId>gateway</groupId>
 	<artifactId>gateway</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT-guobiao</version>
 	<packaging>jar</packaging>
 
-	<name>gateway01</name>
+	<name>gateway01-guobiao</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

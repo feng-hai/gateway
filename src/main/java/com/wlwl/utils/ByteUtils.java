@@ -69,6 +69,18 @@ public class ByteUtils {
 		b[index + 1] = (byte) (s >> 8);
 		b[index + 0] = (byte) (s >> 0);
 	}
+	
+	/**
+	 * 大端模式，short转byte[]
+	 * @param b
+	 * @param s
+	 * @param index
+	 */
+	public static void putShortForBig(byte b[],short s,int index)
+	{
+		b[index + 0] = (byte) (s >> 8);
+		b[index + 1] = (byte) (s >> 0);
+	}
 
 	/**
 	 * 通过byte数组取到short

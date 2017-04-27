@@ -32,7 +32,6 @@ com\wlwl\protocol\Packages\DefaultHeader.class
 com\wlwl\protocol\Packages\DefaultMessage.class
 com\wlwl\utils\BCDUtils.class
 com\wlwl\protocol\Packages\ProtocolMessgeForJinLong.class
-com\wlwl\filter\IFilterControl.class
 com\wlwl\model\PossionInfo.class
 com\wlwl\protocol\Packages\FaultData.class
 com\wlwl\one\ServerHandler.class
@@ -41,7 +40,6 @@ com\wlwl\filter\MyTextEncoder.class
 com\wlwl\mysql\JdbcUtils.class
 com\wlwl\utils\MessageTools.class
 com\wlwl\mysql\SingletonJDBC.class
-com\wlwl\protocol\Protocol.class
 com\wlwl\utils\JsonUtils.class
 com\wlwl\one\MyTask.class
 com\wlwl\utils\LogWriter.class

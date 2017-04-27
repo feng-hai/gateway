@@ -402,4 +402,9 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		}
 	}
 
+	public byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle) {
+		// TODO Auto-generated method stub
+		return sendBytes;
+	}
+
 }

@@ -1,7 +1,10 @@
 package gateway.gateway;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
+import com.wlwl.model.ProtocolModel;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.SourceMessage;
 
@@ -49,7 +52,19 @@ public class AppTest
     {
     	SourceMessage message=	new SourceMessage(" {\"raw_octets\": \"0102030405060708090A\", \"DEVICE_ID\": \"TEST01\"}");
     	
-   
+    	ProtocolModel pm=new ProtocolModel();
+    	pm.setCELLPHONE("15895910680");
+    	pm.setRAW_OCTETS("0102030405060708090A");
+    	pm.setDEVICE_ID("TEST01");
+    	pm.setIP4("127.0.0.1");
+    	pm.setLength("20");
+    	pm.setFlag_transmit("false");
+    	pm.setNode_unid("11111111");
+    	pm.setProto_unid("222222");
+    	pm.setTIMESTAMP(new Date().getTime());
+    	pm.setUnid("223343443");
+    	
+    	System.out.println(pm);
     	
     	logger.debug("开始");
         assertTrue( true );

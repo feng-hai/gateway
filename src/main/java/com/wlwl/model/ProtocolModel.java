@@ -9,23 +9,20 @@ public class ProtocolModel implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-
 	private String DEVICE_ID;//终端编号
 	private String RAW_OCTETS;// 	十六进制码流
 	private String unid;// 	唯一编号
 	private String proto_unid;//协议唯一编号
 	private String node_unid;//节点唯一编号
-	
-
 	private String length;// 	长度(Byte)
-	private Long TIMESTAMP;// 	UNIX时间戳(毫秒)
+	private Long TIMESTAMP;// 	UNIX时间戳(毫秒)	
+	private String cellphone;//电话号码
+	private String IP4;//IPv4地址
+	private String flag_transmit="false";//转发标志
 	
-	private String cellphone;
 	public Long getTIMESTAMP() {
 		return TIMESTAMP;
 	}
-	
 	public String getCELLPHONE() {
 		return cellphone;
 	}
@@ -37,11 +34,6 @@ public class ProtocolModel implements Serializable {
 	public void setTIMESTAMP(Long tIMESTAMP) {
 		TIMESTAMP = tIMESTAMP;
 	}
-
-	private String IP4;//IPv4地址
-	private String flag_transmit="false";// 	转发标志
-
-
 
 	public String getNode_unid() {
 		return node_unid;

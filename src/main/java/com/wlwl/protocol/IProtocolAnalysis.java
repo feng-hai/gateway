@@ -94,4 +94,11 @@ public interface IProtocolAnalysis {
 	 */
 	void toJson(VehicleInfo vi, String ip,byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue);
 	
+	/**
+	 * 发送之前处理发送数据，如：用国标的协议包装3G协议
+	 * @param sendBytes
+	 * @return
+	 */
+	byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle);
+	
 }

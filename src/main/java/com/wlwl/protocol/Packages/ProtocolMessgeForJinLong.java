@@ -650,5 +650,9 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 			e.printStackTrace();
 		}
 	}
+	public byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle) {
+		// TODO Auto-generated method stub
+		return sendBytes;
+	}
 
 }

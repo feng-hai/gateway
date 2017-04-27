@@ -53,7 +53,7 @@ public class Handler {
 		
 		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,_vehicles);
 		byte[] data;
-	//	synchronized(this)
+		synchronized(this)
 		{
 		// 解析类赋值
 		if (message instanceof byte[]) {
@@ -112,6 +112,9 @@ public class Handler {
 			session.closeOnFlush();
 			return;
 		}
+		
+		session.setAttribute("pEnum", pEnum);
+		session.setAttribute("vehicleObject", vi);
 		
 		this.manager.addSession(vi.getDEVICE_ID(), session);
 		
