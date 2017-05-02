@@ -1,0 +1,1275 @@
+2017-03-16 23:56:29  [ main:0 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2017-03-16 23:56:30  [ main:120 ] - [ DEBUG ]  Added sensor with name bufferpool-wait-time
+2017-03-16 23:56:30  [ main:126 ] - [ DEBUG ]  Added sensor with name buffer-exhausted-records
+2017-03-16 23:56:30  [ main:146 ] - [ DEBUG ]  Updated cluster metadata version 1 to Cluster(nodes = [GBIOTDN04:9092 (id: -5 rack: null), GBIOTNN01:9092 (id: -1 rack: null), GBIOTDN02:9092 (id: -3 rack: null), GBIOTDN01:9092 (id: -2 rack: null), GBIOTDN03:9092 (id: -4 rack: null)], partitions = [])
+2017-03-16 23:56:30  [ main:643 ] - [ DEBUG ]  Added sensor with name connections-closed:
+2017-03-16 23:56:30  [ main:644 ] - [ DEBUG ]  Added sensor with name connections-created:
+2017-03-16 23:56:30  [ main:644 ] - [ DEBUG ]  Added sensor with name bytes-sent-received:
+2017-03-16 23:56:30  [ main:645 ] - [ DEBUG ]  Added sensor with name bytes-sent:
+2017-03-16 23:56:30  [ main:647 ] - [ DEBUG ]  Added sensor with name bytes-received:
+2017-03-16 23:56:30  [ main:648 ] - [ DEBUG ]  Added sensor with name select-time:
+2017-03-16 23:56:30  [ main:649 ] - [ DEBUG ]  Added sensor with name io-time:
+2017-03-16 23:56:30  [ main:658 ] - [ DEBUG ]  Added sensor with name batch-size
+2017-03-16 23:56:30  [ main:659 ] - [ DEBUG ]  Added sensor with name compression-rate
+2017-03-16 23:56:30  [ main:660 ] - [ DEBUG ]  Added sensor with name queue-time
+2017-03-16 23:56:30  [ main:660 ] - [ DEBUG ]  Added sensor with name request-time
+2017-03-16 23:56:30  [ main:661 ] - [ DEBUG ]  Added sensor with name produce-throttle-time
+2017-03-16 23:56:30  [ main:661 ] - [ DEBUG ]  Added sensor with name records-per-request
+2017-03-16 23:56:30  [ main:662 ] - [ DEBUG ]  Added sensor with name record-retries
+2017-03-16 23:56:30  [ main:663 ] - [ DEBUG ]  Added sensor with name errors
+2017-03-16 23:56:30  [ main:663 ] - [ DEBUG ]  Added sensor with name record-size-max
+2017-03-16 23:56:30  [ kafka-producer-network-thread | producer-1:666 ] - [ DEBUG ]  Starting Kafka producer I/O thread.
+2017-03-16 23:56:30  [ main:667 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = producer-1
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2017-03-16 23:56:30  [ main:671 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-03-16 23:56:30  [ main:671 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-03-16 23:56:30  [ main:673 ] - [ DEBUG ]  Kafka producer started
+2017-03-16 23:56:30  [ main:680 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2017-03-16 23:56:30  [ main:681 ] - [ DEBUG ]  Starting the Kafka consumer
+2017-03-16 23:56:30  [ main:683 ] - [ DEBUG ]  Updated cluster metadata version 1 to Cluster(nodes = [GBIOTDN03:9092 (id: -4 rack: null), GBIOTNN01:9092 (id: -1 rack: null), GBIOTDN02:9092 (id: -3 rack: null), GBIOTDN04:9092 (id: -5 rack: null), GBIOTDN01:9092 (id: -2 rack: null)], partitions = [])
+2017-03-16 23:56:30  [ main:685 ] - [ DEBUG ]  Added sensor with name connections-closed:
+2017-03-16 23:56:30  [ main:686 ] - [ DEBUG ]  Added sensor with name connections-created:
+2017-03-16 23:56:30  [ main:687 ] - [ DEBUG ]  Added sensor with name bytes-sent-received:
+2017-03-16 23:56:30  [ main:688 ] - [ DEBUG ]  Added sensor with name bytes-sent:
+2017-03-16 23:56:30  [ main:691 ] - [ DEBUG ]  Added sensor with name bytes-received:
+2017-03-16 23:56:30  [ main:691 ] - [ DEBUG ]  Added sensor with name select-time:
+2017-03-16 23:56:30  [ main:692 ] - [ DEBUG ]  Added sensor with name io-time:
+2017-03-16 23:56:30  [ main:699 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = consumer-1
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2017-03-16 23:56:30  [ main:718 ] - [ DEBUG ]  Added sensor with name heartbeat-latency
+2017-03-16 23:56:30  [ main:719 ] - [ DEBUG ]  Added sensor with name join-latency
+2017-03-16 23:56:30  [ main:720 ] - [ DEBUG ]  Added sensor with name sync-latency
+2017-03-16 23:56:30  [ main:725 ] - [ DEBUG ]  Added sensor with name commit-latency
+2017-03-16 23:56:30  [ main:734 ] - [ DEBUG ]  Added sensor with name bytes-fetched
+2017-03-16 23:56:30  [ main:735 ] - [ DEBUG ]  Added sensor with name records-fetched
+2017-03-16 23:56:30  [ main:735 ] - [ DEBUG ]  Added sensor with name fetch-latency
+2017-03-16 23:56:30  [ main:736 ] - [ DEBUG ]  Added sensor with name records-lag
+2017-03-16 23:56:30  [ main:737 ] - [ DEBUG ]  Added sensor with name fetch-throttle-time
+2017-03-16 23:56:30  [ main:737 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-03-16 23:56:30  [ main:738 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-03-16 23:56:30  [ main:738 ] - [ DEBUG ]  Kafka consumer created
+2017-03-16 23:56:30  [ pool-1-thread-1:744 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:30  [ pool-1-thread-1:746 ] - [ DEBUG ]  Sending coordinator request for group gateway01 to broker GBIOTNN01:9092 (id: -1 rack: null)
+2017-03-16 23:56:30  [ pool-1-thread-1:776 ] - [ DEBUG ]  Initiating connection to node -1 at GBIOTNN01:9092.
+2017-03-16 23:56:30  [ pool-1-thread-1:781 ] - [ DEBUG ]  Initialize connection to node -4 for sending metadata request
+2017-03-16 23:56:30  [ pool-1-thread-1:782 ] - [ DEBUG ]  Initiating connection to node -4 at GBIOTDN03:9092.
+2017-03-16 23:56:30  [ Timer-0:793 ] - [ INFO ]  数据库初始化，正在加载数据中...
+2017-03-16 23:56:30  [ pool-1-thread-1:884 ] - [ DEBUG ]  Initialize connection to node -3 for sending metadata request
+2017-03-16 23:56:30  [ pool-1-thread-1:884 ] - [ DEBUG ]  Initiating connection to node -3 at GBIOTDN02:9092.
+2017-03-16 23:56:30  [ pool-1-thread-1:885 ] - [ DEBUG ]  Initialize connection to node -5 for sending metadata request
+2017-03-16 23:56:30  [ pool-1-thread-1:886 ] - [ DEBUG ]  Initiating connection to node -5 at GBIOTDN04:9092.
+2017-03-16 23:56:30  [ pool-1-thread-1:888 ] - [ DEBUG ]  Initialize connection to node -2 for sending metadata request
+2017-03-16 23:56:30  [ pool-1-thread-1:888 ] - [ DEBUG ]  Initiating connection to node -2 at GBIOTDN01:9092.
+2017-03-16 23:56:30  [ pool-1-thread-1:901 ] - [ DEBUG ]  Added sensor with name node--4.bytes-sent
+2017-03-16 23:56:30  [ pool-1-thread-1:901 ] - [ DEBUG ]  Added sensor with name node--4.bytes-received
+2017-03-16 23:56:30  [ pool-1-thread-1:902 ] - [ DEBUG ]  Added sensor with name node--4.latency
+2017-03-16 23:56:30  [ pool-1-thread-1:904 ] - [ DEBUG ]  Completed connection to node -4
+2017-03-16 23:56:30  [ pool-1-thread-1:993 ] - [ DEBUG ]  Sending metadata request {topics=[octets_down]} to node -4
+2017-03-16 23:56:30  [ pool-1-thread-1:1000 ] - [ DEBUG ]  Added sensor with name node--3.bytes-sent
+2017-03-16 23:56:30  [ pool-1-thread-1:1003 ] - [ DEBUG ]  Added sensor with name node--3.bytes-received
+2017-03-16 23:56:30  [ pool-1-thread-1:1005 ] - [ DEBUG ]  Added sensor with name node--3.latency
+2017-03-16 23:56:30  [ pool-1-thread-1:1008 ] - [ DEBUG ]  Completed connection to node -3
+2017-03-16 23:56:30  [ pool-1-thread-1:1009 ] - [ DEBUG ]  Added sensor with name node--5.bytes-sent
+2017-03-16 23:56:30  [ pool-1-thread-1:1013 ] - [ DEBUG ]  Added sensor with name node--5.bytes-received
+2017-03-16 23:56:30  [ pool-1-thread-1:1015 ] - [ DEBUG ]  Added sensor with name node--5.latency
+2017-03-16 23:56:30  [ pool-1-thread-1:1017 ] - [ DEBUG ]  Added sensor with name node--2.bytes-sent
+2017-03-16 23:56:30  [ pool-1-thread-1:1020 ] - [ DEBUG ]  Added sensor with name node--2.bytes-received
+2017-03-16 23:56:30  [ pool-1-thread-1:1024 ] - [ DEBUG ]  Added sensor with name node--2.latency
+2017-03-16 23:56:30  [ pool-1-thread-1:1027 ] - [ DEBUG ]  Completed connection to node -5
+2017-03-16 23:56:30  [ pool-1-thread-1:1029 ] - [ DEBUG ]  Completed connection to node -2
+2017-03-16 23:56:31  [ pool-1-thread-1:1161 ] - [ DEBUG ]  Updated cluster metadata version 2 to Cluster(nodes = [gbiotdn03:9092 (id: 103 rack: RACK1), gbiotdn02:9092 (id: 102 rack: RACK1), gbiotdn01:9092 (id: 101 rack: RACK1), gbiotdn04:9092 (id: 104 rack: RACK1)], partitions = [Partition(topic = octets_down, partition = 7, leader = 104, replicas = [102,103,104,], isr = [103,104,102,], Partition(topic = octets_down, partition = 8, leader = 101, replicas = [102,104,101,], isr = [104,102,101,], Partition(topic = octets_down, partition = 9, leader = 102, replicas = [102,103,101,], isr = [101,103,102,], Partition(topic = octets_down, partition = 3, leader = 104, replicas = [102,104,101,], isr = [104,102,101,], Partition(topic = octets_down, partition = 4, leader = 101, replicas = [103,104,101,], isr = [104,101,103,], Partition(topic = octets_down, partition = 5, leader = 102, replicas = [102,104,101,], isr = [101,102,104,], Partition(topic = octets_down, partition = 6, leader = 103, replicas = [102,103,101,], isr = [102,103,101,], Partition(topic = octets_down, partition = 0, leader = 101, replicas = [102,103,101,], isr = [101,103,102,], Partition(topic = octets_down, partition = 1, leader = 102, replicas = [102,103,104,], isr = [102,104,103,], Partition(topic = octets_down, partition = 2, leader = 103, replicas = [103,104,101,], isr = [103,101,104,]])
+2017-03-16 23:56:31  [ pool-1-thread-1:1724 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:31  [ pool-1-thread-1:1825 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:31  [ pool-1-thread-1:1924 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:31  [ pool-1-thread-1:2024 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2123 ] - [ DEBUG ]  Added sensor with name node--1.bytes-sent
+2017-03-16 23:56:32  [ pool-1-thread-1:2124 ] - [ DEBUG ]  Added sensor with name node--1.bytes-received
+2017-03-16 23:56:32  [ pool-1-thread-1:2125 ] - [ DEBUG ]  Added sensor with name node--1.latency
+2017-03-16 23:56:32  [ pool-1-thread-1:2128 ] - [ DEBUG ]  Connection with GBIOTNN01/172.16.21.204 disconnected
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:51)
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:73)
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:309)
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:283)
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:260)
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.clientPoll(ConsumerNetworkClient.java:360)
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:224)
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:192)
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:163)
+	at org.apache.kafka.clients.consumer.internals.AbstractCoordinator.ensureCoordinatorReady(AbstractCoordinator.java:179)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.pollOnce(KafkaConsumer.java:974)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.poll(KafkaConsumer.java:938)
+	at com.wlwl.kafka.CommandConsumerThread.run(CommandConsumerThread.java:37)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2017-03-16 23:56:32  [ pool-1-thread-1:2130 ] - [ DEBUG ]  Node -1 disconnected.
+2017-03-16 23:56:32  [ pool-1-thread-1:2132 ] - [ DEBUG ]  Cancelled GROUP_COORDINATOR request ClientRequest(expectResponse=true, callback=org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient$RequestFutureCompletionHandler@4929a8ee, request=RequestSend(header={api_key=10,api_version=0,correlation_id=0,client_id=consumer-1}, body={group_id=gateway01}), createdTimeMs=1489679790731, sendTimeMs=0) with correlation id 0 due to node -1 being disconnected
+2017-03-16 23:56:32  [ pool-1-thread-1:2133 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2133 ] - [ DEBUG ]  Initialize connection to node 101 for sending metadata request
+2017-03-16 23:56:32  [ pool-1-thread-1:2134 ] - [ DEBUG ]  Initiating connection to node 101 at gbiotdn01:9092.
+2017-03-16 23:56:32  [ pool-1-thread-1:2136 ] - [ DEBUG ]  Initialize connection to node 104 for sending metadata request
+2017-03-16 23:56:32  [ pool-1-thread-1:2136 ] - [ DEBUG ]  Initiating connection to node 104 at gbiotdn04:9092.
+2017-03-16 23:56:32  [ pool-1-thread-1:2231 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2238 ] - [ DEBUG ]  Initialize connection to node 103 for sending metadata request
+2017-03-16 23:56:32  [ pool-1-thread-1:2239 ] - [ DEBUG ]  Initiating connection to node 103 at gbiotdn03:9092.
+2017-03-16 23:56:32  [ pool-1-thread-1:2249 ] - [ DEBUG ]  Added sensor with name node-101.bytes-sent
+2017-03-16 23:56:32  [ pool-1-thread-1:2250 ] - [ DEBUG ]  Added sensor with name node-101.bytes-received
+2017-03-16 23:56:32  [ pool-1-thread-1:2251 ] - [ DEBUG ]  Added sensor with name node-101.latency
+2017-03-16 23:56:32  [ pool-1-thread-1:2252 ] - [ DEBUG ]  Completed connection to node 101
+2017-03-16 23:56:32  [ pool-1-thread-1:2253 ] - [ DEBUG ]  Added sensor with name node-104.bytes-sent
+2017-03-16 23:56:32  [ pool-1-thread-1:2254 ] - [ DEBUG ]  Added sensor with name node-104.bytes-received
+2017-03-16 23:56:32  [ pool-1-thread-1:2255 ] - [ DEBUG ]  Added sensor with name node-104.latency
+2017-03-16 23:56:32  [ pool-1-thread-1:2256 ] - [ DEBUG ]  Completed connection to node 104
+2017-03-16 23:56:32  [ pool-1-thread-1:2331 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2341 ] - [ DEBUG ]  Sending metadata request {topics=[octets_down]} to node 101
+2017-03-16 23:56:32  [ pool-1-thread-1:2355 ] - [ DEBUG ]  Added sensor with name node-103.bytes-sent
+2017-03-16 23:56:32  [ pool-1-thread-1:2356 ] - [ DEBUG ]  Added sensor with name node-103.bytes-received
+2017-03-16 23:56:32  [ pool-1-thread-1:2356 ] - [ DEBUG ]  Added sensor with name node-103.latency
+2017-03-16 23:56:32  [ pool-1-thread-1:2357 ] - [ DEBUG ]  Completed connection to node 103
+2017-03-16 23:56:32  [ pool-1-thread-1:2431 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2459 ] - [ DEBUG ]  Updated cluster metadata version 3 to Cluster(nodes = [gbiotdn04:9092 (id: 104 rack: RACK1), gbiotdn01:9092 (id: 101 rack: RACK1), gbiotdn02:9092 (id: 102 rack: RACK1), gbiotdn03:9092 (id: 103 rack: RACK1)], partitions = [Partition(topic = octets_down, partition = 7, leader = 104, replicas = [102,103,104,], isr = [103,104,102,], Partition(topic = octets_down, partition = 8, leader = 101, replicas = [102,104,101,], isr = [104,102,101,], Partition(topic = octets_down, partition = 9, leader = 102, replicas = [102,103,101,], isr = [101,103,102,], Partition(topic = octets_down, partition = 3, leader = 104, replicas = [102,104,101,], isr = [104,102,101,], Partition(topic = octets_down, partition = 4, leader = 101, replicas = [103,104,101,], isr = [104,101,103,], Partition(topic = octets_down, partition = 5, leader = 102, replicas = [102,104,101,], isr = [101,102,104,], Partition(topic = octets_down, partition = 6, leader = 103, replicas = [102,103,101,], isr = [102,103,101,], Partition(topic = octets_down, partition = 0, leader = 101, replicas = [102,103,101,], isr = [101,103,102,], Partition(topic = octets_down, partition = 1, leader = 102, replicas = [102,103,104,], isr = [102,104,103,], Partition(topic = octets_down, partition = 2, leader = 103, replicas = [103,104,101,], isr = [103,101,104,]])
+2017-03-16 23:56:32  [ pool-1-thread-1:2460 ] - [ DEBUG ]  Sending coordinator request for group gateway01 to broker gbiotdn04:9092 (id: 104 rack: RACK1)
+2017-03-16 23:56:32  [ pool-1-thread-1:2532 ] - [ DEBUG ]  Cannot auto-commit offsets for group gateway01 since the coordinator is unknown
+2017-03-16 23:56:32  [ pool-1-thread-1:2575 ] - [ DEBUG ]  Received group coordinator response ClientResponse(receivedTimeMs=1489679792534, disconnected=false, request=ClientRequest(expectResponse=true, callback=org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient$RequestFutureCompletionHandler@188aa88a, request=RequestSend(header={api_key=10,api_version=0,correlation_id=3,client_id=consumer-1}, body={group_id=gateway01}), createdTimeMs=1489679792420, sendTimeMs=1489679792420), responseBody={error_code=0,coordinator={node_id=104,host=gbiotdn04,port=9092}})
+2017-03-16 23:56:32  [ pool-1-thread-1:2576 ] - [ INFO ]  Discovered coordinator gbiotdn04:9092 (id: 2147483543 rack: null) for group gateway01.
+2017-03-16 23:56:32  [ pool-1-thread-1:2576 ] - [ DEBUG ]  Initiating connection to node 2147483543 at gbiotdn04:9092.
+2017-03-16 23:56:32  [ pool-1-thread-1:2577 ] - [ INFO ]  Revoking previously assigned partitions [] for group gateway01
+2017-03-16 23:56:32  [ pool-1-thread-1:2578 ] - [ INFO ]  (Re-)joining group gateway01
+2017-03-16 23:56:32  [ pool-1-thread-1:2581 ] - [ DEBUG ]  Sending JoinGroup ({group_id=gateway01,session_timeout=30000,member_id=,protocol_type=consumer,group_protocols=[{protocol_name=range,protocol_metadata=java.nio.HeapByteBuffer[pos=0 lim=23 cap=23]}]}) to coordinator gbiotdn04:9092 (id: 2147483543 rack: null)
+2017-03-16 23:56:32  [ pool-1-thread-1:2719 ] - [ DEBUG ]  Added sensor with name node-2147483543.bytes-sent
+2017-03-16 23:56:32  [ pool-1-thread-1:2721 ] - [ DEBUG ]  Added sensor with name node-2147483543.bytes-received
+2017-03-16 23:56:32  [ pool-1-thread-1:2721 ] - [ DEBUG ]  Added sensor with name node-2147483543.latency
+2017-03-16 23:56:32  [ pool-1-thread-1:2723 ] - [ DEBUG ]  Completed connection to node 2147483543
+2017-03-16 23:56:33  [ Timer-0:3188 ] - [ INFO ]  数据库加载成功，加载数据的个数为：15640
+2017-03-16 23:56:55  [ pool-1-thread-1:25782 ] - [ DEBUG ]  Received successful join group response for group gateway01: {error_code=0,generation_id=71,group_protocol=range,leader_id=consumer-1-6639c69a-2bd0-4d78-aa9a-dfd9ee1f5ae9,member_id=consumer-1-8edf7f97-d96a-4b7a-b889-d968eb8ff927,members=[]}
+2017-03-16 23:56:55  [ pool-1-thread-1:25783 ] - [ DEBUG ]  Sending follower SyncGroup for group gateway01 to coordinator gbiotdn04:9092 (id: 2147483543 rack: null): {group_id=gateway01,generation_id=71,member_id=consumer-1-8edf7f97-d96a-4b7a-b889-d968eb8ff927,group_assignment=[]}
+2017-03-16 23:56:55  [ pool-1-thread-1:25878 ] - [ INFO ]  Successfully joined group gateway01 with generation 71
+2017-03-16 23:56:55  [ pool-1-thread-1:25881 ] - [ INFO ]  Setting newly assigned partitions [octets_down-7, octets_down-8, octets_down-9, octets_down-5, octets_down-6] for group gateway01
+2017-03-16 23:56:55  [ pool-1-thread-1:25883 ] - [ DEBUG ]  Group gateway01 fetching committed offsets for partitions: [octets_down-7, octets_down-8, octets_down-9, octets_down-5, octets_down-6]
+2017-03-16 23:56:55  [ pool-1-thread-1:25982 ] - [ DEBUG ]  Resetting offset for partition octets_down-7 to the committed offset 0
+2017-03-16 23:56:55  [ pool-1-thread-1:25983 ] - [ DEBUG ]  Resetting offset for partition octets_down-8 to the committed offset 0
+2017-03-16 23:56:55  [ pool-1-thread-1:25983 ] - [ DEBUG ]  Resetting offset for partition octets_down-9 to the committed offset 0
+2017-03-16 23:56:55  [ pool-1-thread-1:25983 ] - [ DEBUG ]  Resetting offset for partition octets_down-5 to the committed offset 0
+2017-03-16 23:56:55  [ pool-1-thread-1:25984 ] - [ DEBUG ]  Resetting offset for partition octets_down-6 to the committed offset 0
+2017-03-16 23:56:55  [ pool-1-thread-1:25988 ] - [ DEBUG ]  Initiating connection to node 102 at gbiotdn02:9092.
+2017-03-16 23:56:55  [ pool-1-thread-1:25994 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26081 ] - [ DEBUG ]  Added sensor with name node-102.bytes-sent
+2017-03-16 23:56:56  [ pool-1-thread-1:26083 ] - [ DEBUG ]  Added sensor with name node-102.bytes-received
+2017-03-16 23:56:56  [ pool-1-thread-1:26083 ] - [ DEBUG ]  Added sensor with name node-102.latency
+2017-03-16 23:56:56  [ pool-1-thread-1:26088 ] - [ DEBUG ]  Completed connection to node 102
+2017-03-16 23:56:56  [ pool-1-thread-1:26096 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26196 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26297 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26401 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26502 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26603 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26659 ] - [ DEBUG ]  Added sensor with name topic.octets_down.bytes-fetched
+2017-03-16 23:56:56  [ pool-1-thread-1:26660 ] - [ DEBUG ]  Added sensor with name topic.octets_down.records-fetched
+2017-03-16 23:56:56  [ pool-1-thread-1:26703 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:56  [ pool-1-thread-1:26746 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:56  [ pool-1-thread-1:26747 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:56  [ pool-1-thread-1:26747 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:56  [ pool-1-thread-1:26747 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:56  [ pool-1-thread-1:26803 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26904 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:56  [ pool-1-thread-1:26975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:56  [ pool-1-thread-1:26976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:56  [ pool-1-thread-1:26976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:56  [ pool-1-thread-1:26976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:56  [ pool-1-thread-1:26977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:56  [ pool-1-thread-1:27005 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27106 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27207 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27308 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27409 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27509 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27610 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27710 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:57  [ pool-1-thread-1:27742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:57  [ pool-1-thread-1:27742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:57  [ pool-1-thread-1:27743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:57  [ pool-1-thread-1:27743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:57  [ pool-1-thread-1:27812 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27912 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:57  [ pool-1-thread-1:27974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:57  [ pool-1-thread-1:27975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:57  [ pool-1-thread-1:27976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:57  [ pool-1-thread-1:27977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:57  [ pool-1-thread-1:27977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:57  [ pool-1-thread-1:28014 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28115 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28215 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28316 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28417 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28518 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28618 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28718 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28741 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:58  [ pool-1-thread-1:28741 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:58  [ pool-1-thread-1:28741 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:58  [ pool-1-thread-1:28742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:58  [ pool-1-thread-1:28742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:58  [ pool-1-thread-1:28819 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28919 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:58  [ pool-1-thread-1:28979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:58  [ pool-1-thread-1:28979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:58  [ pool-1-thread-1:28980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:58  [ pool-1-thread-1:28980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:58  [ pool-1-thread-1:28981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:58  [ pool-1-thread-1:28982 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:56:58  [ pool-1-thread-1:29019 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29119 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29220 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29321 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29422 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29522 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ main:0 ] - [ DEBUG ]  ��ʼ
+2017-03-16 23:56:59  [ main:6 ] - [ ERROR ]  dd
+2017-03-16 23:56:59  [ main:17 ] - [ ERROR ]  true
+2017-03-16 23:56:59  [ pool-1-thread-1:29623 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29725 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29738 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:59  [ pool-1-thread-1:29738 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:59  [ pool-1-thread-1:29739 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:59  [ pool-1-thread-1:29739 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:59  [ pool-1-thread-1:29740 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:59  [ pool-1-thread-1:29825 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29926 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:56:59  [ pool-1-thread-1:29974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:56:59  [ pool-1-thread-1:29975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:56:59  [ pool-1-thread-1:29975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:56:59  [ pool-1-thread-1:29975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:56:59  [ pool-1-thread-1:29975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:56:59  [ main:385 ] - [ DEBUG ]  ��ʼ
+2017-03-16 23:56:59  [ pool-1-thread-1:30026 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30127 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30227 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30328 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30429 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30530 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30631 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30734 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:00  [ pool-1-thread-1:30748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:00  [ pool-1-thread-1:30749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:00  [ pool-1-thread-1:30749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:00  [ pool-1-thread-1:30750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:00  [ pool-1-thread-1:30835 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30935 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:00  [ pool-1-thread-1:30974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:00  [ pool-1-thread-1:30974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:00  [ pool-1-thread-1:30975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:00  [ pool-1-thread-1:30975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:00  [ pool-1-thread-1:30975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:00  [ pool-1-thread-1:31035 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31138 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31240 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31340 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31441 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31541 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31641 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31741 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:01  [ pool-1-thread-1:31742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:01  [ pool-1-thread-1:31742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:01  [ pool-1-thread-1:31742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:01  [ pool-1-thread-1:31743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:01  [ pool-1-thread-1:31743 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31843 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31944 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:01  [ pool-1-thread-1:31976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:01  [ pool-1-thread-1:31976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:01  [ pool-1-thread-1:31976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:01  [ pool-1-thread-1:31977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:01  [ pool-1-thread-1:31977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:01  [ pool-1-thread-1:31980 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:02  [ pool-1-thread-1:32044 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32146 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32246 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32346 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32446 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32546 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32647 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:02  [ pool-1-thread-1:32744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:02  [ pool-1-thread-1:32745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:02  [ pool-1-thread-1:32745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:02  [ pool-1-thread-1:32745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:02  [ pool-1-thread-1:32747 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32848 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32949 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:02  [ pool-1-thread-1:32978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:02  [ pool-1-thread-1:32978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:02  [ pool-1-thread-1:32979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:02  [ pool-1-thread-1:32979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:02  [ pool-1-thread-1:32979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:03  [ pool-1-thread-1:33049 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33149 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33249 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33350 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33451 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33551 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33652 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:03  [ pool-1-thread-1:33744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:03  [ pool-1-thread-1:33744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:03  [ pool-1-thread-1:33744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:03  [ pool-1-thread-1:33744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:03  [ pool-1-thread-1:33752 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33852 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33952 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:03  [ pool-1-thread-1:33976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:03  [ pool-1-thread-1:33977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:03  [ pool-1-thread-1:33977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:03  [ pool-1-thread-1:33978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:03  [ pool-1-thread-1:33978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:04  [ pool-1-thread-1:34052 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34153 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34254 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34354 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34454 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34554 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34654 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:04  [ pool-1-thread-1:34744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:04  [ pool-1-thread-1:34745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:04  [ pool-1-thread-1:34745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:04  [ pool-1-thread-1:34745 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:04  [ pool-1-thread-1:34754 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34855 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34956 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:04  [ pool-1-thread-1:34973 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:04  [ pool-1-thread-1:34974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:04  [ pool-1-thread-1:34974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:04  [ pool-1-thread-1:34974 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:04  [ pool-1-thread-1:34975 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:04  [ pool-1-thread-1:34975 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:05  [ pool-1-thread-1:35056 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35156 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35256 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35357 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35458 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35559 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35660 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35742 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:05  [ pool-1-thread-1:35743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:05  [ pool-1-thread-1:35743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:05  [ pool-1-thread-1:35743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:05  [ pool-1-thread-1:35743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:05  [ pool-1-thread-1:35760 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35860 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35960 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:05  [ pool-1-thread-1:35977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:05  [ pool-1-thread-1:35977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:05  [ pool-1-thread-1:35978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:05  [ pool-1-thread-1:35978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:05  [ pool-1-thread-1:35978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:06  [ pool-1-thread-1:36060 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36161 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36273 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36373 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36473 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36573 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36673 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36743 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:06  [ pool-1-thread-1:36744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:06  [ pool-1-thread-1:36744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:06  [ pool-1-thread-1:36744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:06  [ pool-1-thread-1:36744 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:06  [ pool-1-thread-1:36773 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36873 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36974 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:06  [ pool-1-thread-1:36986 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:06  [ pool-1-thread-1:36986 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:06  [ pool-1-thread-1:36987 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:06  [ pool-1-thread-1:36987 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:06  [ pool-1-thread-1:36987 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:07  [ pool-1-thread-1:37074 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37174 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37274 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37375 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37476 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37576 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37676 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37756 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:07  [ pool-1-thread-1:37757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:07  [ pool-1-thread-1:37757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:07  [ pool-1-thread-1:37757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:07  [ pool-1-thread-1:37757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:07  [ pool-1-thread-1:37776 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37876 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:37976 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:07  [ pool-1-thread-1:38030 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:07  [ pool-1-thread-1:38030 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:07  [ pool-1-thread-1:38030 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:07  [ pool-1-thread-1:38030 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:07  [ pool-1-thread-1:38031 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:07  [ pool-1-thread-1:38031 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:08  [ pool-1-thread-1:38076 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38176 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38276 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38376 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38476 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38577 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38677 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38778 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38850 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:08  [ pool-1-thread-1:38850 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:08  [ pool-1-thread-1:38850 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:08  [ pool-1-thread-1:38850 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:08  [ pool-1-thread-1:38851 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:08  [ pool-1-thread-1:38878 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:08  [ pool-1-thread-1:38978 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39072 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:09  [ pool-1-thread-1:39072 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:09  [ pool-1-thread-1:39073 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:09  [ pool-1-thread-1:39073 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:09  [ pool-1-thread-1:39073 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:09  [ pool-1-thread-1:39078 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39178 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39278 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39379 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39479 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39579 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39680 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39781 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39800 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:09  [ pool-1-thread-1:39800 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:09  [ pool-1-thread-1:39800 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:09  [ pool-1-thread-1:39801 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:09  [ pool-1-thread-1:39801 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:09  [ pool-1-thread-1:39881 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:09  [ pool-1-thread-1:39981 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40065 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:10  [ pool-1-thread-1:40066 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:10  [ pool-1-thread-1:40066 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:10  [ pool-1-thread-1:40066 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:10  [ pool-1-thread-1:40066 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:10  [ pool-1-thread-1:40081 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40182 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40282 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40382 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40482 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40582 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40683 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40783 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40795 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:10  [ pool-1-thread-1:40795 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:10  [ pool-1-thread-1:40795 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:10  [ pool-1-thread-1:40795 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:10  [ pool-1-thread-1:40795 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:10  [ pool-1-thread-1:40883 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:10  [ pool-1-thread-1:40983 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41061 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:11  [ pool-1-thread-1:41062 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:11  [ pool-1-thread-1:41062 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:11  [ pool-1-thread-1:41062 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:11  [ pool-1-thread-1:41063 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:11  [ pool-1-thread-1:41063 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:11  [ pool-1-thread-1:41083 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41183 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41285 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41385 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41486 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41587 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41687 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41759 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:11  [ pool-1-thread-1:41759 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:11  [ pool-1-thread-1:41760 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:11  [ pool-1-thread-1:41760 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:11  [ pool-1-thread-1:41760 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:11  [ pool-1-thread-1:41787 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41887 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:11  [ pool-1-thread-1:41977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:11  [ pool-1-thread-1:41978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:11  [ pool-1-thread-1:41979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:11  [ pool-1-thread-1:41980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:11  [ pool-1-thread-1:41980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:11  [ pool-1-thread-1:41987 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42088 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42189 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42290 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42390 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42491 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42592 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42692 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42793 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42843 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:12  [ pool-1-thread-1:42844 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:12  [ pool-1-thread-1:42845 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:12  [ pool-1-thread-1:42845 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:12  [ pool-1-thread-1:42846 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:12  [ pool-1-thread-1:42894 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:12  [ pool-1-thread-1:42991 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:12  [ pool-1-thread-1:42991 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:12  [ pool-1-thread-1:42991 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:12  [ pool-1-thread-1:42992 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:12  [ pool-1-thread-1:42992 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:12  [ pool-1-thread-1:42996 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43097 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43197 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43298 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43399 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43500 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43601 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43701 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:13  [ pool-1-thread-1:43753 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:13  [ pool-1-thread-1:43753 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:13  [ pool-1-thread-1:43754 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:13  [ pool-1-thread-1:43754 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:13  [ pool-1-thread-1:43801 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:43901 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:13  [ pool-1-thread-1:44001 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44072 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:14  [ pool-1-thread-1:44074 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:14  [ pool-1-thread-1:44075 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:14  [ pool-1-thread-1:44076 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:14  [ pool-1-thread-1:44077 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:14  [ pool-1-thread-1:44078 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:14  [ pool-1-thread-1:44101 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44202 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44303 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44405 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44506 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44606 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44706 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44788 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:14  [ pool-1-thread-1:44789 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:14  [ pool-1-thread-1:44789 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:14  [ pool-1-thread-1:44789 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:14  [ pool-1-thread-1:44790 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:14  [ pool-1-thread-1:44807 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44907 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:14  [ pool-1-thread-1:44993 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:14  [ pool-1-thread-1:44993 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:14  [ pool-1-thread-1:44994 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:14  [ pool-1-thread-1:44994 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:14  [ pool-1-thread-1:44995 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:14  [ pool-1-thread-1:45007 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45108 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45209 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45309 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45410 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45512 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45612 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45713 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45813 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:15  [ pool-1-thread-1:45813 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:15  [ pool-1-thread-1:45814 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:15  [ pool-1-thread-1:45814 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:15  [ pool-1-thread-1:45815 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:15  [ pool-1-thread-1:45815 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:45916 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:15  [ pool-1-thread-1:46018 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:15  [ pool-1-thread-1:46019 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:15  [ pool-1-thread-1:46019 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:15  [ pool-1-thread-1:46019 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:15  [ pool-1-thread-1:46020 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:15  [ pool-1-thread-1:46020 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46121 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46222 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46323 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46424 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46525 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46626 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46726 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:16  [ pool-1-thread-1:46749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:16  [ pool-1-thread-1:46749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:16  [ pool-1-thread-1:46750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:16  [ pool-1-thread-1:46750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:16  [ pool-1-thread-1:46827 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46927 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:16  [ pool-1-thread-1:46984 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:16  [ pool-1-thread-1:46988 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:16  [ pool-1-thread-1:46988 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:16  [ pool-1-thread-1:46988 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:16  [ pool-1-thread-1:46988 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:16  [ pool-1-thread-1:46989 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:16  [ pool-1-thread-1:47027 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47128 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47229 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47330 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47430 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47531 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47631 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47731 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:17  [ pool-1-thread-1:47749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:17  [ pool-1-thread-1:47749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:17  [ pool-1-thread-1:47750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:17  [ pool-1-thread-1:47750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:17  [ pool-1-thread-1:47833 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47933 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:17  [ pool-1-thread-1:47981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:17  [ pool-1-thread-1:47982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:17  [ pool-1-thread-1:47983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:17  [ pool-1-thread-1:47983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:17  [ pool-1-thread-1:47984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:17  [ pool-1-thread-1:48033 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48133 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48234 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48335 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48435 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48536 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48638 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48739 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48746 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:18  [ pool-1-thread-1:48747 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:18  [ pool-1-thread-1:48748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:18  [ pool-1-thread-1:48748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:18  [ pool-1-thread-1:48749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:18  [ pool-1-thread-1:48839 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48939 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:18  [ pool-1-thread-1:48979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:18  [ pool-1-thread-1:48979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:18  [ pool-1-thread-1:48980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:18  [ pool-1-thread-1:48980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:18  [ pool-1-thread-1:48980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:18  [ pool-1-thread-1:49039 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49139 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49239 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49340 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49440 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49540 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49641 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49741 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:19  [ pool-1-thread-1:49749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:19  [ pool-1-thread-1:49750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:19  [ pool-1-thread-1:49751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:19  [ pool-1-thread-1:49751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:19  [ pool-1-thread-1:49841 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49942 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:19  [ pool-1-thread-1:49975 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:19  [ pool-1-thread-1:49979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:19  [ pool-1-thread-1:49979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:19  [ pool-1-thread-1:49979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:19  [ pool-1-thread-1:49980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:19  [ pool-1-thread-1:49980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:20  [ pool-1-thread-1:50042 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50142 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50242 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50343 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50443 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50543 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50643 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50743 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:20  [ pool-1-thread-1:50749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:20  [ pool-1-thread-1:50749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:20  [ pool-1-thread-1:50749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:20  [ pool-1-thread-1:50750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:20  [ pool-1-thread-1:50844 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50944 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:20  [ pool-1-thread-1:50976 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:20  [ pool-1-thread-1:50977 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:20  [ pool-1-thread-1:50978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:20  [ pool-1-thread-1:50978 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:20  [ pool-1-thread-1:50979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:21  [ pool-1-thread-1:51044 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51145 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51245 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51345 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51446 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51546 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51647 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51748 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:21  [ pool-1-thread-1:51751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:21  [ pool-1-thread-1:51752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:21  [ pool-1-thread-1:51752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:21  [ pool-1-thread-1:51753 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:21  [ pool-1-thread-1:51848 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51949 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:21  [ pool-1-thread-1:51983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:21  [ pool-1-thread-1:51983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:21  [ pool-1-thread-1:51984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:21  [ pool-1-thread-1:51984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:21  [ pool-1-thread-1:51984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:22  [ pool-1-thread-1:52050 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52151 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52252 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52353 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52454 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52555 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52655 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52748 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:22  [ pool-1-thread-1:52749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:22  [ pool-1-thread-1:52749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:22  [ pool-1-thread-1:52749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:22  [ pool-1-thread-1:52750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:22  [ pool-1-thread-1:52756 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52857 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52959 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:22  [ pool-1-thread-1:52975 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:22  [ pool-1-thread-1:52979 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:22  [ pool-1-thread-1:52980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:22  [ pool-1-thread-1:52980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:22  [ pool-1-thread-1:52980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:22  [ pool-1-thread-1:52980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:23  [ pool-1-thread-1:53060 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53160 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53260 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53360 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53460 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53562 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53662 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:23  [ pool-1-thread-1:53750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:23  [ pool-1-thread-1:53751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:23  [ pool-1-thread-1:53751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:23  [ pool-1-thread-1:53751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:23  [ pool-1-thread-1:53762 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53862 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53962 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:23  [ pool-1-thread-1:53983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:23  [ pool-1-thread-1:53983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:23  [ pool-1-thread-1:53983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:23  [ pool-1-thread-1:53984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:23  [ pool-1-thread-1:53984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:24  [ pool-1-thread-1:54062 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54162 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54262 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54362 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54463 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54564 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54664 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:24  [ pool-1-thread-1:54750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:24  [ pool-1-thread-1:54751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:24  [ pool-1-thread-1:54751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:24  [ pool-1-thread-1:54752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:24  [ pool-1-thread-1:54765 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54865 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54966 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:24  [ pool-1-thread-1:54981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:24  [ pool-1-thread-1:54982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:24  [ pool-1-thread-1:54983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:24  [ pool-1-thread-1:54984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:24  [ pool-1-thread-1:54984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:25  [ pool-1-thread-1:55067 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55167 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55267 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55368 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55469 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55570 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55670 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:25  [ pool-1-thread-1:55750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:25  [ pool-1-thread-1:55750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:25  [ pool-1-thread-1:55751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:25  [ pool-1-thread-1:55751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:25  [ pool-1-thread-1:55770 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55870 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55971 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:25  [ pool-1-thread-1:55975 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:25  [ pool-1-thread-1:55981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:25  [ pool-1-thread-1:55981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:25  [ pool-1-thread-1:55982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:25  [ pool-1-thread-1:55982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:25  [ pool-1-thread-1:55982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:26  [ pool-1-thread-1:56071 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56173 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56273 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56375 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56475 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56575 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56675 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:26  [ pool-1-thread-1:56752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:26  [ pool-1-thread-1:56752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:26  [ pool-1-thread-1:56753 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:26  [ pool-1-thread-1:56753 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:26  [ pool-1-thread-1:56775 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56876 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56976 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:26  [ pool-1-thread-1:56984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:26  [ pool-1-thread-1:56984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:26  [ pool-1-thread-1:56985 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:26  [ pool-1-thread-1:56985 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:26  [ pool-1-thread-1:56985 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:27  [ pool-1-thread-1:57078 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57179 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57279 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57380 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57480 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57581 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57681 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:27  [ pool-1-thread-1:57757 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:27  [ pool-1-thread-1:57758 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:27  [ pool-1-thread-1:57759 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:27  [ pool-1-thread-1:57760 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:27  [ pool-1-thread-1:57782 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57883 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:27  [ pool-1-thread-1:57980 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:27  [ pool-1-thread-1:57981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:27  [ pool-1-thread-1:57981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:27  [ pool-1-thread-1:57981 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:27  [ pool-1-thread-1:57982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:27  [ pool-1-thread-1:57984 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58085 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58185 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58285 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58387 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58488 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58589 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58691 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:28  [ pool-1-thread-1:58750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:28  [ pool-1-thread-1:58751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:28  [ pool-1-thread-1:58751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:28  [ pool-1-thread-1:58752 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:28  [ pool-1-thread-1:58791 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58891 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:28  [ pool-1-thread-1:58975 ] - [ DEBUG ]  Received successful heartbeat response for group gateway01
+2017-03-16 23:57:28  [ pool-1-thread-1:58989 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:28  [ pool-1-thread-1:58990 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:28  [ pool-1-thread-1:58990 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:28  [ pool-1-thread-1:58990 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:28  [ pool-1-thread-1:58990 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:28  [ pool-1-thread-1:58991 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59091 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59192 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59292 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59392 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59493 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59594 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59694 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:29  [ pool-1-thread-1:59749 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:29  [ pool-1-thread-1:59750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:29  [ pool-1-thread-1:59750 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:29  [ pool-1-thread-1:59751 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:29  [ pool-1-thread-1:59796 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59897 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:29  [ pool-1-thread-1:59982 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-7
+2017-03-16 23:57:29  [ pool-1-thread-1:59983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-8
+2017-03-16 23:57:29  [ pool-1-thread-1:59983 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-9
+2017-03-16 23:57:29  [ pool-1-thread-1:59984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-5
+2017-03-16 23:57:29  [ pool-1-thread-1:59984 ] - [ DEBUG ]  Group gateway01 committed offset 0 for partition octets_down-6
+2017-03-16 23:57:29  [ pool-1-thread-1:59997 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:30  [ pool-1-thread-1:60098 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:30  [ pool-1-thread-1:60198 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:30  [ pool-1-thread-1:60299 ] - [ DEBUG ]  Subscribed to topic(s): octets_down
+2017-03-16 23:57:39  [ main:0 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2017-03-16 23:57:40  [ main:886 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = producer-1
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2017-03-16 23:57:40  [ main:893 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-03-16 23:57:40  [ main:894 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-03-16 23:57:43  [ Timer-0:3246 ] - [ INFO ]  数据库初始化，正在加载数据中...
+2017-03-16 23:57:43  [ main:3290 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2017-03-16 23:57:43  [ main:3310 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = consumer-1
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2017-03-16 23:57:43  [ main:3349 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-03-16 23:57:43  [ main:3350 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-03-16 23:57:43  [ pool-2-thread-1:3684 ] - [ INFO ]  Discovered coordinator gbiotdn04:9092 (id: 2147483543 rack: null) for group gateway01.
+2017-03-16 23:57:43  [ pool-2-thread-1:3685 ] - [ INFO ]  Revoking previously assigned partitions [] for group gateway01
+2017-03-16 23:57:43  [ pool-2-thread-1:3686 ] - [ INFO ]  (Re-)joining group gateway01
+2017-03-16 23:57:46  [ Timer-0:6476 ] - [ INFO ]  数据库加载成功，加载数据的个数为：15640
+2017-03-16 23:58:00  [ pool-2-thread-1:20369 ] - [ INFO ]  Successfully joined group gateway01 with generation 72
+2017-03-16 23:58:00  [ pool-2-thread-1:20373 ] - [ INFO ]  Setting newly assigned partitions [octets_down-3, octets_down-4, octets_down-0, octets_down-1, octets_down-2] for group gateway01

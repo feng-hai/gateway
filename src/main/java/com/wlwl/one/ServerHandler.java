@@ -89,7 +89,7 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) {
-		session.close(true);
+	
 
 		if (this._config.getIsDebug() == 2) {
 			logger.error("錯誤：" + session.getAttribute("ID") + session);
@@ -102,6 +102,8 @@ public class ServerHandler extends IoHandlerAdapter {
 			new AychWriter("发生异常关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
 					"closeSession").start();
 		}
+		
+		session.close(true);
 	}
 
 	// 当连接空闲时触发此方法.

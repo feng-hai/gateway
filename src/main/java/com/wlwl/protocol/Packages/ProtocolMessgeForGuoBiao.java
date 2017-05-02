@@ -224,41 +224,41 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		}
 		case (byte) 0x08: //校时
 		{
-//			ByteBuffer buffer = ByteBuffer.allocate(25 + 6);
-//			buffer.put((byte) 0x23);
-//			buffer.put( (byte)0x23);
-//			buffer.put(commonId);
-//			buffer.put( (byte)0x01);
-//			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));
-//			buffer.put(this.msg[21]);
-//			buffer.put((byte)0);
-//			buffer.put((byte) 6);
-//			buffer.put(ByteUtils.dateToBytes(new Date()));
-//			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
-//			return buffer.array();
-			String yunming="cube.ttron.cn";
-			ByteBuffer buffer = ByteBuffer.allocate(25 + 15+yunming.length());
+			ByteBuffer buffer = ByteBuffer.allocate(25 + 6);
 			buffer.put((byte) 0x23);
 			buffer.put( (byte)0x23);
-			buffer.put((byte) 0x81);
-			buffer.put((byte) 0xFE);
-			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));//vin号
+			buffer.put(commonId);
+			buffer.put( (byte)0x01);
+			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));
 			buffer.put(this.msg[21]);
 			buffer.put((byte)0);
-			buffer.put((byte) (15+yunming.length()));
+			buffer.put((byte) 6);
 			buffer.put(ByteUtils.dateToBytes(new Date()));
-			buffer.put((byte)4);
-			buffer.put((byte)0X0D);//域名长度id
-			buffer.put((byte)yunming.length());//域名长度value
-			buffer.put((byte)0X0E);//域名长度id
-			buffer.put(ByteUtils.str2bytes(yunming));
-			buffer.put((byte)0X0F);//域名长度id
-			buffer.put((byte)(20293>>8));
-			buffer.put((byte)20293);
-			buffer.put((byte)0X10);//域名长度id
-			buffer.put((byte)1);
 			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
-			return buffer.array();	
+			return buffer.array();
+//			String yunming="cube.ttron.cn";
+//			ByteBuffer buffer = ByteBuffer.allocate(25 + 15+yunming.length());
+//			buffer.put((byte) 0x23);
+//			buffer.put( (byte)0x23);
+//			buffer.put((byte) 0x81);
+//			buffer.put((byte) 0xFE);
+//			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));//vin号
+//			buffer.put(this.msg[21]);
+//			buffer.put((byte)0);
+//			buffer.put((byte) (15+yunming.length()));
+//			buffer.put(ByteUtils.dateToBytes(new Date()));
+//			buffer.put((byte)4);
+//			buffer.put((byte)0X0D);//域名长度id
+//			buffer.put((byte)yunming.length());//域名长度value
+//			buffer.put((byte)0X0E);//域名长度id
+//			buffer.put(ByteUtils.str2bytes(yunming));
+//			buffer.put((byte)0X0F);//域名长度id
+//			buffer.put((byte)(20293>>8));
+//			buffer.put((byte)20293);
+//			buffer.put((byte)0X10);//域名长度id
+//			buffer.put((byte)1);
+//			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
+//			return buffer.array();	
 			
 			
 		}
