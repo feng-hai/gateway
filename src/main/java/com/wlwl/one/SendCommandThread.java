@@ -32,9 +32,9 @@ public class SendCommandThread extends Thread {
 		while (true) {
 			try {
 				SourceMessage message = cmdQueue.take();
-				if (this._config.getWatchVehiclesList().contains(message.getDEVICE_ID())) {
+				//if (this._config.getWatchVehiclesList().contains(message.getDEVICE_ID())) {
 					new AychWriter("发送数据--：" +  "--" +message.getRaw_octets(), "SendMessage").start();	
-				}
+				//}
 				sessionManager.writeSession(message.getDEVICE_ID(),ByteUtils.hexStr2Bytes(message.getRaw_octets()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

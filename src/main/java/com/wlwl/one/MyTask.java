@@ -66,7 +66,7 @@ public class MyTask extends TimerTask {
 		try {
 			jdbcUtils = SingletonJDBC.getJDBC(this._config);
 			logger.info("数据库初始化，正在加载数据中...");
-			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
+			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID"
 					+ " from cube.BIG_VEHICLE vi "
 					+ " inner join cube.BIG_DEVICE_VEHICLE_MAP map on vi.unid=map.vehicle_unid   and vi.flag_del=0"
 					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid and device.flag_del=0"

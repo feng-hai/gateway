@@ -184,7 +184,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		switch (commonId) {
 		case (byte) 0xC0: //自定义命令，信息校对
 		{
-			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);
+			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);//获取终端编号
 			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
 			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
 			VehicleInfo veh = this._vehicles.get(terminalId);
@@ -404,7 +404,10 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 	}
 	
 	public byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle) {
-		
+		if(sendBytes[0]==(byte)0x23&&sendBytes[1]==(byte)0x23)
+		{
+			return sendBytes;
+		}
 		ByteBuffer buffer = ByteBuffer.allocate(25 + sendBytes.length);
 		byte[] tempLength=new byte[2];
 		ByteUtils.putShortForBig(tempLength, (short)sendBytes.length, 0);
