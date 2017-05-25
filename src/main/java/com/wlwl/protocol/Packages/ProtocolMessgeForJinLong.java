@@ -655,4 +655,9 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 		return sendBytes;
 	}
 
+	public byte[] extraAnswerMsg() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

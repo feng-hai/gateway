@@ -538,4 +538,9 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return sendBytes;
 	}
 
+	public byte[] extraAnswerMsg() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

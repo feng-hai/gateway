@@ -407,4 +407,9 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		return sendBytes;
 	}
 
+	public byte[] extraAnswerMsg() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

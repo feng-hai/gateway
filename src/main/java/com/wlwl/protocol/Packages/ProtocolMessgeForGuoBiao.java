@@ -12,9 +12,12 @@ import java.util.concurrent.BlockingQueue;
 import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
+import com.wlwl.one.ServerHandler;
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.BCCUtils;
@@ -28,8 +31,8 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识，3协议的网关
 	private String Node = "3CE0CF193D67408E80346E0C20263DC6";// 节点标识
-	private String ProtocolForG="EF039E17A8E84137AF6DE1CDC172C274";
-
+	private String ProtocolForG = "EF039E17A8E84137AF6DE1CDC172C274";
+	private static final Logger logger = LoggerFactory.getLogger(ProtocolMessgeForGuoBiao.class);
 	/**
 	 * 頭部數據
 	 */
@@ -141,6 +144,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 				.append(",").append("子设备代码 : ").append(subDeviceId).append(",").append("]");
 		return builder.toString();
 	}
+
 	/*
 	 * 尾部數據
 	 */
@@ -160,18 +164,15 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 	 */
 	private byte[] msg;
 
-	
-
-	public String getDeviceId() {	
+	public String getDeviceId() {
 		return this.gpsId;
 	}
 
 	public void setMsg(byte[] bytes) {
-		this.msg=bytes;
+		this.msg = bytes;
 		// 车辆VIN号
-		this.gpsId = ByteUtils.bytesToAsciiString(this.msg, 4, 17);  
+		this.gpsId = ByteUtils.bytesToAsciiString(this.msg, 4, 17);
 	}
-
 
 	public String getProtocol() {
 		return this.Protocol;
@@ -182,93 +183,36 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		Byte commonId = this.msg[2];
 
 		switch (commonId) {
-		case (byte) 0xC0: //自定义命令，信息校对
+		case (byte) 0xC0: // 自定义命令，信息校对
+		case (byte) 0x01: // 车辆登入
+		case (byte) 0x04: // 车辆登出
+		case (byte) 0x07: // 心跳应答
 		{
-			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);//获取终端编号
-			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
-			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
-			VehicleInfo veh = this._vehicles.get(terminalId);
-			if(veh==null)
-			{
-				return null;
-			}
-			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
-				return null;
-			}
-			byte[] tempVIN=ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
-			byte[] tempICCID=ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));
-			ByteBuffer buffer = ByteBuffer.allocate(25 + 37);
-			buffer.put((byte) 0x23);
-			buffer.put((byte) 0x23);
-			buffer.put((byte) 0xC1);
-			buffer.put((byte) 0xFE);
-			buffer.put(tempVIN);
-			buffer.put(this.msg[21]);
-			buffer.put((byte)0);
-			buffer.put((byte)37);		
-			buffer.put(tempVIN);
-			buffer.put(tempICCID);
-			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
-			return buffer.array();
-		}
-		case (byte) 0x01: //车辆登入
-		case (byte) 0x04: //车辆登出
-		case (byte) 0x07: //心跳应答
-		{
-			
-			byte[] answer=new  byte[this.msg.length];
-			answer= Arrays.copyOf(this.msg, this.msg.length);
-			answer[3]=(byte)0x01;
-			answer[answer.length-1]=BCCUtils.enVerbCodeForGuobiao(answer);
+			byte[] answer = new byte[this.msg.length];
+			answer = Arrays.copyOf(this.msg, this.msg.length);
+			answer[3] = (byte) 0x01;
+			answer[answer.length - 1] = BCCUtils.enVerbCodeForGuobiao(answer);
 			return answer;
 		}
-		case (byte) 0x08: //校时
+		case (byte) 0x08: // 校时
 		{
 			ByteBuffer buffer = ByteBuffer.allocate(25 + 6);
 			buffer.put((byte) 0x23);
-			buffer.put( (byte)0x23);
+			buffer.put((byte) 0x23);
 			buffer.put(commonId);
-			buffer.put( (byte)0x01);
+			buffer.put((byte) 0x01);
 			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));
 			buffer.put(this.msg[21]);
-			buffer.put((byte)0);
+			buffer.put((byte) 0);
 			buffer.put((byte) 6);
 			buffer.put(ByteUtils.dateToBytes(new Date()));
 			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
 			return buffer.array();
-//			String yunming="cube.ttron.cn";
-//			ByteBuffer buffer = ByteBuffer.allocate(25 + 15+yunming.length());
-//			buffer.put((byte) 0x23);
-//			buffer.put( (byte)0x23);
-//			buffer.put((byte) 0x81);
-//			buffer.put((byte) 0xFE);
-//			buffer.put(ByteUtils.getSubBytes(this.msg, 4, 17));//vin号
-//			buffer.put(this.msg[21]);
-//			buffer.put((byte)0);
-//			buffer.put((byte) (15+yunming.length()));
-//			buffer.put(ByteUtils.dateToBytes(new Date()));
-//			buffer.put((byte)4);
-//			buffer.put((byte)0X0D);//域名长度id
-//			buffer.put((byte)yunming.length());//域名长度value
-//			buffer.put((byte)0X0E);//域名长度id
-//			buffer.put(ByteUtils.str2bytes(yunming));
-//			buffer.put((byte)0X0F);//域名长度id
-//			buffer.put((byte)(20293>>8));
-//			buffer.put((byte)20293);
-//			buffer.put((byte)0X10);//域名长度id
-//			buffer.put((byte)1);
-//			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
-//			return buffer.array();	
-			
-			
 		}
-		
 		default:
 			return null;
 
 		}
-
-		
 
 	}
 
@@ -319,8 +263,6 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		return this.Node;
 	}
 
-
-
 	// 包头标志
 	private static byte HEADTAG = (byte) 0x23;
 
@@ -329,6 +271,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public Boolean filter(IoSession session, IoBuffer in, ProtocolDecoderOutput out) {
 
+		logger.error("过滤器：" + ByteUtils.byte2HexStr(in.array()));
 		// 标记的位置
 		int startPos = in.position();
 
@@ -372,6 +315,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 		return true;
 	}
+
 	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
 		// TODO Auto-generated method stub
 		ProtocolModel pm = new ProtocolModel();
@@ -380,19 +324,16 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 		pm.setNode_unid(getNode());
 		pm.setUnid(vi.getUNID());
-		if(bytes[2]==(byte)0xD0)
-		{
-			int dataL=ByteUtils.getShortForLarge(bytes, 22);
-			byte[] dataTemp=ByteUtils.getSubBytes(bytes, 24, dataL);
+		if (bytes[2] == (byte) 0xD0) {
+			int dataL = ByteUtils.getShortForLarge(bytes, 22);
+			byte[] dataTemp = ByteUtils.getSubBytes(bytes, 24, dataL);
 			pm.setProto_unid(getProtocol());
 			pm.setRAW_OCTETS(ByteUtils.bytesToHexString(dataTemp));
 			pm.setLength(String.valueOf(dataTemp.length / 2));
-		}
-		else
-		{
+		} else {
 			pm.setProto_unid(ProtocolForG);
 			pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
-			pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));	
+			pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
 		}
 		pm.setTIMESTAMP(new Date().getTime());
 		pm.setIP4(ip);
@@ -402,26 +343,62 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			e.printStackTrace();
 		}
 	}
-	
-	public byte[] sendBefore(byte[] sendBytes,VehicleInfo vehicle) {
-		if(sendBytes[0]==(byte)0x23&&sendBytes[1]==(byte)0x23)
-		{
+
+	public byte[] sendBefore(byte[] sendBytes, VehicleInfo vehicle) {
+		if (sendBytes[0] == (byte) 0x23 && sendBytes[1] == (byte) 0x23) {
 			return sendBytes;
 		}
 		ByteBuffer buffer = ByteBuffer.allocate(25 + sendBytes.length);
-		byte[] tempLength=new byte[2];
-		ByteUtils.putShortForBig(tempLength, (short)sendBytes.length, 0);
+		byte[] tempLength = new byte[2];
+		ByteUtils.putShortForBig(tempLength, (short) sendBytes.length, 0);
 		buffer.put((byte) 0x23);
-		buffer.put( (byte)0x23);
-		buffer.put( (byte)0xD0);
-		buffer.put( (byte)0xFE);
+		buffer.put((byte) 0x23);
+		buffer.put((byte) 0xD0);
+		buffer.put((byte) 0xFE);
 		buffer.put(ByteUtils.str2bytes((StrFormat.addZeroForNum(vehicle.getVIN(), 17))));
-		buffer.put((byte)0x01);
+		buffer.put((byte) 0x01);
 		buffer.put(tempLength);
 		buffer.put(sendBytes);
 		buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
 		return buffer.array();
 	}
 
+	public byte[] extraAnswerMsg() {
+		// TODO Auto-generated method stub
+		Byte commonId = this.msg[2];
+		switch (commonId) {
+		case (byte) 0xC0: // 自定义命令，信息校对
+		{
+			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);// 获取终端编号
+			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
+			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
+			VehicleInfo veh = this._vehicles.get(terminalId);
+			if (veh == null) {
+				return null;
+			}
+			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
+				return null;
+			}
+			byte[] tempVIN = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
+			byte[] tempICCID = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));
+			ByteBuffer buffer = ByteBuffer.allocate(25 + 37);
+			buffer.put((byte) 0x23);
+			buffer.put((byte) 0x23);
+			buffer.put((byte) 0xC1);
+			buffer.put((byte) 0xFE);
+			buffer.put(tempVIN);
+			buffer.put(this.msg[21]);
+			buffer.put((byte) 0);
+			buffer.put((byte) 37);
+			buffer.put(tempVIN);
+			buffer.put(tempICCID);
+			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
+			return buffer.array();
+		}
+		default:
+			return null;
+
+		}
+	}
 
 }

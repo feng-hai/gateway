@@ -50,6 +50,11 @@ public interface IProtocolAnalysis {
 	String getNode();
 
 	byte[] answerMsg();
+
+	/**
+	 * @return 设置额外应答
+	 */
+	byte[] extraAnswerMsg();
 	
 	/**
 	 * 终端登录应答

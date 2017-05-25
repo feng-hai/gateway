@@ -50,6 +50,9 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
+		
+		logger.error("========= server send msg:: " + ByteUtils.byte2HexStr((byte[]) message));
+		
 		if (this._config.getIsDebug() == 1) {
 			System.out.println("========= server send msg:: " + ByteUtils.byte2HexStr((byte[]) message));
 		}

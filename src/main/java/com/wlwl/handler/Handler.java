@@ -80,11 +80,20 @@ public class Handler {
 								deviceId).start();
 					}
 				}
+				byte[] extraAnswerMsg = analysis.extraAnswerMsg();
+				if (extraAnswerMsg != null) {
+										
+					session.write(extraAnswerMsg);
+					logger.error("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
+					if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
+						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
+								deviceId).start();
+					}
+				}
 			} catch (Exception ex) {
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				ex.printStackTrace(pw);
-				logger.error(sw.toString());
+				
+				logger.error("解析出错：",ex);
 			}
 
 			if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
