@@ -15,12 +15,12 @@ public class ProtocolModel implements Serializable {
 	private String proto_unid;//协议唯一编号
 	private String node_unid;//节点唯一编号
 	private String length;// 	长度(Byte)
-	private Long TIMESTAMP;// 	UNIX时间戳(毫秒)	
+	private String TIMESTAMP;// 	UNIX时间戳(毫秒)	
 	private String cellphone;//电话号码
 	private String IP4;//IPv4地址
 	private String flag_transmit="false";//转发标志
 	
-	public Long getTIMESTAMP() {
+	public String getTIMESTAMP() {
 		return TIMESTAMP;
 	}
 	public String getCELLPHONE() {
@@ -31,7 +31,7 @@ public class ProtocolModel implements Serializable {
 		cellphone = cELLPHONE;
 	}
 
-	public void setTIMESTAMP(Long tIMESTAMP) {
+	public void setTIMESTAMP(String tIMESTAMP) {
 		TIMESTAMP = tIMESTAMP;
 	}
 

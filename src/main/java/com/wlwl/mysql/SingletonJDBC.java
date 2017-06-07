@@ -21,11 +21,11 @@ public class SingletonJDBC {
 	private static JdbcUtils jdbcUtils = null;
 	private static Connection connection = null;
 
-	public static JdbcUtils getJDBC(Config config) {
+	public static JdbcUtils getJDBC() {
 
 		if (connection == null) {
 			try {
-				jdbcUtils = new JdbcUtils(config);
+				jdbcUtils = new JdbcUtils();
 				connection = jdbcUtils.getConnection();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.wlwl.one;
 
-import java.util.Date;
 import java.util.concurrent.BlockingQueue;
 
 import org.slf4j.Logger;
@@ -8,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.ByteUtils;
-import com.wlwl.utils.Config;
+
 import com.wlwl.utils.SourceMessage;
 
 /*
@@ -19,13 +18,13 @@ public class SendCommandThread extends Thread {
 	private SessionManager sessionManager;
 
 	private BlockingQueue<SourceMessage> cmdQueue;
-	private Config _config;
+
 	private static final Logger logger = LoggerFactory.getLogger(SendCommandThread.class);
 
-	public SendCommandThread(SessionManager sessionManager, BlockingQueue<SourceMessage> cmdQueue, Config config) {
+	public SendCommandThread(SessionManager sessionManager, BlockingQueue<SourceMessage> cmdQueue) {
 		this.sessionManager = sessionManager;
 		this.cmdQueue = cmdQueue;
-		this._config = config;
+	
 	}
 
 	public void run() {

@@ -1,11 +1,10 @@
 package com.wlwl.handler;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+
 import java.net.InetSocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
@@ -28,7 +27,7 @@ import com.wlwl.utils.Config;
 public class Handler {
 	//private IServerHandler handler;
 	private SessionManager manager;
-	private Config _config;
+
 	private Object message;
 	private IoSession session;
 	private ProtocolEnum pEnum;
@@ -36,20 +35,20 @@ public class Handler {
 	private Map<String, VehicleInfo> _vehicles;
 	private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);
 	public Handler(ProtocolEnum pEnum,BlockingQueue<ProtocolModel> sendQueue,
-			Map<String, VehicleInfo> vehicles, SessionManager _manager, Config config ,Object message,IoSession session)
+			Map<String, VehicleInfo> vehicles, SessionManager _manager,Object message,IoSession session)
 	{
 		//this.handler = _handler;
 		this.pEnum=pEnum;
 		this._sendQueue=sendQueue;
 		this._vehicles=vehicles;
 		this.manager = _manager;
-		this._config = config;
+	
 		this.message=message;
 		this.session=session;
 	}
 	public void excute()
 	{
-		List<String> watchs = this._config.getWatchVehiclesList();
+//		List<String> watchs = this._config.getWatchVehiclesList();
 		
 		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,_vehicles);
 		byte[] data;
@@ -59,11 +58,11 @@ public class Handler {
 		if (message instanceof byte[]) {
 			 data = (byte[]) message;
 			if (data == null || data.length < analysis.getMinLength()) {
-				if (this._config.getIsDebug() == 2) {
+				
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					new AychWriter("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data),
 							"ExceptionData").start();
-				}
+				
 				return;
 			}
 			analysis.setMsg(data);
@@ -74,32 +73,32 @@ public class Handler {
 				byte[] answerMsg = analysis.answerMsg();
 				if (answerMsg != null) {
 					session.write(answerMsg);
-					if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
-						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
-								deviceId).start();
-					}
+					
+						//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
+//								deviceId).start();
+				
 				}
 				byte[] extraAnswerMsg = analysis.extraAnswerMsg();
 				if (extraAnswerMsg != null) {
 										
 					session.write(extraAnswerMsg);
 					logger.error("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
-					if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
-						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
-								deviceId).start();
-					}
+//				
+//						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
+//								deviceId).start();
+				
 				}
 			} catch (Exception ex) {
 				
 				logger.error("解析出错：",ex);
 			}
 
-			if (this._config.getIsDebug() == 2 && watchs.contains(deviceId.trim())) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				new AychWriter("收到数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data), deviceId).start();
-			}
+		
+//				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				new AychWriter("收到数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data), deviceId).start();
+			
 			//data = null;
 
 		} else {
@@ -108,16 +107,16 @@ public class Handler {
 		// 检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi = this._vehicles.get(analysis.getDeviceId());
 		if (vi == null) {
-			if (this._config.getIsDebug() == 2) {
-				logger.info("车辆在数据库中不存在:" + analysis.getDeviceId());
+		
+				logger.error("车辆在数据库中不存在:" + analysis.getDeviceId());
 				//byte[] data = (byte[]) message;
-				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
-			}
-			if (this._config.getIsDebug() == 2) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
-						"closeSession").start();
-			}
+				logger.error("终端源码：" + ByteUtils.byte2HexStr(data));
+//			
+//			if (this._config.getIsDebug() == 2) {
+//				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
+//						"closeSession").start();
+//			}
 			session.closeOnFlush();
 			return;
 		}

@@ -1,6 +1,9 @@
 package com.wlwl.kafka;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
@@ -13,39 +16,35 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.Config;
 import com.wlwl.utils.SourceMessage;
 
+import kafka.log.Log;
 
+public class SendDataTokafka extends Thread {
 
- 
+	private BlockingQueue<ProtocolModel> sendQueue;
 
-public class SendDataTokafka extends Thread{
-	
-	private BlockingQueue<ProtocolModel> sendQueue; 
-	
-    private Producer<String, String> producer;
- 
-    
-    private Config config;
-	
-    private static final Logger logger = LoggerFactory.getLogger(SendDataTokafka.class);
-    
-	public SendDataTokafka(Config config,BlockingQueue<ProtocolModel> queue){
-		this.config=config;
-		this.sendQueue=queue;
+	private Producer<String, String> producer;
+
+	private static final Logger logger = LoggerFactory.getLogger(SendDataTokafka.class);
+
+	public SendDataTokafka(BlockingQueue<ProtocolModel> queue) {
+
+		this.sendQueue = queue;
 		initKafka();
- 
+
 	}
-	
-	private void initKafka()
-	{
-		
+
+	private void initKafka() {
+
+		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		Properties props = new Properties();
-		props.put("bootstrap.servers", config.getKafkaServer());
+		props.put("bootstrap.servers", config.get("kafka.server"));
 		props.put("acks", "1");
 		props.put("retries", 0);
 		props.put("batch.size", 16384);
@@ -53,51 +52,59 @@ public class SendDataTokafka extends Thread{
 		props.put("buffer.memory", 33554432);
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-	    producer = new KafkaProducer<String, String>(props);
-		
+		producer = new KafkaProducer<String, String>(props);
+
 	}
- 
-	public void run() {		
+
+	public void run() {
+		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		while (true) {
 			try {
-				ProtocolModel message= sendQueue.take();
-				String strMessage=message.toString();
-				
-			
-				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(config.getSourcecodeTopic(), strMessage);
-				
-				if(config.getIsDebug()==1){
-					System.out.println("kafka sending! topic: "+config.getSourcecodeTopic()+" message: "+ strMessage);	
+				ProtocolModel message = sendQueue.take();
+				String strMessage = message.toString();
+
+				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(
+						config.get("kafka.sourcecodeTopic"), strMessage);
+
+				// if(config.getIsDebug()==1){
+				// System.out.println("kafka sending! topic:
+				// "+config.getSourcecodeTopic()+" message: "+ strMessage);
+				// }
+
+				try {
+					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					logger.info(sdf.format(time) + message.getDEVICE_ID()+strMessage);
+				} catch (Exception ex) {
+					logger.error("数据转化：", ex);
 				}
-				List<String> watchs=this.config.getWatchVehiclesList();
+				// logger.error(strMessage);
+				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
 				if (watchs.contains(message.getDEVICE_ID())) {
-					new AychWriter( message.getRAW_OCTETS(), "Octests").start();
+					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
 				}
-				
+
 				producer.send(myrecord, new Callback() {
-					
+
 					public void onCompletion(RecordMetadata metadata, Exception e) {
-						if (e != null){
-							  initKafka();//重新创建一个kafka对象
-							  logger.error(e.toString());
-		            	    }
-						if(config.getIsDebug()==1){
-							
-							//System.out.println("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
-						    logger.info("The offset of the record we just sent is: " + metadata.offset() + "," + metadata.topic());
+						if (e != null) {
+							initKafka();// 重新创建一个kafka对象
+							logger.error(e.toString());
 						}
+
+						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
+								+ metadata.topic());
+
 					}
 				});
-             
+
 			} catch (Exception e) {
 			}
 		}
 	}
-	
-	public void shutdown(){
+
+	public void shutdown() {
 		producer.close();
 	}
-
- 
 
 }

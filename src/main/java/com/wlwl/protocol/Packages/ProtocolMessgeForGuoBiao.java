@@ -335,7 +335,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
 			pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
 		}
-		pm.setTIMESTAMP(new Date().getTime());
+		pm.setTIMESTAMP(Long.toString(new Date().getTime()));
 		pm.setIP4(ip);
 		try {
 			_sendQueue.put(pm);

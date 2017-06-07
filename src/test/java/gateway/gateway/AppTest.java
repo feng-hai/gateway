@@ -61,7 +61,7 @@ public class AppTest
     	pm.setFlag_transmit("false");
     	pm.setNode_unid("11111111");
     	pm.setProto_unid("222222");
-    	pm.setTIMESTAMP(new Date().getTime());
+    	pm.setTIMESTAMP(Long.toString(new Date().getTime()));
     	pm.setUnid("223343443");
     	
     	System.out.println(pm);

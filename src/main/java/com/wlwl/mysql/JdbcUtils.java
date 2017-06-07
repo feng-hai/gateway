@@ -18,8 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.wlwl.config.PropertyResource;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.utils.Config;
+
 
 import java.lang.reflect.Field;  
  
@@ -42,14 +45,16 @@ public class JdbcUtils {
     * <p>Title: </p>
     * <p>Description: </p>
     */ 
-    public JdbcUtils(Config config) {  
+    public JdbcUtils() {  
     	//this._config=config;
     	
-    	USERNAME=config.getMySQLUserName();
+    HashMap<String,String> config=	 PropertyResource.getInstance().getProperties();
     	
-    	PASSWORD = config.getMySQLpwd();
+    	USERNAME=config.get("MYSQLUSERNAME");
     	
-    	URL = config.getMySQLUrl();
+    	PASSWORD = config.get("MYSQLPASSWORD");
+    	
+    	URL = config.get("MYSQLURL");
     	
     	
         // TODO Auto-generated constructor stub  
@@ -302,8 +307,8 @@ public class JdbcUtils {
     public static void main(String[] args) throws SQLException { 
     	
     	
-    	Config config=new Config();
-      JdbcUtils jdbcUtils = new JdbcUtils(config);  
+    
+      JdbcUtils jdbcUtils = new JdbcUtils();  
       jdbcUtils.getConnection();
     	
     	String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
