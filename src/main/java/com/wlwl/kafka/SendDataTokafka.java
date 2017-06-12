@@ -35,21 +35,6 @@ public class SendDataTokafka extends Thread {
 
 	private void initKafka() {
 
-		// HashMap<String, String> config =
-		// PropertyResource.getInstance().getProperties();
-		// Properties props = new Properties();
-		// props.put("bootstrap.servers", config.get("kafka.server"));
-		// props.put("acks", "1");
-		// props.put("retries", 0);
-		// props.put("batch.size", 16384);
-		// props.put("linger.ms", 1);
-		// props.put("buffer.memory", 33554432);
-		// props.put("key.serializer",
-		// "org.apache.kafka.common.serialization.StringSerializer");
-		// props.put("value.serializer",
-		// "org.apache.kafka.common.serialization.StringSerializer");
-		// producer = new KafkaProducer<String, String>(props);
-
 		// 设置配置属性"ZS0114PDNEV01:9092,ZS0114PDNEV02:9092,ZS0114PDNEV03:9092"
 		Properties props = new Properties();
 		// props.put("metadata.broker.list","GMSBDDN1:9092,GMSBDDN2:9092,GMSBDDN3:9092");
@@ -100,21 +85,6 @@ public class SendDataTokafka extends Thread {
 
 				producer.send(data);
 
-				// producer.send(myrecord, new Callback() {
-				//
-				// public void onCompletion(RecordMetadata metadata, Exception
-				// e) {
-				// if (e != null) {
-				// initKafka();// 重新创建一个kafka对象
-				// logger.error(e.toString());
-				// }
-				//
-				// logger.debug("The offset of the record we just sent is: " +
-				// metadata.offset() + ","
-				// + metadata.topic());
-				//
-				// }
-				// });
 
 			} catch (Exception e) {
 			}
