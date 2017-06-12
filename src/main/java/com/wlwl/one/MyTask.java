@@ -82,26 +82,22 @@ public class MyTask extends TimerTask {
 		try {
 			jdbcUtils = SingletonJDBC.getJDBC();
 			logger.info("数据库初始化，正在加载数据中...");
-			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID"
-					+ " from cube.BIG_VEHICLE vi "
-					+ " inner join cube.BIG_DEVICE_VEHICLE_MAP map on vi.unid=map.vehicle_unid   and vi.flag_del=0"
-					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid and device.flag_del=0"
-					+ " inner join cube.BIG_FIBER  pro on vi.fiber_unid =pro.unid and pro.flag_del=0";
+			String sql = "select * FROM (select vin,id unid ,GPS_ID device_id FROM emcs.bs_machinery_equipment) dd";
 			List<Object> params = new ArrayList<Object>();
 
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			for (VehicleInfo vi : list) {
-				if (!isContains(vi)) {
-					this.vehicles.put(vi.getDEVICE_ID().trim(), vi);
-				}
-				if (!isContainsForPhone(vi)) {
-					this.vehicles.put(vi.getCELLPHONE().trim(), vi);
-				}
+//				if (!isContains(vi)) {
+//					this.vehicles.put(vi.getDEVICE_ID().trim(), vi);
+//				}
+//				if (!isContainsForPhone(vi)) {
+//					this.vehicles.put(vi.getCELLPHONE().trim(), vi);
+//				}
 				if (!isContainsForVIN(vi)) {
 					this.vehicles.put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
 				}
 			}
-			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size() / 3);
+			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
