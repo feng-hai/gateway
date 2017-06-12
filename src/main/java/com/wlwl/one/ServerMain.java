@@ -73,25 +73,25 @@ public class ServerMain {
 
 		// 启动3G协议网关
 
-		 ServerMainThread smt = new
-		 ServerMainThread(20291,ProtocolEnum.P3G,
-		 sendQueue, vehicles,sessionManager);
-		 smt.start();
+//		 ServerMainThread smt = new
+//		 ServerMainThread(20291,ProtocolEnum.P3G,
+//		 sendQueue, vehicles,sessionManager);
+//		 smt.start();
 
 		Timer timer1 = new Timer();
 		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
 
-		 ServerMainThread smt808 = new ServerMainThread(4440,
-		 ProtocolEnum.P808, sendQueue, vehicles,sessionManager);
-		 smt808.start();
+//		 ServerMainThread smt808 = new ServerMainThread(4440,
+//		 ProtocolEnum.P808, sendQueue, vehicles,sessionManager);
+//		 smt808.start();
 
 		// Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(),
 		// sendQueue, vehicles);
-		 ServerMainThread smtJinLong = new
-		 ServerMainThread(5442,ProtocolEnum.PJINLONG, sendQueue,
-		 vehicles,sessionManager);
-		 smtJinLong.start();
+//		 ServerMainThread smtJinLong = new
+//		 ServerMainThread(5442,ProtocolEnum.PJINLONG, sendQueue,
+//		 vehicles,sessionManager);
+//		 smtJinLong.start();
 
 		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sendQueue, vehicles,
 				sessionManager);
