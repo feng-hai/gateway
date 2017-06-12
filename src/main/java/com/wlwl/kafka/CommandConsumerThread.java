@@ -1,18 +1,14 @@
 package com.wlwl.kafka;
 
-import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.wlwl.one.SendCommandThread;
-import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.SourceMessage;
+
+import kafka.consumer.ConsumerIterator;
+import kafka.consumer.KafkaStream;
 
 public class CommandConsumerThread implements Runnable {
 
@@ -20,37 +16,28 @@ public class CommandConsumerThread implements Runnable {
 
 	private final AtomicBoolean closed = new AtomicBoolean(false);
 
-	private KafkaConsumer<String, String> consumer;
+	private KafkaStream m_stream;
 	private static final Logger logger = LoggerFactory.getLogger(CommandConsumerThread.class);
 
-	public CommandConsumerThread(KafkaConsumer<String, String> consumer, BlockingQueue<SourceMessage> cmdQueue) {
-		this.consumer = consumer;
+	public CommandConsumerThread(KafkaStream stream, BlockingQueue<SourceMessage> cmdQueue) {
+		this.m_stream = stream;
 		this.cmdQueue = cmdQueue;
 	}
 
 	public void run() {
 		// TODO Auto-generated method stub
+		ConsumerIterator<byte[], byte[]> it = m_stream.iterator();
 
-		while (!closed.get()) {
+		while (it.hasNext()) {
 			try {
-				consumer.subscribe(Arrays.asList("octets_down"));	
-				ConsumerRecords<String, String> records = consumer.poll(100); 
-				for (ConsumerRecord<String, String> record : records) {
-					System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(),
-							record.value());
-					 new AychWriter("收到kafka数据--：" + record.value(), "KafKaMessage").start();	
-					SourceMessage message = new SourceMessage(record.value());
-
-					//logger.trace(message.toString());
-					if (message.getDEVICE_ID() != null) {
-						cmdQueue.put(message);
-					}
-
+				String temp = new String(it.next().message());
+				SourceMessage message = new SourceMessage(temp);
+				if (message.getDEVICE_ID() != null) {
+					cmdQueue.put(message);
 				}
-
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("存入kafka出错", e);
 
 				try {
 					Thread.sleep(1000);
@@ -61,13 +48,40 @@ public class CommandConsumerThread implements Runnable {
 			}
 		}
 
+		// while (!closed.get()) {
+		// try {
+		// consumer.subscribe(Arrays.asList("octets_down"));
+		// ConsumerRecords<String, String> records = consumer.poll(100);
+		// for (ConsumerRecord<String, String> record : records) {
+		// System.out.printf("offset = %d, key = %s, value = %s \n",
+		// record.offset(), record.key(),
+		// record.value());
+		// new AychWriter("收到kafka数据--：" + record.value(),
+		// "KafKaMessage").start();
+		// SourceMessage message = new SourceMessage(record.value());
+		//
+		// //logger.trace(message.toString());
+		// if (message.getDEVICE_ID() != null) {
+		// cmdQueue.put(message);
+		// }
+		//
+		// }
+		//
+		// } catch (Exception e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		//
+		// try {
+		// Thread.sleep(1000);
+		// } catch (Exception e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
+		// }
+		// }
+
 	}
 
 	// Shutdown hook which can be called from a separate thread
-	public void shutdown() {
-		System.out.println("close consumer thread!");
-		closed.set(true);
-		consumer.wakeup();
-	}
 
 }
