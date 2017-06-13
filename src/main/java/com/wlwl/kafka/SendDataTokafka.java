@@ -1,7 +1,7 @@
 package com.wlwl.kafka;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,11 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.utils.AychWriter;
-import com.wlwl.utils.ByteUtils;
-import com.wlwl.utils.Config;
-import com.wlwl.utils.SourceMessage;
 
-import kafka.log.Log;
 
 public class SendDataTokafka extends Thread {
 
