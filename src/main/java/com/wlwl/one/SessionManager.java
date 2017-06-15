@@ -78,7 +78,7 @@ public class SessionManager {
 
 				ProtocolEnum pEnum=(ProtocolEnum)session.getAttribute("pEnum");
 				VehicleInfo vehicle=(VehicleInfo)session.getAttribute("vehicleObject");
-				IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,null);
+				IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
 				session.write(analysis.sendBefore(data,vehicle));
 			}
 		} catch (Exception e) {

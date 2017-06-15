@@ -25,7 +25,7 @@ public class MyTextDecoder extends CumulativeProtocolDecoder {
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
 		
-		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,null);
+		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
 		return analysis.filter(session,in,out);
 		
 	}

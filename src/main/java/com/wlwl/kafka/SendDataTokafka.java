@@ -19,19 +19,20 @@ import org.slf4j.LoggerFactory;
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.utils.AychWriter;
+import com.wlwl.utils.publicStaticMap;
 
 
 public class SendDataTokafka extends Thread {
 
-	private BlockingQueue<ProtocolModel> sendQueue;
+	//private BlockingQueue<ProtocolModel> sendQueue;
 
 	private Producer<String, String> producer;
 
 	private static final Logger logger = LoggerFactory.getLogger(SendDataTokafka.class);
 
-	public SendDataTokafka(BlockingQueue<ProtocolModel> queue) {
+	public SendDataTokafka() {
 
-		this.sendQueue = queue;
+		//this.sendQueue = queue;
 		initKafka();
 
 	}
@@ -56,7 +57,7 @@ public class SendDataTokafka extends Thread {
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		while (true) {
 			try {
-				ProtocolModel message = sendQueue.take();
+				ProtocolModel message = publicStaticMap.getSendQueue().take();
 				String strMessage = message.toString();
 
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(

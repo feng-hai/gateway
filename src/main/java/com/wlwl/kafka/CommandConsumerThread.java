@@ -13,19 +13,20 @@ import org.slf4j.LoggerFactory;
 import com.wlwl.one.SendCommandThread;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.SourceMessage;
+import com.wlwl.utils.publicStaticMap;
 
 public class CommandConsumerThread implements Runnable {
 
-	private BlockingQueue<SourceMessage> cmdQueue;
+	//private BlockingQueue<SourceMessage> cmdQueue;
 
 	private final AtomicBoolean closed = new AtomicBoolean(false);
 
 	private KafkaConsumer<String, String> consumer;
 	private static final Logger logger = LoggerFactory.getLogger(CommandConsumerThread.class);
 
-	public CommandConsumerThread(KafkaConsumer<String, String> consumer, BlockingQueue<SourceMessage> cmdQueue) {
+	public CommandConsumerThread(KafkaConsumer<String, String> consumer) {
 		this.consumer = consumer;
-		this.cmdQueue = cmdQueue;
+	//	this.cmdQueue = cmdQueue;
 	}
 
 	public void run() {
@@ -43,7 +44,7 @@ public class CommandConsumerThread implements Runnable {
 
 					//logger.trace(message.toString());
 					if (message.getDEVICE_ID() != null) {
-						cmdQueue.put(message);
+						publicStaticMap.getCmdQueue().put(message);
 					}
 
 				}

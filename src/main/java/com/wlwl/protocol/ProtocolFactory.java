@@ -11,7 +11,7 @@ import com.wlwl.protocol.Packages.ProtocolMessgeForJinLong;
 
 public class ProtocolFactory {
 	
-	public static IProtocolAnalysis getAnalysis(ProtocolEnum pEnum, Map<String, VehicleInfo> _vehicles)
+	public static IProtocolAnalysis getAnalysis(ProtocolEnum pEnum)
 	{
 		
 		switch(pEnum)
@@ -23,7 +23,7 @@ public class ProtocolFactory {
 		case PJINLONG:
 			return new ProtocolMessgeForJinLong();
 		case GUOBIAO:
-			return new ProtocolMessgeForGuoBiao(_vehicles);
+			return new ProtocolMessgeForGuoBiao();
 		default:
 			return  null;
 			

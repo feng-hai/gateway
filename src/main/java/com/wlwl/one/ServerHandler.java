@@ -28,14 +28,14 @@ public class ServerHandler extends IoHandlerAdapter {
 	private ProtocolEnum pEnum;
 	private SessionManager manager;
 
-	private BlockingQueue<ProtocolModel> _sendQueue;
-	private Map<String, VehicleInfo> _vehicles;
+	//private BlockingQueue<ProtocolModel> _sendQueue;
+	//private Map<String, VehicleInfo> _vehicles;
 	private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);
 
-	public ServerHandler(ProtocolEnum pEnum,BlockingQueue<ProtocolModel> sendQueue,
-			Map<String, VehicleInfo> vehicles, SessionManager _manager) {
-		this._sendQueue=sendQueue;
-		this._vehicles=vehicles;
+	public ServerHandler(ProtocolEnum pEnum,
+			 SessionManager _manager) {
+		//this._sendQueue=sendQueue;
+	//	this._vehicles=vehicles;
 		this.pEnum=pEnum;
 		this.manager = _manager;
 	
@@ -44,7 +44,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public  void messageReceived(IoSession session, Object message) throws Exception {
 		
-		Handler handler=new Handler(this.pEnum,this._sendQueue,this._vehicles,this.manager,message,session);
+		Handler handler=new Handler(this.pEnum,this.manager,message,session);
 		handler.excute();
 	}
 

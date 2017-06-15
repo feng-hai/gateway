@@ -23,6 +23,7 @@ import com.wlwl.protocol.ProtocolFactory;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.Config;
+import com.wlwl.utils.publicStaticMap;
 
 public class Handler {
 	//private IServerHandler handler;
@@ -31,16 +32,15 @@ public class Handler {
 	private Object message;
 	private IoSession session;
 	private ProtocolEnum pEnum;
-	private BlockingQueue<ProtocolModel> _sendQueue;
-	private Map<String, VehicleInfo> _vehicles;
+	//private BlockingQueue<ProtocolModel> _sendQueue;
+//	private Map<String, VehicleInfo> _vehicles;
 	private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);
-	public Handler(ProtocolEnum pEnum,BlockingQueue<ProtocolModel> sendQueue,
-			Map<String, VehicleInfo> vehicles, SessionManager _manager,Object message,IoSession session)
+	public Handler(ProtocolEnum pEnum,SessionManager _manager,Object message,IoSession session)
 	{
 		//this.handler = _handler;
 		this.pEnum=pEnum;
-		this._sendQueue=sendQueue;
-		this._vehicles=vehicles;
+		//this._sendQueue=sendQueue;
+	//	this._vehicles=vehicles;
 		this.manager = _manager;
 	
 		this.message=message;
@@ -50,7 +50,7 @@ public class Handler {
 	{
 //		List<String> watchs = this._config.getWatchVehiclesList();
 		
-		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum,_vehicles);
+		IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
 		byte[] data;
 		synchronized(this)
 		{
@@ -105,7 +105,7 @@ public class Handler {
 			return;
 		}
 		// 检查终端的合法性，和数据库中的数据对比
-		VehicleInfo vi = this._vehicles.get(analysis.getDeviceId());
+		VehicleInfo vi = publicStaticMap.getVehicles().get(analysis.getDeviceId());
 		if (vi == null) {
 		
 				logger.error("车辆在数据库中不存在:" + analysis.getDeviceId());
@@ -134,7 +134,7 @@ public class Handler {
 	
 	public void toJson(IProtocolAnalysis analysis,VehicleInfo vi, IoSession session,byte[] bytes) {
 		String clientIP = ((InetSocketAddress) session.getRemoteAddress()).getAddress().getHostAddress();
-		analysis.toJson(vi, clientIP, bytes, _sendQueue);
+		analysis.toJson(vi, clientIP, bytes);
 
 	}
 

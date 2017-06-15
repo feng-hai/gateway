@@ -18,6 +18,7 @@ import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
+import com.wlwl.utils.publicStaticMap;
 
 public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Cloneable {
 
@@ -514,7 +515,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return false;
 
 	}
-	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
+	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
@@ -528,7 +529,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	
 		pm.setIP4(ip);
 		try {
-			_sendQueue.put(pm);
+			publicStaticMap.getSendQueue().put(pm);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

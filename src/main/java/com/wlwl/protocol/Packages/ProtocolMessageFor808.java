@@ -16,6 +16,7 @@ import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
+import com.wlwl.utils.publicStaticMap;
 
 /**
  * @author FH
@@ -382,7 +383,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 
 	}
 
-	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
+	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
@@ -396,7 +397,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	
 		pm.setIP4(ip);
 		try {
-			_sendQueue.put(pm);
+			publicStaticMap.getSendQueue().put(pm);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

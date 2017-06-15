@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -20,16 +21,15 @@ import com.wlwl.mysql.JdbcUtils;
 import com.wlwl.mysql.SingletonJDBC;
 import com.wlwl.utils.Config;
 import com.wlwl.utils.StrFormat;
+import com.wlwl.utils.publicStaticMap;
 
 public class MyTask extends TimerTask {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyTask.class);
 
-	private Map<String, VehicleInfo> vehicles;
+	
 
-	public MyTask(Map<String, VehicleInfo> vis) {
-		this.vehicles = vis;
-
+	public MyTask() {
 		// loadData();
 	}
 	// public static List<String> getList() {
@@ -88,20 +88,21 @@ public class MyTask extends TimerTask {
 					+ " inner join cube.BIG_DEVICE device on device .unid=map.device_unid and device.flag_del=0"
 					+ " inner join cube.BIG_FIBER  pro on vi.fiber_unid =pro.unid and pro.flag_del=0";
 			List<Object> params = new ArrayList<Object>();
-
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
+			Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 			for (VehicleInfo vi : list) {
-				if (!isContains(vi)) {
-					this.vehicles.put(vi.getDEVICE_ID().trim(), vi);
+				if (!isContains(vi,vehicles)) {
+					vehicles.put(vi.getDEVICE_ID().trim(), vi);
 				}
-				if (!isContainsForPhone(vi)) {
-					this.vehicles.put(vi.getCELLPHONE().trim(), vi);
+				if (!isContainsForPhone(vi,vehicles)) {
+					vehicles.put(vi.getCELLPHONE().trim(), vi);
 				}
-				if (!isContainsForVIN(vi)) {
-					this.vehicles.put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
+				if (!isContainsForVIN(vi,vehicles)) {
+					vehicles.put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
 				}
 			}
-			logger.info("数据库加载成功，加载数据的个数为：{}", this.vehicles.size() / 3);
+			publicStaticMap.setVehicles(vehicles);
+			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -110,16 +111,16 @@ public class MyTask extends TimerTask {
 			}
 		}
 	}
-	private Boolean isContains(VehicleInfo vi) {
-		return this.vehicles.containsKey(vi.getDEVICE_ID().trim());
+	private Boolean isContains(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
+		return vehicles.containsKey(vi.getDEVICE_ID().trim());
 	}
 
-	private Boolean isContainsForPhone(VehicleInfo vi) {
-		return this.vehicles.containsKey(vi.getCELLPHONE().trim());
+	private Boolean isContainsForPhone(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
+		return vehicles.containsKey(vi.getCELLPHONE().trim());
 	}
 
-	private Boolean isContainsForVIN(VehicleInfo vi) {
-		return this.vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN().trim(), 17));
+	private Boolean isContainsForVIN(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
+		return vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN().trim(), 17));
 	}
 
 }

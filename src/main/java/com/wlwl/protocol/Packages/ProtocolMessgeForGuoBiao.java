@@ -26,6 +26,7 @@ import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;
 import com.wlwl.utils.MessageTools;
 import com.wlwl.utils.StrFormat;
+import com.wlwl.utils.publicStaticMap;
 
 public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable, Cloneable {
 
@@ -56,10 +57,10 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	private byte hostCompanies;
 
-	private Map<String, VehicleInfo> _vehicles;
+	//private Map<String, VehicleInfo> _vehicles;
 
-	public ProtocolMessgeForGuoBiao(Map<String, VehicleInfo> vehicles) {
-		this._vehicles = vehicles;
+	public ProtocolMessgeForGuoBiao() {
+		//this._vehicles = vehicles;
 	}
 
 	public short getGpsCommandId() {
@@ -316,7 +317,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		return true;
 	}
 
-	public void toJson(VehicleInfo vi, String ip, byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue) {
+	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
@@ -338,7 +339,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		pm.setTIMESTAMP(Long.toString(new Date().getTime()));
 		pm.setIP4(ip);
 		try {
-			_sendQueue.put(pm);
+			publicStaticMap.getSendQueue().put(pm);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -372,7 +373,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);// 获取终端编号
 			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
 			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
-			VehicleInfo veh = this._vehicles.get(terminalId);
+			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
 			if (veh == null) {
 				return null;
 			}

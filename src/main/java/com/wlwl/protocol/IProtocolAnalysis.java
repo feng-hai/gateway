@@ -97,7 +97,7 @@ public interface IProtocolAnalysis {
 	 * @param ip
 	 * @param bytes
 	 */
-	void toJson(VehicleInfo vi, String ip,byte[] bytes, BlockingQueue<ProtocolModel> _sendQueue);
+	void toJson(VehicleInfo vi, String ip,byte[] bytes);
 	
 	/**
 	 * 发送之前处理发送数据，如：用国标的协议包装3G协议

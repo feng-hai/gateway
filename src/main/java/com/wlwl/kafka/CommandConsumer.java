@@ -21,7 +21,7 @@ import com.wlwl.utils.SourceMessage;
 
 public class CommandConsumer {
 
-	private BlockingQueue<SourceMessage> cmdQueue;
+	//private BlockingQueue<SourceMessage> cmdQueue;
 
 	KafkaConsumer<String, String> consumer;
 
@@ -31,9 +31,9 @@ public class CommandConsumer {
 
 	private CommandConsumerThread thread;
 
-	public CommandConsumer( BlockingQueue<SourceMessage> cmdQueue) {
+	public CommandConsumer( ) {
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
-		this.cmdQueue = cmdQueue;
+		//this.cmdQueue = cmdQueue;
 		Properties props = new Properties();
 		props.put("bootstrap.servers",config.get("kafka.server"));// "maria.cube:9092,namenode.cube:9092,datanode1.cube:9092,hyperrouter1.cube:9092,hyperrouter2.cube:9092"
 		props.put("group.id", config.get("kafka.groupID"));
@@ -48,7 +48,7 @@ public class CommandConsumer {
 
 	public void run() {
 		
-		thread = new CommandConsumerThread(consumer, cmdQueue);
+		thread = new CommandConsumerThread(consumer);
 		executor.submit(thread);
 	}
 

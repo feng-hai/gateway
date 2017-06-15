@@ -28,17 +28,17 @@ public class ServerMainThread extends Thread{
 	private SessionManager manager;
 
 	private int port;
-	private BlockingQueue<ProtocolModel> _sendQueue;
-	private Map<String, VehicleInfo> _vehicles;
+	//private BlockingQueue<ProtocolModel> _sendQueue;
+	//private Map<String, VehicleInfo> _vehicles;
 	private ProtocolEnum pEnum;
 	
-	public ServerMainThread(int port,ProtocolEnum pEnum,BlockingQueue<ProtocolModel> sendQueue,
-			Map<String, VehicleInfo> vehicles, SessionManager _manager)
+	public ServerMainThread(int port,ProtocolEnum pEnum,
+			 SessionManager _manager)
 	{
 		//this.handler=_handler;
 		//this.control=_control;
-		this._sendQueue=sendQueue;
-		this._vehicles=vehicles;
+		//this._sendQueue=sendQueue;
+		//this._vehicles=vehicles;
 		this.port=port;
 		this.manager=_manager;
 	
@@ -69,7 +69,7 @@ public class ServerMainThread extends Thread{
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, Integer.parseInt(config.get("mina.readerIdleTime"))); 
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MyTextFactory(this.pEnum)));
 		acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter());//用默认的OrderedThreadPoolExecutor保证同一个session在同一个线程中运行
-		acceptor.setHandler(new ServerHandler(this.pEnum,this._sendQueue,this._vehicles,this.manager));
+		acceptor.setHandler(new ServerHandler(this.pEnum,this.manager));
 		try {
 			acceptor.bind(new InetSocketAddress(port));
 			System.out.println("=========  server bind :: " + port);

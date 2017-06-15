@@ -20,7 +20,12 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
+			
 				<configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
 					<archive>
 						<manifest>
 							<mainClass>com.wlwl.one.ServerMain</mainClass>
