@@ -82,14 +82,14 @@ public class MyTask extends TimerTask {
 		try {
 			jdbcUtils = SingletonJDBC.getJDBC();
 			logger.info("数据库初始化，正在加载数据中...");
-			String sql = "select * FROM (select VIN,CONVERT(id,CHAR(10)) UNID ,GPS_ID DEVICE_ID FROM emcs.bs_machinery_equipment) dd";
+			String sql = "select * FROM (select VIN,CONVERT(m.id,CHAR(10)) unid ,GPS_ID device_id ,d.ICCID FROM emcs.bs_machinery_equipment m left join emcs.bs_gps_device d on m.GPS_ID=d.ID ) dd";
 			List<Object> params = new ArrayList<Object>();
 
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			for (VehicleInfo vi : list) {
-//				if (!isContains(vi)) {
-//					this.vehicles.put(vi.getDEVICE_ID().trim(), vi);
-//				}
+				if (!isContains(vi,publicStaticMap.getVehicles())) {
+					publicStaticMap.getVehicles().put(vi.getDEVICE_ID().trim(), vi);
+				}
 //				if (!isContainsForPhone(vi)) {
 //					this.vehicles.put(vi.getCELLPHONE().trim(), vi);
 //				}
@@ -97,7 +97,7 @@ public class MyTask extends TimerTask {
 					publicStaticMap.getVehicles().put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
 				}
 			}
-			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size());
+			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size()/2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
