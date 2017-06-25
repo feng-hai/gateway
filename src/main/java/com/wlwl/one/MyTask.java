@@ -82,7 +82,7 @@ public class MyTask extends TimerTask {
 		try {
 			jdbcUtils = SingletonJDBC.getJDBC();
 			logger.info("数据库初始化，正在加载数据中...");
-			String sql = "select * FROM (select VIN,CONVERT(m.id,CHAR(10)) unid ,GPS_ID device_id ,d.ICCID FROM emcs.bs_machinery_equipment m left join emcs.bs_gps_device d on m.GPS_ID=d.ID ) dd";
+			String sql = "select * FROM (select VIN,CONVERT(m.id,CHAR(10)) UNID ,GPS_ID DEVICE_ID ,d.ICCID FROM emcs.bs_machinery_equipment m left join emcs.bs_gps_device d on m.GPS_ID=d.ID ) dd";
 			List<Object> params = new ArrayList<Object>();
 
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);

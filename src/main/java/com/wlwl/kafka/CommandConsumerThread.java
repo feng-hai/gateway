@@ -10,6 +10,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.one.SendCommandThread;
 import com.wlwl.utils.AychWriter;
 import com.wlwl.utils.SourceMessage;
@@ -34,7 +35,7 @@ public class CommandConsumerThread implements Runnable {
 
 		while (!closed.get()) {
 			try {
-				consumer.subscribe(Arrays.asList("octets_down"));	
+				consumer.subscribe(Arrays.asList(PropertyResource.getInstance().getProperties().get("kafka.cmdTopic")));	
 				ConsumerRecords<String, String> records = consumer.poll(100); 
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(),
