@@ -35,6 +35,7 @@ public class Handler {
 	//private BlockingQueue<ProtocolModel> _sendQueue;
 //	private Map<String, VehicleInfo> _vehicles;
 	private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);
+
 	public Handler(ProtocolEnum pEnum,SessionManager _manager,Object message,IoSession session)
 	{
 		//this.handler = _handler;

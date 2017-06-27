@@ -13,6 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
@@ -93,7 +94,7 @@ public class ServerMain {
 //		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
 //		smtJinLong.start();
 
-		ServerMainThread smtGuoBiao = new ServerMainThread(8012, ProtocolEnum.GUOBIAO, sessionManager);
+		ServerMainThread smtGuoBiao = new ServerMainThread(Integer.parseInt(PropertyResource.getInstance().getProperties().get("terminalTCPPort")), ProtocolEnum.GUOBIAO, sessionManager);
 		smtGuoBiao.setDaemon(true);
 		smtGuoBiao.start();
 //		ServerMainThread smtGuoBiao01 = new ServerMainThread(8010, ProtocolEnum.GUOBIAO, sessionManager);
