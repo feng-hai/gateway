@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>gateway</groupId>
-	<artifactId>gateway</artifactId>
+	<artifactId>gatewayGuoBiao</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gateway01</name>
+	<name>gatewayGuoBiao</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
