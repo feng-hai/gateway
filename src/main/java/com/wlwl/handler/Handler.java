@@ -67,7 +67,7 @@ public class Handler {
 			}
 			analysis.setMsg(data);
 			String deviceId = analysis.getDeviceId();
-
+			logger.debug(analysis.getDeviceId()+"-before-"+ ByteUtils.byte2HexStr(data));
 			// 普通上传指令应答
 			try {
 				byte[] answerMsg = analysis.answerMsg();
@@ -83,8 +83,8 @@ public class Handler {
 				if (extraAnswerMsg != null) {
 										
 					session.write(extraAnswerMsg);
-					logger.error("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
-//				
+					logger.info("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
+			
 //						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
 //								deviceId).start();
@@ -93,7 +93,8 @@ public class Handler {
 			} catch (Exception ex) {
 				
 				logger.error("解析出错：",ex);
-			}
+			} 
+			
 
 		
 //				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -104,13 +105,14 @@ public class Handler {
 		} else {
 			return;
 		}
+		logger.debug(analysis.getDeviceId()+"-after-"+ ByteUtils.byte2HexStr(data));
 		// 检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi = publicStaticMap.getVehicles().get(analysis.getDeviceId());
 		if (vi == null) {
 		
-				logger.error("车辆在数据库中不存在:" + analysis.getDeviceId());
+				logger.info("车辆在数据库中不存在:" + analysis.getDeviceId());
 				//byte[] data = (byte[]) message;
-				logger.error("终端源码：" + ByteUtils.byte2HexStr(data));
+				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
 //			
 //			if (this._config.getIsDebug() == 2) {
 //				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
