@@ -76,6 +76,10 @@ public class MyTask extends TimerTask {
 			LogManager.getRootLogger().setLevel(Level.ERROR);
 		}else if (config.get("log.level").equals("OFF")) {
 			LogManager.getRootLogger().setLevel(Level.OFF);
+		}else if (config.get("log.level").equals("DEBUG")) {
+			LogManager.getRootLogger().setLevel(Level.DEBUG);
+		}else if (config.get("log.level").equals("TRACE")) {
+			LogManager.getRootLogger().setLevel(Level.TRACE);
 		}
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;

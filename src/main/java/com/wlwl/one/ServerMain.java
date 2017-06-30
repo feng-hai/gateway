@@ -90,15 +90,15 @@ public class ServerMain {
 
 		// Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(),
 		// sendQueue, vehicles);
-//		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
-//		smtJinLong.start();
+		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
+		smtJinLong.start();
 
-		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sessionManager);
-		smtGuoBiao.setDaemon(true);
-		smtGuoBiao.start();
-		ServerMainThread smtGuoBiao01 = new ServerMainThread(20293, ProtocolEnum.GUOBIAO, sessionManager);
-		smtGuoBiao01.setDaemon(true);
-		smtGuoBiao01.start();
+//		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sessionManager);
+//		smtGuoBiao.setDaemon(true);
+//		smtGuoBiao.start();
+//		ServerMainThread smtGuoBiao01 = new ServerMainThread(20293, ProtocolEnum.GUOBIAO, sessionManager);
+//		smtGuoBiao01.setDaemon(true);
+//		smtGuoBiao01.start();
 
 	}
 
