@@ -68,7 +68,7 @@ public class Handler {
 			}
 			analysis.setMsg(data);
 			String deviceId = analysis.getDeviceId();
-
+			logger.info(deviceId+"before:" + ByteUtils.byte2HexStr(data));
 			// 普通上传指令应答
 			try {
 				byte[] answerMsg = analysis.answerMsg();
@@ -96,7 +96,7 @@ public class Handler {
 				logger.error("解析出错：",ex);
 			}
 
-		
+			logger.info(deviceId+"after:" + ByteUtils.byte2HexStr(data));
 //				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //				new AychWriter("收到数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data), deviceId).start();
 			
@@ -109,9 +109,9 @@ public class Handler {
 		VehicleInfo vi = publicStaticMap.getVehicles().get(analysis.getDeviceId());
 		if (vi == null) {
 		
-				logger.error("车辆在数据库中不存在:" + analysis.getDeviceId());
+				logger.info("车辆在数据库中不存在:" + analysis.getDeviceId());
 				//byte[] data = (byte[]) message;
-				logger.error("终端源码：" + ByteUtils.byte2HexStr(data));
+				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
 //			
 //			if (this._config.getIsDebug() == 2) {
 //				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -122,6 +122,7 @@ public class Handler {
 			return;
 		}
 		
+		logger.info(vi.getDEVICE_ID()+"验证通过:" + ByteUtils.byte2HexStr(data));
 		session.setAttribute("pEnum", pEnum);
 		session.setAttribute("vehicleObject", vi);
 		

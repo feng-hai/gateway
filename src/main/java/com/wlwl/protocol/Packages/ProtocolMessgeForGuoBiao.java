@@ -272,7 +272,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public Boolean filter(IoSession session, IoBuffer in, ProtocolDecoderOutput out) {
 
-		//logger.error("过滤器：" + ByteUtils.byte2HexStr(in.array()));
+		logger.error("过滤器：" + ByteUtils.byte2HexStr(in.array()));
 		// 标记的位置
 		int startPos = in.position();
 
@@ -319,6 +319,8 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
+		
+		logger.info(vi.getDEVICE_ID()+"开始解析");
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
 		pm.setCELLPHONE(vi.getCELLPHONE());
@@ -340,6 +342,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		pm.setIP4(ip);
 		try {
 			publicStaticMap.getSendQueue().put(pm);
+			logger.info(vi.getDEVICE_ID()+"解析结束");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
