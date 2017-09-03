@@ -8,6 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
+import com.wlwl.one.SessionManager;
 
 public class publicStaticMap {
 	
@@ -23,6 +24,15 @@ public class publicStaticMap {
 	private static  Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 	private static BlockingQueue<ProtocolModel> sendQueue = new LinkedBlockingQueue<ProtocolModel>();
 	private static BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
+	private static SessionManager sessionManager=new SessionManager();
+	public static SessionManager getSessionManager() {
+		return sessionManager;
+	}
+
+	public static void setSessionManager(SessionManager sessionManager) {
+		publicStaticMap.sessionManager = sessionManager;
+	}
+
 	public static BlockingQueue<SourceMessage> getCmdQueue() {
 		return cmdQueue;
 	}

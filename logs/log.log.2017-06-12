@@ -1,0 +1,112 @@
+2017-06-12 20:11:31  [ Timer-0:0 ] - [ INFO ]  数据库初始化，正在加载数据中...
+2017-06-12 20:11:31  [ Timer-0:307 ] - [ INFO ]  数据库加载成功，加载数据的个数为：6511
+2017-06-12 20:11:31  [ main:730 ] - [ INFO ]  Verifying properties
+2017-06-12 20:11:31  [ main:837 ] - [ INFO ]  Property key.serializer.class is overridden to kafka.serializer.StringEncoder
+2017-06-12 20:11:31  [ main:838 ] - [ INFO ]  Property metadata.broker.list is overridden to GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:11:31  [ main:839 ] - [ INFO ]  Property partitioner.class is overridden to com.wlwl.kafka.PartitionerDemo
+2017-06-12 20:11:31  [ main:839 ] - [ INFO ]  Property request.required.acks is overridden to 1
+2017-06-12 20:11:31  [ main:840 ] - [ INFO ]  Property serializer.class is overridden to kafka.serializer.StringEncoder
+2017-06-12 20:11:32  [ main:976 ] - [ INFO ]  Verifying properties
+2017-06-12 20:11:32  [ main:977 ] - [ INFO ]  Property auto.commit.interval.ms is overridden to 1000
+2017-06-12 20:11:32  [ main:977 ] - [ INFO ]  Property group.id is overridden to gateway01
+2017-06-12 20:11:32  [ main:978 ] - [ INFO ]  Property zookeeper.connect is overridden to GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:11:32  [ main:978 ] - [ INFO ]  Property zookeeper.session.timeout.ms is overridden to 400
+2017-06-12 20:11:32  [ main:979 ] - [ INFO ]  Property zookeeper.sync.time.ms is overridden to 200
+2017-06-12 20:11:32  [ main:1737 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Connecting to zookeeper instance at GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:11:32  [ ZkClient-EventThread-16-GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181:1760 ] - [ INFO ]  Starting ZkClient event thread.
+2017-06-12 20:11:41  [ main:10793 ] - [ INFO ]  Client environment:zookeeper.version=3.3.3-1203054, built on 11/17/2011 05:47 GMT
+2017-06-12 20:11:41  [ main:10793 ] - [ INFO ]  Client environment:host.name=DESKTOP-6T2T38V
+2017-06-12 20:11:41  [ main:10793 ] - [ INFO ]  Client environment:java.version=1.8.0_101
+2017-06-12 20:11:41  [ main:10793 ] - [ INFO ]  Client environment:java.vendor=Oracle Corporation
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:java.home=C:\Program Files\Java\jdk1.8.0_101\jre
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:java.class.path=D:\workspace\gateway01\target\classes;D:\maven\my_local_repository\org\apache\mina\mina-core\2.0.0-M1\mina-core-2.0.0-M1.jar;D:\maven\my_local_repository\org\slf4j\slf4j-api\1.7.21\slf4j-api-1.7.21.jar;D:\maven\my_local_repository\org\dom4j\dom4j\2.0.0\dom4j-2.0.0.jar;D:\maven\my_local_repository\jaxen\jaxen\1.1.6\jaxen-1.1.6.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-databind\2.8.4\jackson-databind-2.8.4.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-core\2.8.4\jackson-core-2.8.4.jar;D:\maven\my_local_repository\org\apache\kafka\kafka_2.10\0.8.1\kafka_2.10-0.8.1.jar;D:\maven\my_local_repository\com\yammer\metrics\metrics-annotation\2.2.0\metrics-annotation-2.2.0.jar;D:\maven\my_local_repository\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;D:\maven\my_local_repository\org\xerial\snappy\snappy-java\1.0.5\snappy-java-1.0.5.jar;D:\maven\my_local_repository\org\apache\zookeeper\zookeeper\3.3.4\zookeeper-3.3.4.jar;D:\maven\my_local_repository\jline\jline\0.9.94\jline-0.9.94.jar;D:\maven\my_local_repository\net\sf\jopt-simple\jopt-simple\3.2\jopt-simple-3.2.jar;D:\maven\my_local_repository\org\scala-lang\scala-library\2.10.1\scala-library-2.10.1.jar;D:\maven\my_local_repository\com\101tec\zkclient\0.3\zkclient-0.3.jar;D:\maven\my_local_repository\org\mariadb\jdbc\mariadb-java-client\1.5.3\mariadb-java-client-1.5.3.jar;D:\maven\my_local_repository\net\sourceforge\jexcelapi\jxl\2.6.12\jxl-2.6.12.jar;D:\maven\my_local_repository\log4j\log4j\1.2.14\log4j-1.2.14.jar;D:\maven\my_local_repository\org\slf4j\slf4j-log4j12\1.7.2\slf4j-log4j12-1.7.2.jar
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:java.library.path=C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/lib/amd64;C:\Program Files (x86)\PHP\;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Java\jdk1.8.0_101\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;D:\storm\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Program Files\TortoiseSVN\bin;C:\Users\FH\.dnx\bin;C:\Users\FH\AppData\Roaming\npm;C:\Users\FH\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;E:\study\eclipse-jee-mars-1-win32-x86_64\eclipse;;.
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:java.io.tmpdir=C:\Users\FH\AppData\Local\Temp\
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:java.compiler=<NA>
+2017-06-12 20:11:41  [ main:10794 ] - [ INFO ]  Client environment:os.name=Windows 10
+2017-06-12 20:11:41  [ main:10796 ] - [ INFO ]  Client environment:os.arch=amd64
+2017-06-12 20:11:41  [ main:10796 ] - [ INFO ]  Client environment:os.version=10.0
+2017-06-12 20:11:41  [ main:10796 ] - [ INFO ]  Client environment:user.name=FH
+2017-06-12 20:11:41  [ main:10796 ] - [ INFO ]  Client environment:user.home=C:\Users\FH
+2017-06-12 20:11:41  [ main:10796 ] - [ INFO ]  Client environment:user.dir=D:\workspace\gateway01
+2017-06-12 20:11:41  [ main:10797 ] - [ INFO ]  Initiating client connection, connectString=GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181 sessionTimeout=400 watcher=org.I0Itec.zkclient.ZkClient@2357d90a
+2017-06-12 20:11:41  [ main-SendThread():10946 ] - [ INFO ]  Opening socket connection to server GMSBDDN2/10.62.1.82:2181
+2017-06-12 20:11:41  [ main-SendThread(GMSBDDN2:2181):10950 ] - [ INFO ]  Socket connection established to GMSBDDN2/10.62.1.82:2181, initiating session
+2017-06-12 20:11:41  [ main-SendThread(GMSBDDN2:2181):10961 ] - [ INFO ]  Session establishment complete on server GMSBDDN2/10.62.1.82:2181, sessionid = 0x25c8a8d96cf1b20, negotiated timeout = 4000
+2017-06-12 20:11:41  [ main-EventThread:10964 ] - [ INFO ]  zookeeper state changed (SyncConnected)
+2017-06-12 20:11:42  [ main:10978 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], starting auto committer every 1000 ms
+2017-06-12 20:11:42  [ main:11053 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], begin registering consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 in ZK
+2017-06-12 20:11:42  [ main:11114 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], end registering consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 in ZK
+2017-06-12 20:11:42  [ gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500_watcher_executor:11118 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], starting watcher executor thread for consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500
+2017-06-12 20:11:42  [ main:11167 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], begin rebalancing consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 try #0
+2017-06-12 20:11:42  [ main:11603 ] - [ INFO ]  [ConsumerFetcherManager-1497269501998] Stopping leader finder thread
+2017-06-12 20:11:42  [ main:11605 ] - [ INFO ]  [ConsumerFetcherManager-1497269501998] Stopping all fetchers
+2017-06-12 20:11:42  [ main:11607 ] - [ INFO ]  [ConsumerFetcherManager-1497269501998] All connections stopped
+2017-06-12 20:11:42  [ main:11608 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Cleared all relevant queues for this fetcher
+2017-06-12 20:11:42  [ main:11611 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Cleared the data chunks in all the consumer message iterators
+2017-06-12 20:11:42  [ main:11611 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Committing all offsets after clearing the fetcher queues
+2017-06-12 20:11:42  [ main:11613 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Releasing partition ownership
+2017-06-12 20:11:42  [ main:11650 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 rebalancing the following partitions: ArrayBuffer() for topic octets_up with consumers: List(gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-0, gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-1, gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-2)
+2017-06-12 20:11:42  [ main:11653 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-0 for topic octets_up
+2017-06-12 20:11:42  [ main:11653 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-1 for topic octets_up
+2017-06-12 20:11:42  [ main:11653 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-2 for topic octets_up
+2017-06-12 20:11:42  [ main:11657 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Updating the cache
+2017-06-12 20:11:42  [ main:11662 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], Consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 selected partitions : 
+2017-06-12 20:11:42  [ main:11668 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500], end rebalancing consumer gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500 try #0
+2017-06-12 20:11:42  [ gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-leader-finder-thread:11673 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269492759-9bfc2500-leader-finder-thread], Starting 
+2017-06-12 20:12:48  [ Timer-0:0 ] - [ INFO ]  数据库初始化，正在加载数据中...
+2017-06-12 20:12:49  [ Timer-0:272 ] - [ INFO ]  数据库加载成功，加载数据的个数为：6511
+2017-06-12 20:12:49  [ main:709 ] - [ INFO ]  Verifying properties
+2017-06-12 20:12:49  [ main:777 ] - [ INFO ]  Property key.serializer.class is overridden to kafka.serializer.StringEncoder
+2017-06-12 20:12:49  [ main:778 ] - [ INFO ]  Property metadata.broker.list is overridden to GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:12:49  [ main:778 ] - [ INFO ]  Property partitioner.class is overridden to com.wlwl.kafka.PartitionerDemo
+2017-06-12 20:12:49  [ main:779 ] - [ INFO ]  Property request.required.acks is overridden to 1
+2017-06-12 20:12:49  [ main:779 ] - [ INFO ]  Property serializer.class is overridden to kafka.serializer.StringEncoder
+2017-06-12 20:12:49  [ main:842 ] - [ INFO ]  Verifying properties
+2017-06-12 20:12:49  [ main:842 ] - [ INFO ]  Property auto.commit.interval.ms is overridden to 1000
+2017-06-12 20:12:49  [ main:843 ] - [ INFO ]  Property group.id is overridden to gateway01
+2017-06-12 20:12:49  [ main:843 ] - [ INFO ]  Property zookeeper.connect is overridden to GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:12:49  [ main:843 ] - [ INFO ]  Property zookeeper.session.timeout.ms is overridden to 400
+2017-06-12 20:12:49  [ main:843 ] - [ INFO ]  Property zookeeper.sync.time.ms is overridden to 200
+2017-06-12 20:12:50  [ main:1358 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Connecting to zookeeper instance at GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181
+2017-06-12 20:12:50  [ ZkClient-EventThread-16-GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181:1374 ] - [ INFO ]  Starting ZkClient event thread.
+2017-06-12 20:12:59  [ main:10407 ] - [ INFO ]  Client environment:zookeeper.version=3.3.3-1203054, built on 11/17/2011 05:47 GMT
+2017-06-12 20:12:59  [ main:10407 ] - [ INFO ]  Client environment:host.name=DESKTOP-6T2T38V
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.version=1.8.0_101
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.vendor=Oracle Corporation
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.home=C:\Program Files\Java\jdk1.8.0_101\jre
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.class.path=D:\workspace\gateway01\target\classes;D:\maven\my_local_repository\org\apache\mina\mina-core\2.0.0-M1\mina-core-2.0.0-M1.jar;D:\maven\my_local_repository\org\slf4j\slf4j-api\1.7.21\slf4j-api-1.7.21.jar;D:\maven\my_local_repository\org\dom4j\dom4j\2.0.0\dom4j-2.0.0.jar;D:\maven\my_local_repository\jaxen\jaxen\1.1.6\jaxen-1.1.6.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-databind\2.8.4\jackson-databind-2.8.4.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;D:\maven\my_local_repository\com\fasterxml\jackson\core\jackson-core\2.8.4\jackson-core-2.8.4.jar;D:\maven\my_local_repository\org\apache\kafka\kafka_2.10\0.8.1\kafka_2.10-0.8.1.jar;D:\maven\my_local_repository\com\yammer\metrics\metrics-annotation\2.2.0\metrics-annotation-2.2.0.jar;D:\maven\my_local_repository\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;D:\maven\my_local_repository\org\xerial\snappy\snappy-java\1.0.5\snappy-java-1.0.5.jar;D:\maven\my_local_repository\org\apache\zookeeper\zookeeper\3.3.4\zookeeper-3.3.4.jar;D:\maven\my_local_repository\jline\jline\0.9.94\jline-0.9.94.jar;D:\maven\my_local_repository\net\sf\jopt-simple\jopt-simple\3.2\jopt-simple-3.2.jar;D:\maven\my_local_repository\org\scala-lang\scala-library\2.10.1\scala-library-2.10.1.jar;D:\maven\my_local_repository\com\101tec\zkclient\0.3\zkclient-0.3.jar;D:\maven\my_local_repository\org\mariadb\jdbc\mariadb-java-client\1.5.3\mariadb-java-client-1.5.3.jar;D:\maven\my_local_repository\net\sourceforge\jexcelapi\jxl\2.6.12\jxl-2.6.12.jar;D:\maven\my_local_repository\log4j\log4j\1.2.14\log4j-1.2.14.jar;D:\maven\my_local_repository\org\slf4j\slf4j-log4j12\1.7.2\slf4j-log4j12-1.7.2.jar
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.library.path=C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_101/bin/../jre/lib/amd64;C:\Program Files (x86)\PHP\;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Java\jdk1.8.0_101\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;D:\storm\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Program Files\TortoiseSVN\bin;C:\Users\FH\.dnx\bin;C:\Users\FH\AppData\Roaming\npm;C:\Users\FH\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;E:\study\eclipse-jee-mars-1-win32-x86_64\eclipse;;.
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.io.tmpdir=C:\Users\FH\AppData\Local\Temp\
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:java.compiler=<NA>
+2017-06-12 20:12:59  [ main:10408 ] - [ INFO ]  Client environment:os.name=Windows 10
+2017-06-12 20:12:59  [ main:10410 ] - [ INFO ]  Client environment:os.arch=amd64
+2017-06-12 20:12:59  [ main:10411 ] - [ INFO ]  Client environment:os.version=10.0
+2017-06-12 20:12:59  [ main:10411 ] - [ INFO ]  Client environment:user.name=FH
+2017-06-12 20:12:59  [ main:10411 ] - [ INFO ]  Client environment:user.home=C:\Users\FH
+2017-06-12 20:12:59  [ main:10411 ] - [ INFO ]  Client environment:user.dir=D:\workspace\gateway01
+2017-06-12 20:12:59  [ main:10412 ] - [ INFO ]  Initiating client connection, connectString=GMSBDDN1:2181,GMSBDDN2:2181,GMSBDDN3:2181 sessionTimeout=400 watcher=org.I0Itec.zkclient.ZkClient@2357d90a
+2017-06-12 20:12:59  [ main-SendThread():10552 ] - [ INFO ]  Opening socket connection to server GMSBDDN1/10.62.1.81:2181
+2017-06-12 20:12:59  [ main-SendThread(GMSBDDN1:2181):10558 ] - [ INFO ]  Socket connection established to GMSBDDN1/10.62.1.81:2181, initiating session
+2017-06-12 20:12:59  [ main-SendThread(GMSBDDN1:2181):10568 ] - [ INFO ]  Session establishment complete on server GMSBDDN1/10.62.1.81:2181, sessionid = 0x35c8a8d9ed91b65, negotiated timeout = 4000
+2017-06-12 20:12:59  [ main-EventThread:10571 ] - [ INFO ]  zookeeper state changed (SyncConnected)
+2017-06-12 20:12:59  [ main:10580 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], starting auto committer every 1000 ms
+2017-06-12 20:12:59  [ main:10628 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], begin registering consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd in ZK
+2017-06-12 20:12:59  [ main:10682 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], end registering consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd in ZK
+2017-06-12 20:12:59  [ gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd_watcher_executor:10689 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], starting watcher executor thread for consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd
+2017-06-12 20:12:59  [ main:10728 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], begin rebalancing consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd try #0
+2017-06-12 20:12:59  [ main:11083 ] - [ INFO ]  [ConsumerFetcherManager-1497269579357] Stopping leader finder thread
+2017-06-12 20:12:59  [ main:11083 ] - [ INFO ]  [ConsumerFetcherManager-1497269579357] Stopping all fetchers
+2017-06-12 20:12:59  [ main:11086 ] - [ INFO ]  [ConsumerFetcherManager-1497269579357] All connections stopped
+2017-06-12 20:12:59  [ main:11087 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Cleared all relevant queues for this fetcher
+2017-06-12 20:12:59  [ main:11089 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Cleared the data chunks in all the consumer message iterators
+2017-06-12 20:12:59  [ main:11090 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Committing all offsets after clearing the fetcher queues
+2017-06-12 20:12:59  [ main:11091 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Releasing partition ownership
+2017-06-12 20:12:59  [ main:11105 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd rebalancing the following partitions: ArrayBuffer() for topic octets_up with consumers: List(gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-0, gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-1, gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-2)
+2017-06-12 20:12:59  [ main:11108 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-1 for topic octets_up
+2017-06-12 20:12:59  [ main:11108 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-2 for topic octets_up
+2017-06-12 20:12:59  [ main:11108 ] - [ WARN ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], No broker partitions consumed by consumer thread gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-0 for topic octets_up
+2017-06-12 20:12:59  [ main:11119 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Updating the cache
+2017-06-12 20:12:59  [ main:11131 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], Consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd selected partitions : 
+2017-06-12 20:12:59  [ main:11153 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd], end rebalancing consumer gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd try #0
+2017-06-12 20:12:59  [ gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-leader-finder-thread:11184 ] - [ INFO ]  [gateway01_DESKTOP-6T2T38V-1497269570138-e35e9acd-leader-finder-thread], Starting 

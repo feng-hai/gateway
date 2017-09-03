@@ -18,7 +18,9 @@ import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
+import com.wlwl.thread.ReadInputMessage;
 import com.wlwl.utils.SourceMessage;
+import com.wlwl.utils.publicStaticMap;
 
 public class ServerMain {
 
@@ -53,6 +55,7 @@ public class ServerMain {
 
 		// 把客户端连接的session存入队列中 session管理
 		SessionManager sessionManager = new SessionManager();
+		publicStaticMap.setSessionManager(sessionManager);
 		// 从数据库中获取车辆信息数据，并把数据存储到list列表中，设备列表
 		// Map<String, VehicleInfo> vehicles = new HashMap<String,
 		// VehicleInfo>();
@@ -80,8 +83,8 @@ public class ServerMain {
 		smt.setDaemon(true);
 		smt.start();
 
-		Timer timer1 = new Timer();
-		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
+//		Timer timer1 = new Timer();
+//		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
 
 		ServerMainThread smt808 = new ServerMainThread(4440, ProtocolEnum.P808, sessionManager);
@@ -92,7 +95,10 @@ public class ServerMain {
 		// sendQueue, vehicles);
 		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
 		smtJinLong.start();
-
+		
+	
+		ReadInputMessage readMessage=new ReadInputMessage();
+		readMessage.start();
 //		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao.setDaemon(true);
 //		smtGuoBiao.start();
