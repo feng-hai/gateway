@@ -8,6 +8,8 @@ public class ReadInputMessage extends Thread {
 
 	private CheckOnlineCount checkOnline;
 	private CheckVehicleInfo checkVehicle;
+	
+	 private Object proceedLock= new Object();  
 
 	@SuppressWarnings("resource")
 	@Override
@@ -59,8 +61,17 @@ public class ReadInputMessage extends Thread {
 				//if (publicStaticMap.getVehicles().containsKey(vehicleID)) {
 					System.out.println("启动监控车辆数线程：开始");
 					if (checkVehicle == null) {
-						checkVehicle = new CheckVehicleInfo();
+						checkVehicle = new CheckVehicleInfo(proceedLock);
 						checkVehicle.start();
+						try {
+							 synchronized ( proceedLock ) { 
+							proceedLock.wait();
+							
+							 }
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("启动监控车辆数线程：成功");
 					} else {
 						System.out.println("启动监控车辆数线程：已经启动车辆监控线程");

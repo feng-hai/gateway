@@ -272,7 +272,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public Boolean filter(IoSession session, IoBuffer in, ProtocolDecoderOutput out) {
 
-		logger.error("过滤器：" + ByteUtils.byte2HexStr(in.array()));
+		//logger.error("过滤器：" + ByteUtils.byte2HexStr(in.array()));
 		// 标记的位置
 		int startPos = in.position();
 

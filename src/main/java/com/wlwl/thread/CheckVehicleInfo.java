@@ -7,11 +7,11 @@ import com.wlwl.utils.publicStaticMap;
 public class CheckVehicleInfo extends Thread {
 	
 	
-//	private String vId;
-//  public CheckVehicleInfo(String vehicleId)
-//  {
-//	  this.vId=vehicleId;
-//  }
+	private Object obj;
+  public CheckVehicleInfo(Object lock)
+  {
+	  this.obj=lock;
+  }
   @SuppressWarnings("resource")
 	@Override
     public void run() {
@@ -26,6 +26,10 @@ public class CheckVehicleInfo extends Thread {
 				 String vehicleID = sc.next();
 				 if(vehicleID.equals("vc"))
 				 {
+					 synchronized ( this.obj ) { 
+					 this.obj.notifyAll();
+					 
+					 }
 					 cancel();
 				 }
 				 if(publicStaticMap.getVehicles().containsKey(vehicleID))
