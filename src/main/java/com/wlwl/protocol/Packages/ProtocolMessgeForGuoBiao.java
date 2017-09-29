@@ -319,14 +319,18 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
-		
-		logger.info(vi.getDEVICE_ID()+"开始解析");
+		try {
+			publicStaticMap.getCmdQueueOr().put(ByteUtils.bytesToHexString(bytes));	
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
 		pm.setCELLPHONE(vi.getCELLPHONE());
 
 		pm.setNode_unid(getNode());
 		pm.setUnid(vi.getUNID());
+		
 		if (bytes[2] == (byte) 0xD0) {
 			int dataL = ByteUtils.getShortForLarge(bytes, 22);
 			byte[] dataTemp = ByteUtils.getSubBytes(bytes, 24, dataL);
@@ -342,7 +346,6 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		pm.setIP4(ip);
 		try {
 			publicStaticMap.getSendQueue().put(pm);
-			logger.info(vi.getDEVICE_ID()+"解析结束");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

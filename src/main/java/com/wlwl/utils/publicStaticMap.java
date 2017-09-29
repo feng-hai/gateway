@@ -23,6 +23,17 @@ public class publicStaticMap {
 	private static  Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 	private static BlockingQueue<ProtocolModel> sendQueue = new LinkedBlockingQueue<ProtocolModel>();
 	private static BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
+	//原始数据列表
+	private static BlockingQueue<String> cmdQueueOr = new LinkedBlockingQueue<String>();
+	
+	public static BlockingQueue<String> getCmdQueueOr() {
+		return cmdQueueOr;
+	}
+
+	public static void setCmdQueueOr(BlockingQueue<String> cmdQueueOr) {
+		publicStaticMap.cmdQueueOr = cmdQueueOr;
+	}
+
 	public static BlockingQueue<SourceMessage> getCmdQueue() {
 		return cmdQueue;
 	}
