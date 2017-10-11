@@ -84,19 +84,20 @@ public class MyTask extends TimerTask {
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select * FROM (select VIN,CONVERT(m.id,CHAR(10)) UNID ,GPS_ID DEVICE_ID ,d.ICCID FROM emcs.bs_machinery_equipment m left join emcs.bs_gps_device d on m.GPS_ID=d.ID ) dd";
 			List<Object> params = new ArrayList<Object>();
-
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
+			Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 			for (VehicleInfo vi : list) {
-				if (!isContains(vi,publicStaticMap.getVehicles())) {
-					publicStaticMap.getVehicles().put(vi.getDEVICE_ID().trim(), vi);
+				if (!isContains(vi,vehicles)) {
+					vehicles.put(vi.getDEVICE_ID().trim(), vi);
 				}
-//				if (!isContainsForPhone(vi)) {
-//					this.vehicles.put(vi.getCELLPHONE().trim(), vi);
+//				if (!isContainsForPhone(vi,vehicles)) {
+//					vehicles.put(vi.getCELLPHONE().trim(), vi);
 //				}
-				if (!isContainsForVIN(vi,publicStaticMap.getVehicles())) {
-					publicStaticMap.getVehicles().put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
+				if (!isContainsForVIN(vi,vehicles)) {
+					vehicles.put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
 				}
 			}
+			publicStaticMap.setVehicles(vehicles);
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size()/2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,9 +111,9 @@ public class MyTask extends TimerTask {
 		return vehicles.containsKey(vi.getDEVICE_ID().trim());
 	}
 
-	private Boolean isContainsForPhone(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
-		return vehicles.containsKey(vi.getCELLPHONE().trim());
-	}
+//	private Boolean isContainsForPhone(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
+//		return vehicles.containsKey(vi.getCELLPHONE().trim());
+//	}
 
 	private Boolean isContainsForVIN(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
 		return vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN().trim(), 17));
