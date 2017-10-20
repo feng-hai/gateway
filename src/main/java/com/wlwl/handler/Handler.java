@@ -84,7 +84,7 @@ public class Handler {
 				if (extraAnswerMsg != null) {
 										
 					session.write(extraAnswerMsg);
-					logger.error("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
+					logger.info("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
 //				
 //						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
