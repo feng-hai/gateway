@@ -49,6 +49,9 @@ public class SendDataTokafka extends Thread {
 		props.put("buffer.memory", 33554432);
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		
+		// 可选配置，如果不配置，则使用默认的partitioner
+		props.put("partitioner.class", "com.wlwl.kafka.PartitionerDemo");
 		producer = new KafkaProducer<String, String>(props);
 
 	}
