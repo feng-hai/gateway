@@ -7,15 +7,7 @@ import java.util.Map;
 import org.apache.kafka.clients.producer.Partitioner;
 import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.PartitionInfo;
-
-import kafka.utils.VerifiableProperties;
-
-
 public class PartitionerDemo implements Partitioner {
-	public PartitionerDemo(VerifiableProperties props) {
-
-	}
-
 //	public int partition(Object obj, int numPartitions) {
 //		int partition = 0;
 //		if (obj instanceof String) {
