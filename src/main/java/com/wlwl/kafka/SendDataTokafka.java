@@ -51,7 +51,7 @@ public class SendDataTokafka extends Thread {
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		
 		// 可选配置，如果不配置，则使用默认的partitioner
-		props.put("partitioner.class", "com.wlwl.kafka.PartitionerDemo");
+		//props.put("partitioner.class", "com.wlwl.kafka.PartitionerDemo");
 		producer = new KafkaProducer<String, String>(props);
 
 	}
@@ -64,7 +64,7 @@ public class SendDataTokafka extends Thread {
 				String strMessage = message.toString();
 
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(
-						config.get("kafka.sourcecodeTopic"), strMessage);
+						config.get("kafka.sourcecodeTopic"),message.getUnid(), strMessage);
 
 				// if(config.getIsDebug()==1){
 				// System.out.println("kafka sending! topic:

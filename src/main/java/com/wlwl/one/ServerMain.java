@@ -83,8 +83,8 @@ public class ServerMain {
 		smt.setDaemon(true);
 		smt.start();
 
-//		Timer timer1 = new Timer();
-//		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
+		Timer timer1 = new Timer();
+		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
 
 		ServerMainThread smt808 = new ServerMainThread(4440, ProtocolEnum.P808, sessionManager);
