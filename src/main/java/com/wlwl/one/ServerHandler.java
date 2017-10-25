@@ -52,7 +52,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	public void messageSent(IoSession session, Object message) throws Exception {
 		
 		String id = session.getAttribute("ID").toString();
-		logger.error("========= server send msg:: " +id+" "+ ByteUtils.byte2HexStr((byte[]) message));
+		logger.info("========= server send msg:: " +id+" "+ ByteUtils.byte2HexStr((byte[]) message));
 		
 				
 	
@@ -63,7 +63,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
 		
-			logger.error("开启连接：" + session.getAttribute("ID") + session);
+			logger.info("开启连接：" + session.getAttribute("ID") + session);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		if (!session.containsAttribute("old")) {
 			this.manager.removeSession(session);
 		}
-			logger.error("关闭链接：" + session.getAttribute("ID") + "--" + session);
+			logger.info("关闭链接：" + session.getAttribute("ID") + "--" + session);
 		
 	}
 
@@ -96,7 +96,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	public void sessionIdle(IoSession session, IdleStatus arg1) throws Exception {
 		
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		logger.error("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)
+		logger.info("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)
 					;
 	
 		session.close(true);

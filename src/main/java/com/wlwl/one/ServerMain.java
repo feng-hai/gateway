@@ -16,6 +16,7 @@ import org.apache.log4j.PropertyConfigurator;
 import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
+import com.wlwl.kafka.SendDataTokafkaForGB;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.utils.SourceMessage;
@@ -64,6 +65,10 @@ public class ServerMain {
 		SendDataTokafka sendData = new SendDataTokafka();
 		sendData.setDaemon(true);
 		sendData.start();
+		//把国标数据添加到另外一个topic
+		SendDataTokafkaForGB sendDatagb = new SendDataTokafkaForGB();
+		sendDatagb.setDaemon(true);
+		sendDatagb.start();
 
 		// 消费者--从kafka中读取数据，并把数据存入队列中
 		CommandConsumer commandConsumer = new CommandConsumer();

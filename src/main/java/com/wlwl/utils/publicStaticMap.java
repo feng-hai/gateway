@@ -22,6 +22,9 @@ public class publicStaticMap {
 	 */
 	private static  Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 	private static BlockingQueue<ProtocolModel> sendQueue = new LinkedBlockingQueue<ProtocolModel>();
+	private static BlockingQueue<ProtocolModel> sendGBQueue = new LinkedBlockingQueue<ProtocolModel>();
+
+
 	private static BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
 	public static BlockingQueue<SourceMessage> getCmdQueue() {
 		return cmdQueue;
@@ -38,11 +41,16 @@ public class publicStaticMap {
 	public static void setSendQueue(BlockingQueue<ProtocolModel> sendQueue) {
 		publicStaticMap.sendQueue = sendQueue;
 	}
-
+	
+	public static BlockingQueue<ProtocolModel> getSendGBQueue() {
+		return sendGBQueue;
+	}
+	public static void setSendGBQueue(BlockingQueue<ProtocolModel> sendGBQueue) {
+		publicStaticMap.sendGBQueue = sendGBQueue;
+	}
 	public static Map<String, VehicleInfo> getVehicles() {
 		return vehicles;
 	}
-
 	public static void setVehicles(Map<String, VehicleInfo> vehicles) {
 		publicStaticMap.vehicles = vehicles;
 	}

@@ -57,10 +57,10 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	private byte hostCompanies;
 
-	//private Map<String, VehicleInfo> _vehicles;
+	// private Map<String, VehicleInfo> _vehicles;
 
 	public ProtocolMessgeForGuoBiao() {
-		//this._vehicles = vehicles;
+		// this._vehicles = vehicles;
 	}
 
 	public short getGpsCommandId() {
@@ -339,12 +339,15 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		pm.setTIMESTAMP(Long.toString(new Date().getTime()));
 		pm.setIP4(ip);
 		try {
-			publicStaticMap.getSendQueue().put(pm);
+			if (pm.getProto_unid().equals(ProtocolForG)) {
+				publicStaticMap.getSendGBQueue().put(pm);
+			} else {
+				publicStaticMap.getSendQueue().put(pm);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-
 	public byte[] sendBefore(byte[] sendBytes, VehicleInfo vehicle) {
 		if (sendBytes[0] == (byte) 0x23 && sendBytes[1] == (byte) 0x23) {
 			return sendBytes;
