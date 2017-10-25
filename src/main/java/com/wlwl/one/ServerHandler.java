@@ -90,17 +90,16 @@ public class ServerHandler extends IoHandlerAdapter {
 	
 		
 		session.close(true);
+		this.manager.removeSession(session);
 	}
 
 	// 当连接空闲时触发此方法.
 	public void sessionIdle(IoSession session, IdleStatus arg1) throws Exception {
 		
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		logger.warn("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)
-					;
-	
+		logger.warn("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)			;
 		session.close(true);
-		// this.manager.removeSession(session);
+		this.manager.removeSession(session);
 	}
 
 }

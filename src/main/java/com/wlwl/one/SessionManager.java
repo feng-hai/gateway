@@ -74,7 +74,7 @@ public class SessionManager {
 	public void writeSession(String deviceID, byte[] data) {
 		IoSession session = this.getSession(deviceID);
 		try {
-			if (session != null) {
+			if (session != null&&session.isConnected()) {
 				new AychWriter("发送数据--：" +  "--" +deviceID, "SendMessage").start();	
 				ProtocolEnum pEnum=(ProtocolEnum)session.getAttribute("pEnum");
 				VehicleInfo vehicle=(VehicleInfo)session.getAttribute("vehicleObject");
