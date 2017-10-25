@@ -33,7 +33,7 @@ public class SendCommandThread extends Thread {
 			try {
 				SourceMessage message = publicStaticMap.getCmdQueue().take();
 				//if (this._config.getWatchVehiclesList().contains(message.getDEVICE_ID())) {
-					new AychWriter("发送数据--：" +  "--" +message.getRaw_octets(), "SendMessage").start();	
+					new AychWriter("开始发送数据--：" + message.getDEVICE_ID()+ "--" +message.getRaw_octets(), "SendMessage").start();	
 				//}
 				sessionManager.writeSession(message.getDEVICE_ID(),ByteUtils.hexStr2Bytes(message.getRaw_octets()));
 			} catch (Exception e) {

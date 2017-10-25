@@ -75,11 +75,13 @@ public class SessionManager {
 		IoSession session = this.getSession(deviceID);
 		try {
 			if (session != null) {
-
+				new AychWriter("发送数据--：" +  "--" +deviceID, "SendMessage").start();	
 				ProtocolEnum pEnum=(ProtocolEnum)session.getAttribute("pEnum");
 				VehicleInfo vehicle=(VehicleInfo)session.getAttribute("vehicleObject");
 				IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
 				session.write(analysis.sendBefore(data,vehicle));
+			}else{
+				new AychWriter("没有在服务器上线--：" +  "--" +deviceID, "SendMessage").start();	
 			}
 		} catch (Exception e) {
 			logger.error("write session exception!" + e.toString());
