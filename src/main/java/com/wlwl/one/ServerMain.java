@@ -79,7 +79,7 @@ public class ServerMain {
 
 		// 启动3G协议网关
 
-		ServerMainThread smt = new ServerMainThread(20291, ProtocolEnum.P3G, sessionManager);
+		ServerMainThread smt = new ServerMainThread(54321, ProtocolEnum.P3G, sessionManager);
 		smt.setDaemon(true);
 		smt.start();
 
