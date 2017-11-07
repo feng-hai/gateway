@@ -1,12 +1,341 @@
-2017-10-20 09:33:04  [ main:0 ] - [ DEBUG ]  开始
-2017-10-20 09:33:04  [ main:9 ] - [ ERROR ]  dd
-2017-10-20 09:33:04  [ main:17 ] - [ ERROR ]  true
-2017-10-20 09:33:04  [ main:322 ] - [ DEBUG ]  开始
-2017-10-20 09:41:48  [ main:1 ] - [ DEBUG ]  开始
-2017-10-20 09:41:48  [ main:6 ] - [ ERROR ]  dd
-2017-10-20 09:41:48  [ main:9 ] - [ ERROR ]  true
-2017-10-20 09:41:49  [ main:313 ] - [ DEBUG ]  开始
-2017-10-20 10:26:24  [ main:0 ] - [ DEBUG ]  开始
-2017-10-20 10:26:24  [ main:13 ] - [ ERROR ]  dd
-2017-10-20 10:26:24  [ main:18 ] - [ ERROR ]  true
-2017-10-20 10:26:25  [ main:382 ] - [ DEBUG ]  开始
+2017-11-07 08:59:03  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 08:59:03  [ main:6 ] - [ ERROR ]  dd
+2017-11-07 08:59:03  [ main:11 ] - [ ERROR ]  true
+2017-11-07 08:59:04  [ main:278 ] - [ DEBUG ]  开始
+2017-11-07 09:09:02  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 09:09:02  [ main:5 ] - [ ERROR ]  dd
+2017-11-07 09:09:02  [ main:10 ] - [ ERROR ]  true
+2017-11-07 09:09:03  [ main:275 ] - [ DEBUG ]  开始
+2017-11-07 09:09:29  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 09:09:29  [ main:5 ] - [ ERROR ]  dd
+2017-11-07 09:09:29  [ main:10 ] - [ ERROR ]  true
+2017-11-07 09:09:29  [ main:289 ] - [ DEBUG ]  开始
+2017-11-07 09:21:46  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 09:21:46  [ main:4 ] - [ ERROR ]  dd
+2017-11-07 09:21:46  [ main:14 ] - [ ERROR ]  true
+2017-11-07 09:21:46  [ main:274 ] - [ DEBUG ]  开始
+2017-11-07 09:49:37  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 09:49:37  [ main:5 ] - [ ERROR ]  dd
+2017-11-07 09:49:37  [ main:9 ] - [ ERROR ]  true
+2017-11-07 09:49:38  [ main:275 ] - [ DEBUG ]  开始
+2017-11-07 09:50:07  [ main:0 ] - [ INFO ]  ProducerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 30000
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	buffer.memory = 33554432
+	batch.size = 16384
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 32768
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	max.in.flight.requests.per.connection = 5
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = 
+	max.request.size = 1048576
+	acks = 1
+	linger.ms = 1
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	metadata.fetch.timeout.ms = 60000
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	block.on.buffer.full = false
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	timeout.ms = 30000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	compression.type = none
+	retries = 0
+	max.block.ms = 60000
+	partitioner.class = class com.wlwl.kafka.PartitionerDemo
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+
+2017-11-07 09:50:07  [ Timer-0:84 ] - [ INFO ]  鏁版嵁搴撳垵濮嬪寲锛屾鍦ㄥ姞杞芥暟鎹腑...
+2017-11-07 09:50:07  [ main:158 ] - [ INFO ]  ProducerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 30000
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	buffer.memory = 33554432
+	batch.size = 16384
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 32768
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	max.in.flight.requests.per.connection = 5
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = producer-1
+	max.request.size = 1048576
+	acks = 1
+	linger.ms = 1
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	metadata.fetch.timeout.ms = 60000
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	block.on.buffer.full = false
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	timeout.ms = 30000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	compression.type = none
+	retries = 0
+	max.block.ms = 60000
+	partitioner.class = class com.wlwl.kafka.PartitionerDemo
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+
+2017-11-07 09:50:07  [ main:162 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-11-07 09:50:07  [ main:162 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-11-07 09:50:07  [ main:165 ] - [ INFO ]  ProducerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 30000
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	buffer.memory = 33554432
+	batch.size = 16384
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 32768
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	max.in.flight.requests.per.connection = 5
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = 
+	max.request.size = 1048576
+	acks = 1
+	linger.ms = 1
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	metadata.fetch.timeout.ms = 60000
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	block.on.buffer.full = false
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	timeout.ms = 30000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	compression.type = none
+	retries = 0
+	max.block.ms = 60000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+
+2017-11-07 09:50:07  [ main:172 ] - [ INFO ]  ProducerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 30000
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	buffer.memory = 33554432
+	batch.size = 16384
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 32768
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	max.in.flight.requests.per.connection = 5
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = producer-2
+	max.request.size = 1048576
+	acks = 1
+	linger.ms = 1
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	metadata.fetch.timeout.ms = 60000
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	block.on.buffer.full = false
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	timeout.ms = 30000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	compression.type = none
+	retries = 0
+	max.block.ms = 60000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+
+2017-11-07 09:50:07  [ main:172 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-11-07 09:50:07  [ main:173 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-11-07 09:50:07  [ main:182 ] - [ INFO ]  ConsumerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 40000
+	check.crcs = true
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 65536
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	session.timeout.ms = 30000
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	max.poll.records = 2147483647
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = 
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	auto.offset.reset = latest
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	max.partition.fetch.bytes = 1048576
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	ssl.truststore.location = null
+	exclude.internal.topics = true
+	ssl.keystore.password = null
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	auto.commit.interval.ms = 1000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	group.id = gateway01
+	enable.auto.commit = true
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+	heartbeat.interval.ms = 3000
+
+2017-11-07 09:50:07  [ main:191 ] - [ INFO ]  ConsumerConfig values: 
+	interceptor.classes = null
+	request.timeout.ms = 40000
+	check.crcs = true
+	ssl.truststore.password = null
+	retry.backoff.ms = 100
+	ssl.keymanager.algorithm = SunX509
+	receive.buffer.bytes = 65536
+	ssl.key.password = null
+	ssl.cipher.suites = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.service.name = null
+	ssl.provider = null
+	session.timeout.ms = 30000
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	max.poll.records = 2147483647
+	bootstrap.servers = [GBIOTNN01:9092, GBIOTDN01:9092, GBIOTDN02:9092, GBIOTDN03:9092, GBIOTDN04:9092]
+	client.id = consumer-1
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	auto.offset.reset = latest
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	max.partition.fetch.bytes = 1048576
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	ssl.endpoint.identification.algorithm = null
+	ssl.keystore.location = null
+	ssl.truststore.location = null
+	exclude.internal.topics = true
+	ssl.keystore.password = null
+	metrics.sample.window.ms = 30000
+	security.protocol = PLAINTEXT
+	metadata.max.age.ms = 300000
+	auto.commit.interval.ms = 1000
+	ssl.protocol = TLS
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	ssl.trustmanager.algorithm = PKIX
+	group.id = gateway01
+	enable.auto.commit = true
+	metric.reporters = []
+	ssl.truststore.type = JKS
+	send.buffer.bytes = 131072
+	reconnect.backoff.ms = 50
+	metrics.num.samples = 2
+	ssl.keystore.type = JKS
+	heartbeat.interval.ms = 3000
+
+2017-11-07 09:50:07  [ main:222 ] - [ INFO ]  Kafka version : 0.10.0.1
+2017-11-07 09:50:07  [ main:222 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2017-11-07 10:01:51  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 10:01:51  [ main:5 ] - [ ERROR ]  dd
+2017-11-07 10:01:51  [ main:11 ] - [ ERROR ]  true
+2017-11-07 10:01:51  [ main:312 ] - [ DEBUG ]  开始
+2017-11-07 10:11:34  [ main:0 ] - [ DEBUG ]  开始
+2017-11-07 10:11:34  [ main:5 ] - [ ERROR ]  dd
+2017-11-07 10:11:34  [ main:11 ] - [ ERROR ]  true
+2017-11-07 10:11:35  [ main:296 ] - [ DEBUG ]  开始

@@ -55,6 +55,8 @@ public class Handler {
 		byte[] data;
 		synchronized(this)
 		{
+			String deviceId;
+			
 		// 解析类赋值
 		if (message instanceof byte[]) {
 			 data = (byte[]) message;
@@ -67,7 +69,7 @@ public class Handler {
 				return;
 			}
 			analysis.setMsg(data);
-			String deviceId = analysis.getDeviceId();
+			 deviceId = analysis.getDeviceId();
 			logger.info(deviceId+"before:" + ByteUtils.byte2HexStr(data));
 			// 普通上传指令应答
 			try {
@@ -126,7 +128,7 @@ public class Handler {
 		session.setAttribute("pEnum", pEnum);
 		session.setAttribute("vehicleObject", vi);
 		
-		this.manager.addSession(vi.getDEVICE_ID(), session);
+		this.manager.addSession(vi.getDEVICE_ID(),deviceId, session);
 		
 		// 保存信息到kafka
 		toJson(analysis,vi,session,data);

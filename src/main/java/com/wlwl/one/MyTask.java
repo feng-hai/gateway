@@ -87,13 +87,20 @@ public class MyTask extends TimerTask {
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			Map<String,VehicleInfo >vehicles=new ConcurrentHashMap <>();
 			for (VehicleInfo vi : list) {
-				if (!isContains(vi,vehicles)) {
+				
+				if (!vi.getDEVICE_ID().isEmpty()&&!isContains(vi,vehicles)) {
 					vehicles.put(vi.getDEVICE_ID().trim(), vi);
 				}
+				
 //				if (!isContainsForPhone(vi,vehicles)) {
 //					vehicles.put(vi.getCELLPHONE().trim(), vi);
 //				}
-				if (!isContainsForVIN(vi,vehicles)) {
+				if (!vi.getVIN().isEmpty()&&!isContainsForVIN(vi,vehicles)) {
+					
+					if(vi.getDEVICE_ID().isEmpty()||vi.getDEVICE_ID()==null)
+					{
+						vi.setDEVICE_ID(vi.getVIN());
+					}
 					vehicles.put(StrFormat.addZeroForNum(vi.getVIN().trim(), 17), vi);
 				}
 			}

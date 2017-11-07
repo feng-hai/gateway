@@ -21,7 +21,7 @@ public class SessionManager {
 
 	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
 
-	public void addSession(String deviceID, IoSession session) {
+	public void addSession(String deviceID,String vin, IoSession session) {
 		try {
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
@@ -30,7 +30,7 @@ public class SessionManager {
 				IoSession iSession = map.get(deviceID);
 				if (iSession.getId() != session.getId()) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("重复连接关闭老的链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
+					new AychWriter("重复连接关闭老的链接：" +vin+":"+ deviceID+":"+ df.format(new Date()) + "--" + session,
 							"closeSession").start();
 				    iSession.setAttribute("old");
 					iSession.close(true);
