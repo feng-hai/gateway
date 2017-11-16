@@ -33,7 +33,7 @@ public class SessionManager {
 					new AychWriter("重复连接关闭老的链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
 							"closeSession").start();
 				    iSession.setAttribute("old");
-					iSession.close(true);
+				  	iSession.close(true);
 				}
 			}
 			map.put(deviceID, session);

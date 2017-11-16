@@ -65,7 +65,7 @@ public class ReadInputMessage extends Thread {
 						checkVehicle.start();
 						try {
 							 synchronized ( proceedLock ) { 
-							proceedLock.wait();
+							  proceedLock.wait();
 							
 							 }
 						} catch (InterruptedException e) {

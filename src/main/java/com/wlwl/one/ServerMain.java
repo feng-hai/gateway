@@ -79,7 +79,7 @@ public class ServerMain {
 
 		// 启动3G协议网关
 
-		ServerMainThread smt = new ServerMainThread(54321, ProtocolEnum.P3G, sessionManager);
+		ServerMainThread smt = new ServerMainThread(20292, ProtocolEnum.P3G, sessionManager);
 		smt.setDaemon(true);
 		smt.start();
 
@@ -99,7 +99,7 @@ public class ServerMain {
 	
 		ReadInputMessage readMessage=new ReadInputMessage();
 		readMessage.start();
-//		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sessionManager);
+//		ServerMainThread smtGuoBiao = new ServerMainThread(123, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao.setDaemon(true);
 //		smtGuoBiao.start();
 //		ServerMainThread smtGuoBiao01 = new ServerMainThread(20293, ProtocolEnum.GUOBIAO, sessionManager);

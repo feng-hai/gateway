@@ -19,7 +19,15 @@ public class ProtocolModel implements Serializable {
 	private String cellphone;//电话号码
 	private String IP4;//IPv4地址
 	private String flag_transmit="false";//转发标志
+	private String FIBER_UNID;//数据字典id
 	
+	
+	public String getFIBER_UNID() {
+		return FIBER_UNID;
+	}
+	public void setFIBER_UNID(String fIBER_UNID) {
+		FIBER_UNID = fIBER_UNID;
+	}
 	public String getTIMESTAMP() {
 		return TIMESTAMP;
 	}

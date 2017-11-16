@@ -394,7 +394,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		pm.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
 		pm.setLength(String.valueOf(pm.getRAW_OCTETS().length() / 2));
 		pm.setTIMESTAMP(Long.toString(new Date().getTime()));
-	
+		pm.setFIBER_UNID(vi.getFIBER_UNID());
 		pm.setIP4(ip);
 		try {
 			publicStaticMap.getSendQueue().put(pm);

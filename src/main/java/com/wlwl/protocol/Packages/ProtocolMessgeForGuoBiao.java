@@ -338,6 +338,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		}
 		pm.setTIMESTAMP(Long.toString(new Date().getTime()));
 		pm.setIP4(ip);
+		pm.setFIBER_UNID(vi.getFIBER_UNID());
 		try {
 			publicStaticMap.getSendQueue().put(pm);
 		} catch (InterruptedException e) {
