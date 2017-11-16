@@ -6,7 +6,7 @@ import com.wlwl.utils.JsonUtils;
 
 public class ProtocolModel implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String DEVICE_ID;//终端编号
@@ -15,11 +15,19 @@ public class ProtocolModel implements Serializable {
 	private String proto_unid;//协议唯一编号
 	private String node_unid;//节点唯一编号
 	private String length;// 	长度(Byte)
-	private String TIMESTAMP;// 	UNIX时间戳(毫秒)	
+	private String TIMESTAMP;// 	UNIX时间戳(毫秒)
 	private String cellphone;//电话号码
 	private String IP4;//IPv4地址
 	private String flag_transmit="false";//转发标志
-	
+	private String FIBER_UNID;//数据字典id
+
+
+	public String getFIBER_UNID() {
+		return FIBER_UNID;
+	}
+	public void setFIBER_UNID(String fIBER_UNID) {
+		FIBER_UNID = fIBER_UNID;
+	}
 	public String getTIMESTAMP() {
 		return TIMESTAMP;
 	}
@@ -71,7 +79,7 @@ public class ProtocolModel implements Serializable {
 	public void setLength(String length) {
 		this.length = length;
 	}
-	
+
 	public String getIP4() {
 		return IP4;
 	}
@@ -84,19 +92,19 @@ public class ProtocolModel implements Serializable {
 	public void setFlag_transmit(String flag_transmit) {
 		this.flag_transmit = flag_transmit;
 	}
-	
+
 	public String toString()
 	{
-		
+
 		return JsonUtils.serialize(this)
 				.replace("device_ID", "DEVICE_ID")
 				.replace("timestamp", "TIMESTAMP")
 				.replace("ip4", "IP4")
 				.replace("raw_OCTETS", "raw_octets");
-		
-	}
-	
 
-	
+	}
+
+
+
 
 }
