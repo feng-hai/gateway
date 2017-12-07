@@ -119,7 +119,7 @@ public class Handler {
 //				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
 //						"closeSession").start();
 //			}
-			session.closeOnFlush();
+			//session.closeOnFlush();
 			return;
 		}
 		

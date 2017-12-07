@@ -80,7 +80,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	
 
 		
-			logger.debug("錯誤：" + session.getAttribute("ID") + session);
+			logger.error("錯誤：" + session.getAttribute("ID") + session,cause);
 
 			logger.debug("exceptionCaught",cause);
 
@@ -89,7 +89,7 @@ public class ServerHandler extends IoHandlerAdapter {
 //					"closeSession").start();
 	
 		
-		session.close(true);
+		//session.close(true);
 	}
 
 	// 当连接空闲时触发此方法.
@@ -99,7 +99,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		logger.warn("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)
 					;
 	
-		session.close(true);
+		//session.close(true);
 		// this.manager.removeSession(session);
 	}
 
