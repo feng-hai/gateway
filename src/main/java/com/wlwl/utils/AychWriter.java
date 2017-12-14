@@ -4,7 +4,7 @@ public class AychWriter extends Thread {
 	private String content;
 	private String fileName;
 	String userUrl = System.getProperty("user.dir");
-
+	
 	public AychWriter(String content, String fileName) {
 		this.content = content;
 		this.fileName = userUrl + "/logs/" + fileName.trim()+".log";
@@ -13,7 +13,7 @@ public class AychWriter extends Thread {
 	@Override
 	public void run() {
 		// System.out.println("开始执行run()");
-		LogWriter logger = null;
+		 LogWriter logger = null;
 		// String fileName = "d:/temp/logger.log";
 		// long startTime=System.currentTimeMillis();
 		try {

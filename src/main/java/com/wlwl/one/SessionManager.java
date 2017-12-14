@@ -21,7 +21,7 @@ public class SessionManager {
 
 	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
 
-	public void addSession(String deviceID,String vin, IoSession session) {
+	public void addSession(String deviceID, String vin, IoSession session) {
 		try {
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
@@ -30,10 +30,11 @@ public class SessionManager {
 				IoSession iSession = map.get(deviceID);
 				if (iSession.getId() != session.getId()) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("重复连接关闭老的链接：" +vin+":"+ deviceID+":"+ df.format(new Date()) + "--" + session,
-							"closeSession").start();
-				    iSession.setAttribute("old");
-					iSession.close(true);
+					if (!deviceID.equals("211005")) {
+						logger.warn("重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--" + session);
+						iSession.setAttribute("old");
+						iSession.close(true);
+					}
 				}
 			}
 			map.put(deviceID, session);
@@ -74,14 +75,14 @@ public class SessionManager {
 	public void writeSession(String deviceID, byte[] data) {
 		IoSession session = this.getSession(deviceID);
 		try {
-			if (session != null&&session.isConnected()) {
-				new AychWriter("发送数据--：" +  "--" +deviceID, "SendMessage").start();	
-				ProtocolEnum pEnum=(ProtocolEnum)session.getAttribute("pEnum");
-				VehicleInfo vehicle=(VehicleInfo)session.getAttribute("vehicleObject");
-				IProtocolAnalysis analysis=ProtocolFactory.getAnalysis(pEnum);
-				session.write(analysis.sendBefore(data,vehicle));
-			}else{
-				new AychWriter("没有在服务器上线--：" +  "--" +deviceID, "SendMessage").start();	
+			if (session != null && session.isConnected()) {
+				new AychWriter("发送数据--：" + "--" + deviceID, "SendMessage").start();
+				ProtocolEnum pEnum = (ProtocolEnum) session.getAttribute("pEnum");
+				VehicleInfo vehicle = (VehicleInfo) session.getAttribute("vehicleObject");
+				IProtocolAnalysis analysis = ProtocolFactory.getAnalysis(pEnum);
+				session.write(analysis.sendBefore(data, vehicle));
+			} else {
+				new AychWriter("没有在服务器上线--：" + "--" + deviceID, "SendMessage").start();
 			}
 		} catch (Exception e) {
 			logger.error("write session exception!" + e.toString());

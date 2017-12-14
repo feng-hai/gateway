@@ -186,6 +186,19 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		switch (commonId) {
 		case (byte) 0xC0: // 自定义命令，信息校对
 		case (byte) 0x01: // 车辆登入
+		{
+			
+			
+			if(commonId==0x01)
+			{
+				String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
+				if(VIN.equals("12345690978679800"))
+				{
+				String ICCID = ByteUtils.bytes2Str(this.msg, 32, 20);
+				System.out.println(VIN+"车辆登录："+ICCID+ByteUtils.byte2HexStr(this.msg));
+				}
+			}
+		}
 		case (byte) 0x04: // 车辆登出
 		case (byte) 0x07: // 心跳应答
 		{
@@ -377,11 +390,17 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		case (byte) 0xC0: // 自定义命令，信息校对
 		{
 			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);// 获取终端编号
-			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
+			String ICCID = ByteUtils.bytes2Str(this.msg, 30, 20);
+		//	String ICCID2 = ByteUtils.bytes2Str(this.msg, 30, 20);
 			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
+			
 			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
 			if (veh == null) {
 				return null;
+			}
+			if(VIN.equals("12345690978679800"))
+			{
+				System.out.println(veh.getICCID()+"--"+ICCID+":"+"-"+ByteUtils.byte2HexStr(this.msg));
 			}
 			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
 				return null;

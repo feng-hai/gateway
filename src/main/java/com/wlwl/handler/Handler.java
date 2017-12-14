@@ -63,14 +63,13 @@ public class Handler {
 			if (data == null || data.length < analysis.getMinLength()) {
 				
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data),
-							"ExceptionData").start();
+					logger.error("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data));
 				
 				return;
 			}
 			analysis.setMsg(data);
 			 deviceId = analysis.getDeviceId();
-			logger.info(deviceId+"before:" + ByteUtils.byte2HexStr(data));
+			//logger.info(deviceId+"before:" + ByteUtils.byte2HexStr(data));
 			// 普通上传指令应答
 			try {
 				byte[] answerMsg = analysis.answerMsg();
@@ -81,6 +80,9 @@ public class Handler {
 //						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
 //								deviceId).start();
 				
+				}else
+				{
+					//return ;
 				}
 				byte[] extraAnswerMsg = analysis.extraAnswerMsg();
 				if (extraAnswerMsg != null) {

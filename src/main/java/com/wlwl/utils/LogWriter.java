@@ -37,15 +37,15 @@ public class LogWriter {
      * @throws LogException 
      */  
     public synchronized static LogWriter getLogWriter()throws Exception{  
-       // if (logWriter == null){  
+        if (logWriter == null){  
             logWriter = new LogWriter();  
-       // }  
+        }  
         return logWriter;  
     }  
     public synchronized static LogWriter getLogWriter(String logFileName)throws Exception{  
-       // if (logWriter == null){  
+        if (logWriter == null){  
             logWriter = new LogWriter(logFileName);  
-      //  }  
+       }  
         return logWriter;  
     }  
   
