@@ -375,7 +375,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		case (byte) 0xC0: // 自定义命令，信息校对
 		{
 			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);// 获取终端编号
-			String ICCID = ByteUtils.bytes2Str(this.msg, 31, 20);
+			String ICCID = ByteUtils.bytes2Str(this.msg, 30, 20);
 			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
 			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
 			if (veh == null) {
