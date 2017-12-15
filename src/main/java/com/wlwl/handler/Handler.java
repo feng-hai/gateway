@@ -20,7 +20,7 @@ import com.wlwl.one.ServerHandler;
 import com.wlwl.one.SessionManager;
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.protocol.ProtocolFactory;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.Config;
 import com.wlwl.utils.publicStaticMap;
@@ -60,8 +60,8 @@ public class Handler {
 			if (data == null || data.length < analysis.getMinLength()) {
 				
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data),
-							"ExceptionData").start();
+					logger.error("数据异常：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(data),
+							"ExceptionData");
 				
 				return;
 			}
@@ -119,7 +119,7 @@ public class Handler {
 //				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
 //						"closeSession").start();
 //			}
-			session.closeOnFlush();
+			//session.closeOnFlush();
 			return;
 		}
 		

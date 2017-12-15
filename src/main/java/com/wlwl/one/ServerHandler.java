@@ -69,7 +69,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
 		if (!session.containsAttribute("old")) {
-			this.manager.removeSession(session);
+			//this.manager.removeSession(session);
 		}
 			logger.info("关闭链接：" + session.getAttribute("ID") + "--" + session);
 		
@@ -89,7 +89,7 @@ public class ServerHandler extends IoHandlerAdapter {
 //					"closeSession").start();
 	
 		
-		session.close(true);
+		//session.close(true);
 	}
 
 	// 当连接空闲时触发此方法.
@@ -99,7 +99,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		logger.info("超时关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session)
 					;
 	
-		session.close(true);
+		//session.close(true);
 		// this.manager.removeSession(session);
 	}
 

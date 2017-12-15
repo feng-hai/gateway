@@ -4,7 +4,7 @@
 
 	<groupId>gateway</groupId>
 	<artifactId>gatewayGuoBiao</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1-translate</version>
 	<packaging>jar</packaging>
 
 	<name>gatewayGuoBiao</name>
