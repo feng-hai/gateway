@@ -79,7 +79,7 @@ public class ServerMain {
 
 		// 启动3G协议网关
 
-		ServerMainThread smt = new ServerMainThread(20292, ProtocolEnum.P3G, sessionManager);
+		ServerMainThread smt = new ServerMainThread(20294, ProtocolEnum.P3G, sessionManager);
 		smt.setDaemon(true);
 		smt.start();
 
@@ -87,9 +87,9 @@ public class ServerMain {
 		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
 
-//		ServerMainThread smt808 = new ServerMainThread(4441, ProtocolEnum.P808, sessionManager);
-//		smt808.setDaemon(true);
-//		smt808.start();
+		ServerMainThread smt808 = new ServerMainThread(20295, ProtocolEnum.P808, sessionManager);
+		smt808.setDaemon(true);
+		smt808.start();
 
 		// Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(),
 		// sendQueue, vehicles);
