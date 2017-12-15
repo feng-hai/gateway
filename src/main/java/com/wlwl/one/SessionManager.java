@@ -32,9 +32,9 @@ public class SessionManager {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					if (!deviceID.equals("211005")) {
 						logger.warn("重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--" + session);
-						iSession.setAttribute("old");
-						iSession.close(true);
 					}
+					iSession.setAttribute("old");
+					iSession.close(true);
 				}
 			}
 			map.put(deviceID, session);

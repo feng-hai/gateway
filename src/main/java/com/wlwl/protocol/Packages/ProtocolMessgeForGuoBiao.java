@@ -189,15 +189,15 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		{
 			
 			
-			if(commonId==0x01)
-			{
-				String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
-				if(VIN.equals("12345690978679800"))
-				{
-				String ICCID = ByteUtils.bytes2Str(this.msg, 32, 20);
-				System.out.println(VIN+"车辆登录："+ICCID+ByteUtils.byte2HexStr(this.msg));
-				}
-			}
+//			if(commonId==0x01)
+//			{
+//				String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
+//				if(VIN.equals("12345690978679800"))
+//				{
+//				String ICCID = ByteUtils.bytes2Str(this.msg, 32, 20);
+//				System.out.println(VIN+"车辆登录："+ICCID+ByteUtils.byte2HexStr(this.msg));
+//				}
+//			}
 		}
 		case (byte) 0x04: // 车辆登出
 		case (byte) 0x07: // 心跳应答
@@ -285,7 +285,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 	public Boolean filter(IoSession session, IoBuffer in, ProtocolDecoderOutput out) {
 
-		logger.info("过滤器：" + ByteUtils.byte2HexStr(in.array()));
+		//logger.info("过滤器：" + ByteUtils.byte2HexStr(in.array()));
 		// 标记的位置
 		int startPos = in.position();
 
@@ -397,10 +397,6 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
 			if (veh == null) {
 				return null;
-			}
-			if(VIN.equals("12345690978679800"))
-			{
-				System.out.println(veh.getICCID()+"--"+ICCID+":"+"-"+ByteUtils.byte2HexStr(this.msg));
 			}
 			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
 				return null;
