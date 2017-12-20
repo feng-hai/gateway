@@ -73,15 +73,15 @@ public class SendDataTokafka extends Thread {
 				try {
 					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					logger.info(sdf.format(time) + message.getDEVICE_ID()+strMessage);
+					logger.info("企标"+sdf.format(time) + message.getDEVICE_ID()+strMessage);
 				} catch (Exception ex) {
 					logger.error("数据转化：", ex);
 				}
 				// logger.error(strMessage);
-				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
-				if (watchs.contains(message.getDEVICE_ID())) {
-					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
-				}
+//				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
+//				if (watchs.contains(message.getDEVICE_ID())) {
+//					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
+//				}
 
 				producer.send(myrecord, new Callback() {
 

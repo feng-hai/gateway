@@ -64,6 +64,7 @@ public class SendDataTokafkaForGB extends Thread {
 
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(
 						config.get("kafka.sourcecodeTopicForGB"),message.getUnid(), strMessage);
+				
 
 				// if(config.getIsDebug()==1){
 				// System.out.println("kafka sending! topic:
@@ -73,15 +74,15 @@ public class SendDataTokafkaForGB extends Thread {
 				try {
 					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					logger.info(sdf.format(time) + message.getDEVICE_ID()+strMessage);
+					logger.info("国标"+sdf.format(time) + message.getDEVICE_ID()+strMessage);
 				} catch (Exception ex) {
 					logger.error("数据转化：", ex);
 				}
 				// logger.error(strMessage);
-				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
-				if (watchs.contains(message.getDEVICE_ID())) {
-					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
-				}
+//				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
+//				if (watchs.contains(message.getDEVICE_ID())) {
+//					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
+//				}
 
 				producer.send(myrecord, new Callback() {
 

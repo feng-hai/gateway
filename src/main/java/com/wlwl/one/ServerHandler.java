@@ -52,7 +52,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	public void messageSent(IoSession session, Object message) throws Exception {
 		
 		String id = session.getAttribute("ID").toString();
-		logger.info("========= server send msg:: " +id+" "+ ByteUtils.byte2HexStr((byte[]) message));
+		logger.error("========= server send msg:: " +id+" "+ ByteUtils.byte2HexStr((byte[]) message));
 		
 				
 	
