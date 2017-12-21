@@ -21,8 +21,28 @@ public class SessionManager {
 
 	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
 
+	// 判断指定的终端是否存在
+	public Boolean isTrue(IoSession session, String deviceID) {
+		if (deviceID.equals("211005") && map.containsKey("211005")) {
+			IoSession iSession = map.get("211005");
+			if (iSession.getId() == session.getId()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public void addSession(String deviceID, String vin, IoSession session) {
 		try {
+			if (deviceID.equals("211005") && map.containsKey(deviceID)) {
+				IoSession iSession = map.get("211005");
+				if (iSession.getId() != session.getId()) {
+					session.close();
+				}
+				return;
+			}
 			if (!session.containsAttribute("ID")) {
 				session.setAttribute("ID", deviceID);
 			}
@@ -31,7 +51,8 @@ public class SessionManager {
 				if (iSession.getId() != session.getId()) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					if (!deviceID.equals("211005")) {
-						logger.warn("重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--" + session);
+						logger.warn(
+								"重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--" + session);
 					}
 					iSession.setAttribute("old");
 					iSession.close(true);
@@ -41,6 +62,18 @@ public class SessionManager {
 
 		} catch (Exception e) {
 			logger.error("addSession exception!" + e.toString());
+		}
+	}
+
+	public void remove(String deviceID) {
+		this.map.remove(deviceID);
+	}
+
+	public Boolean getDevice(String deviceID) {
+		if (this.map.contains(deviceID)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

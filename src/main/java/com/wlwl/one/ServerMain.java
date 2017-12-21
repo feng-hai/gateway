@@ -103,6 +103,10 @@ public class ServerMain {
 		ServerMainThread smtGuoBiao = new ServerMainThread(Integer.parseInt(PropertyResource.getInstance().getProperties().get("terminalTCPPort")), ProtocolEnum.GUOBIAO, sessionManager);
 		smtGuoBiao.setDaemon(true);
 		smtGuoBiao.start();
+		//用于限制数据上传
+		ReadInputMessage redInput = new ReadInputMessage(sessionManager);
+		redInput.setDaemon(true);
+		redInput.start();
 //		ServerMainThread smtGuoBiao01 = new ServerMainThread(8010, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao01.setDaemon(true);
 //		smtGuoBiao01.start();

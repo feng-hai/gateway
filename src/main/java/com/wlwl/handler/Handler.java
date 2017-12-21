@@ -126,14 +126,16 @@ public class Handler {
 			return;
 		}
 		
-		logger.info(vi.getDEVICE_ID()+"验证通过:" + ByteUtils.byte2HexStr(data));
+		//logger.info(vi.getDEVICE_ID()+"验证通过:" + ByteUtils.byte2HexStr(data));
 		session.setAttribute("pEnum", pEnum);
 		session.setAttribute("vehicleObject", vi);
 		
-		this.manager.addSession(vi.getDEVICE_ID(),deviceId, session);
-		
+		if(this.manager.isTrue(session,deviceId))
+		{
 		// 保存信息到kafka
-		toJson(analysis,vi,session,data);
+	    	toJson(analysis,vi,session,data);
+		}
+		this.manager.addSession(vi.getDEVICE_ID(),deviceId, session);
 		vi = null;
 		}
 	}
