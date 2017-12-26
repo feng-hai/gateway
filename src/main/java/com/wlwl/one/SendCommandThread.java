@@ -42,7 +42,7 @@ public class SendCommandThread extends Thread {
 				//}
 					if(message.getDEVICE_ID()=="211005")
 					{
-						if(i%5==0)
+						if(i++%5==0)
 						{	
 						}else
 						{
