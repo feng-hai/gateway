@@ -1,7 +1,13 @@
 package com.wlwl.model;
 
-public class VehicleInfo {
+import java.io.Serializable;
+
+public class VehicleInfo implements Serializable {
 	
+	/** 
+	* @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+	*/ 
+	private static final long serialVersionUID = 1L;
 	private String UNID;
 	private String  ROOT_PROTO_UNID;
 	public String getROOT_PROTO_UNID() {

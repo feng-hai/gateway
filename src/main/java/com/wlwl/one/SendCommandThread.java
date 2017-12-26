@@ -25,17 +25,32 @@ public class SendCommandThread extends Thread {
 	public SendCommandThread(SessionManager sessionManager) {
 		this.sessionManager = sessionManager;
 		//this.cmdQueue = cmdQueue;
+		
+		
 	
 	}
+	public int i=0;
 
 	public void run() {
 		while (true) {
 			try {
 				SourceMessage message = publicStaticMap.getCmdQueue().take();
 				//if (this._config.getWatchVehiclesList().contains(message.getDEVICE_ID())) {
+				
+					
 					new AychWriter("开始发送数据--：" + message.getDEVICE_ID()+ "--" +message.getRaw_octets(), "SendMessage").start();	
 				//}
+					if(message.getDEVICE_ID()=="211005")
+					{
+						if(i%5==0)
+						{	
+						}else
+						{
+					      continue;
+						}
+					}
 				sessionManager.writeSession(message.getDEVICE_ID(),ByteUtils.hexStr2Bytes(message.getRaw_octets()));
+			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

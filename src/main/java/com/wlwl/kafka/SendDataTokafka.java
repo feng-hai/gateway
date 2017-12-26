@@ -87,7 +87,7 @@ public class SendDataTokafka extends Thread {
 
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
-							initKafka();// 重新创建一个kafka对象
+							//initKafka();// 重新创建一个kafka对象
 							logger.error(e.toString());
 						}
 

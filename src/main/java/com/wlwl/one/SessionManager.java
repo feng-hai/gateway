@@ -19,7 +19,7 @@ public class SessionManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(SessionManager.class);
 
-	private ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
+	private static ConcurrentHashMap<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
 
 	// 判断指定的终端是否存在
 	public Boolean isTrue(IoSession session, String deviceID) {
@@ -35,30 +35,30 @@ public class SessionManager {
 	}
 
 	public void addSession(String deviceID, String vin, IoSession session) {
+
 		try {
-			if (deviceID.equals("211005") && map.containsKey(deviceID)) {
-				IoSession iSession = map.get("211005");
-				if (iSession.getId() != session.getId()) {
-					session.close();
+			synchronized (map) {
+				if (deviceID.equals("211005") && map.containsKey(deviceID)) {
+					return;
 				}
-				return;
-			}
-			if (!session.containsAttribute("ID")) {
-				session.setAttribute("ID", deviceID);
-			}
-			if (map.containsKey(deviceID)) {
-				IoSession iSession = map.get(deviceID);
-				if (iSession.getId() != session.getId()) {
-					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					if (!deviceID.equals("211005")) {
-						logger.warn(
-								"重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--" + session);
+				if (!session.containsAttribute("ID")) {
+					session.setAttribute("ID", deviceID);
+				}
+				if (map.containsKey(deviceID)) {
+					IoSession iSession = map.get(deviceID);
+					if (iSession.getId() != session.getId()) {
+						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						if (!deviceID.equals("211005")) {
+							logger.warn("重复连接关闭老的链接：" + vin + ":" + deviceID + ":" + df.format(new Date()) + "--"
+									+ session);
+							iSession.setAttribute("old");
+							iSession.close(true);
+						}
+						
 					}
-					iSession.setAttribute("old");
-					iSession.close(true);
 				}
+				map.put(deviceID, session);
 			}
-			map.put(deviceID, session);
 
 		} catch (Exception e) {
 			logger.error("addSession exception!" + e.toString());
@@ -70,7 +70,7 @@ public class SessionManager {
 	}
 
 	public Boolean getDevice(String deviceID) {
-		if (this.map.contains(deviceID)) {
+		if (this.map.containsKey(deviceID)) {
 			return true;
 		} else {
 			return false;

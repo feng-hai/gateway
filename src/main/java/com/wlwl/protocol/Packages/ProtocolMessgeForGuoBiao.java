@@ -185,6 +185,43 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 
 		switch (commonId) {
 		case (byte) 0xC0: // 自定义命令，信息校对
+		{
+			String terminalId = ByteUtils.bytes2Str(this.msg, 24, 6);// 获取终端编号
+			String ICCID = ByteUtils.bytes2Str(this.msg, 30, 20);
+		//	String ICCID2 = ByteUtils.bytes2Str(this.msg, 30, 20);
+			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
+			//logger.warn("VIN:"+VIN +":Device:"+terminalId);
+			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
+			if (veh == null) {
+				return null;
+			}
+			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
+				//return null;
+				byte[] answer = new byte[this.msg.length];
+				answer = Arrays.copyOf(this.msg, this.msg.length);
+				answer[3] = (byte) 0x01;
+				answer[answer.length - 1] = BCCUtils.enVerbCodeForGuobiao(answer);
+				return answer;
+			}
+			logger.warn("VIN:"+VIN +":Device:"+terminalId+"-2"+veh.getVIN()+":"+veh.getICCID());
+			byte[] tempVIN = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
+			byte[] tempICCID = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));
+			ByteBuffer buffer = ByteBuffer.allocate(25 + 37);
+			buffer.put((byte) 0x23);
+			buffer.put((byte) 0x23);
+			buffer.put((byte) 0xC1);
+			buffer.put((byte) 0xFE);
+			buffer.put(tempVIN);
+			buffer.put(this.msg[21]);
+			buffer.put((byte) 0);
+			buffer.put((byte) 37);
+			buffer.put(tempVIN);
+			buffer.put(tempICCID);
+			buffer.put(BCCUtils.enVerbCodeForGuobiao(buffer.array()));
+			return buffer.array();
+		}
+
+		//case (byte) 0xC0: // 自定义命令，信息校对
 		case (byte) 0x01: // 车辆登入
 		{
 			
@@ -393,7 +430,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			String ICCID = ByteUtils.bytes2Str(this.msg, 30, 20);
 		//	String ICCID2 = ByteUtils.bytes2Str(this.msg, 30, 20);
 			String VIN = ByteUtils.bytes2Str(this.msg, 4, 17);
-			
+			logger.warn("VIN:"+VIN +":Device:"+terminalId);
 			VehicleInfo veh = publicStaticMap.getVehicles().get(terminalId);
 			if (veh == null) {
 				return null;
@@ -401,6 +438,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
 				return null;
 			}
+			logger.warn("VIN:"+VIN +":Device:"+terminalId+"-2"+veh.getVIN()+":"+veh.getICCID());
 			byte[] tempVIN = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
 			byte[] tempICCID = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));
 			ByteBuffer buffer = ByteBuffer.allocate(25 + 37);
