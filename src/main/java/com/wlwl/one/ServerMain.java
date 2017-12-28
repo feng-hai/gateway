@@ -89,6 +89,10 @@ public class ServerMain {
 
 		Timer timer1 = new Timer();
 		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
+		
+		
+		Timer timer2 = new Timer();
+		timer2.schedule(new MyTaskSet(sessionManager), new Date(), 1000*60*6);
 		// 启动808协议网关
 
 //		ServerMainThread smt808 = new ServerMainThread(4440, ProtocolEnum.P808, sessionManager);

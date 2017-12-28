@@ -29,7 +29,7 @@ public class SendCommandThread extends Thread {
 		
 	
 	}
-	public int i=0;
+	public int i=1;
 
 	public void run() {
 		while (true) {
@@ -42,7 +42,7 @@ public class SendCommandThread extends Thread {
 				//}
 					if(message.getDEVICE_ID()=="211005")
 					{
-						if(i++%5==0)
+						if(i++%20==0)
 						{	
 						}else
 						{
