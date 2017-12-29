@@ -382,7 +382,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 				return null;
 			}
 			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
-				return null;
+				//return null;
 			}
 			byte[] tempVIN = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
 			byte[] tempICCID = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));
