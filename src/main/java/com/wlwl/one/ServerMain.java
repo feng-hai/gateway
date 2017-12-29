@@ -13,6 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
@@ -43,6 +44,7 @@ public class ServerMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		// 从终端获取车辆原始数据，并把原始数据存在当前数据队列中 发送收到的数据队列
 		// BlockingQueue<ProtocolModel> sendQueue = new
 		// LinkedBlockingQueue<ProtocolModel>();
@@ -79,15 +81,15 @@ public class ServerMain {
 
 		// 启动3G协议网关
 
-		ServerMainThread smt = new ServerMainThread(20294, ProtocolEnum.P3G, sessionManager);
+		ServerMainThread smt = new ServerMainThread(Integer.parseInt(config.get("P3Gport")), ProtocolEnum.P3G, sessionManager);
 		smt.setDaemon(true);
 		smt.start();
 
 		Timer timer1 = new Timer();
 		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
-
-		ServerMainThread smt808 = new ServerMainThread(20295, ProtocolEnum.P808, sessionManager);
+		
+		ServerMainThread smt808 = new ServerMainThread (Integer.parseInt(config.get("P808port")), ProtocolEnum.P808, sessionManager);
 		smt808.setDaemon(true);
 		smt808.start();
 
