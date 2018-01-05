@@ -18,7 +18,7 @@ import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.handler.Handler;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.Config;
 

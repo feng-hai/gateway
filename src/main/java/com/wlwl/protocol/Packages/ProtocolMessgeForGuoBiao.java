@@ -19,7 +19,7 @@ import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.one.ServerHandler;
 import com.wlwl.protocol.IProtocolAnalysis;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.BCCUtils;
 import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;

@@ -13,7 +13,7 @@ import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.protocol.ProtocolFactory;
-import com.wlwl.utils.AychWriter;
+
 
 public class SessionManager {
 
@@ -30,8 +30,7 @@ public class SessionManager {
 				IoSession iSession = map.get(deviceID);
 				if (iSession.getId() != session.getId()) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					new AychWriter("重复连接关闭老的链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
-							"closeSession").start();
+					logger.warn("重复连接关闭老的链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session);
 				    iSession.setAttribute("old");
 					iSession.close(true);
 				}
