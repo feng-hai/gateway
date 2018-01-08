@@ -1,6 +1,7 @@
 package com.wlwl.kafka;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -10,6 +11,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.one.SendCommandThread;
 
 import com.wlwl.utils.SourceMessage;
@@ -31,10 +33,12 @@ public class CommandConsumerThread implements Runnable {
 
 	public void run() {
 		// TODO Auto-generated method stub
-
+		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
+		logger.warn("topicName--：" + config.get("kafka.cmdTopic"));	
+		consumer.subscribe(Arrays.asList(config.get("kafka.cmdTopic").trim()));	
 		while (!closed.get()) {
 			try {
-				consumer.subscribe(Arrays.asList("octets_down"));	
+				
 				ConsumerRecords<String, String> records = consumer.poll(100); 
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(),
