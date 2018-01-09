@@ -40,7 +40,7 @@ public class PropertyResource
 			while (it.hasNext())
 			{
 				String key = it.next();
-				properties.put( key, prop.getProperty( key ) );
+				properties.put( key, prop.getProperty( key ).trim() );
 			}
 			in.close();
 		}
