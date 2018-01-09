@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class SourceMessage implements Serializable{
 
+	
+	
 	/**
 	 * 
 	 */
