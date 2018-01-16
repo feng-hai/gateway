@@ -11,6 +11,9 @@ import org.apache.mina.common.IoBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.IProtocolAnalysis;
@@ -24,6 +27,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 
 	private String Protocol = "CD039E17A8E84137AF6DE1CDC172C274";// 协议标识，3协议的网关
 	private String Node = "3CE0CF193D67408E80346E0C20263DC6";// 节点标识
+	private static Logger logger=LoggerFactory.getLogger(ProtocolMessgeFor3G.class);
 	/**
 	 * 頭部數據
 	 */
@@ -472,8 +476,8 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		in.get(allData);
 		if (!isMarker(allData[0]))// 标识符不对
 		{
-			session.close(true);
-			//System.out.println("消息头不对：" + ByteUtils.byte2HexStr(temp));
+			//session.close(true);
+			logger.error("消息头不对：" + ByteUtils.byte2HexStr(allData));
 			return false;
 		}
 		in.reset();
