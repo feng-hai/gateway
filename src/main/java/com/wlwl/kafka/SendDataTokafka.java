@@ -88,8 +88,14 @@ public class SendDataTokafka extends Thread {
 
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
-							initKafka();// 重新创建一个kafka对象
+							//initKafka();// 重新创建一个kafka对象
 							logger.error(e.toString());
+							try {
+								Thread.sleep(60000);
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 
 						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","

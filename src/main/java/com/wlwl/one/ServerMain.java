@@ -4,23 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-
-import java.util.Map;
 import java.util.Timer;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.apache.log4j.PropertyConfigurator;
-
 import com.wlwl.config.PropertyResource;
 import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
-import com.wlwl.model.ProtocolModel;
-import com.wlwl.model.VehicleInfo;
 import com.wlwl.thread.ReadInputMessage;
-import com.wlwl.utils.SourceMessage;
 import com.wlwl.utils.publicStaticMap;
 
 public class ServerMain {
