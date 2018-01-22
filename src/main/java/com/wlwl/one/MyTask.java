@@ -110,10 +110,12 @@ public class MyTask extends TimerTask {
 			logger.error("数据库访问错误！",e);
 			if (jdbcUtils != null) {
 				jdbcUtils.releaseConn();
+				jdbcUtils=null;
 			}
 		} finally {
 			if (jdbcUtils != null) {
 				jdbcUtils.releaseConn();
+				jdbcUtils=null;
 			}
 		}
 	}
