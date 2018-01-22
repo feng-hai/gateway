@@ -1,7 +1,6 @@
 package com.wlwl.one;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,15 +10,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
-import org.apache.log4j.PropertyConfigurator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.mysql.JdbcUtils;
-import com.wlwl.mysql.SingletonJDBC;
-import com.wlwl.utils.Config;
+
 import com.wlwl.utils.StrFormat;
 import com.wlwl.utils.publicStaticMap;
 
@@ -82,7 +80,7 @@ public class MyTask extends TimerTask {
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;
 		try {
-			jdbcUtils = SingletonJDBC.getJDBC();
+			jdbcUtils = new JdbcUtils();
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID,vi.fiber_unid"
 					+ " from cube.BIG_VEHICLE vi "
@@ -108,7 +106,10 @@ public class MyTask extends TimerTask {
 			}
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("数据库访问错误！",e);
+			if (jdbcUtils != null) {
+				jdbcUtils.releaseConn();
+			}
 		} finally {
 			if (jdbcUtils != null) {
 				jdbcUtils.releaseConn();

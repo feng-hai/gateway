@@ -13,6 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
@@ -78,8 +79,8 @@ public class ServerMain {
 		sendCommmandThread.start();
 
 		// 启动3G协议网关
-
-		ServerMainThread smt = new ServerMainThread(20291, ProtocolEnum.P3G, sessionManager);
+		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
+		ServerMainThread smt = new ServerMainThread(Integer.parseInt(config.get("p3GPort")), ProtocolEnum.P3G, sessionManager);
 		smt.setDaemon(true);
 		smt.start();
 
@@ -87,13 +88,14 @@ public class ServerMain {
 		timer1.schedule(new CheckSession(sessionManager), new Date(), 5000);
 		// 启动808协议网关
 
-		ServerMainThread smt808 = new ServerMainThread(4440, ProtocolEnum.P808, sessionManager);
+		ServerMainThread smt808 = new ServerMainThread(Integer.parseInt(config.get("p808Port")), ProtocolEnum.P808, sessionManager);
 		smt808.setDaemon(true);
 		smt808.start();
 
 		// Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(),
 		// sendQueue, vehicles);
-		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
+		ServerMainThread smtJinLong = new ServerMainThread(Integer.parseInt(config.get("pjinlongPort")), ProtocolEnum.PJINLONG, sessionManager);
+		smtJinLong.setDaemon(true);
 		smtJinLong.start();
 		
 	
