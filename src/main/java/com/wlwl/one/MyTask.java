@@ -81,6 +81,7 @@ public class MyTask extends TimerTask {
 		JdbcUtils jdbcUtils = null;
 		try {
 			jdbcUtils = new JdbcUtils();
+			jdbcUtils.getConnection();
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID,vi.fiber_unid"
 					+ " from cube.BIG_VEHICLE vi "
