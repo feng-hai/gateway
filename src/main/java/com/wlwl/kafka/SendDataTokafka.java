@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.ProtocolModel;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.publicStaticMap;
 
 
@@ -81,7 +81,7 @@ public class SendDataTokafka extends Thread {
 				// logger.error(strMessage);
 				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
 				if (watchs.contains(message.getDEVICE_ID())) {
-					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
+					logger.info(message.getRAW_OCTETS());
 				}
 
 				producer.send(myrecord, new Callback() {

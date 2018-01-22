@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wlwl.one.SendCommandThread;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.SourceMessage;
 import com.wlwl.utils.publicStaticMap;
 
@@ -39,7 +39,7 @@ public class CommandConsumerThread implements Runnable {
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(),
 							record.value());
-					 new AychWriter("收到kafka数据--：" + record.value(), "KafKaMessage").start();	
+					logger.info("收到kafka数据--：" + record.value());	
 					SourceMessage message = new SourceMessage(record.value());
 
 					//logger.trace(message.toString());

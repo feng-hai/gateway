@@ -13,7 +13,7 @@ import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.IProtocolAnalysis;
 import com.wlwl.protocol.ProtocolFactory;
-import com.wlwl.utils.AychWriter;
+
 
 public class SessionManager {
 

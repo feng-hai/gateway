@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.wlwl.model.ProtocolModel;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.protocol.IProtocolAnalysis;
-import com.wlwl.utils.AychWriter;
+
 import com.wlwl.utils.BCDUtils;
 import com.wlwl.utils.ByteUtils;
 import com.wlwl.utils.CRCUtil;

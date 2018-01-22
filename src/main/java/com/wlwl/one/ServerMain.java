@@ -95,11 +95,13 @@ public class ServerMain {
 
 		// Protocol jinlong = new Protocol(5442, new ProtocolMessgeForJinLong(),
 		// sendQueue, vehicles);
-//		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
-//		smtJinLong.start();
+		ServerMainThread smtJinLong = new ServerMainThread(5442, ProtocolEnum.PJINLONG, sessionManager);
+		smtJinLong.setDaemon(true);
+		smtJinLong.start();
 		
 	
 		ReadInputMessage readMessage=new ReadInputMessage();
+		readMessage.setDaemon(true);
 		readMessage.start();
 //		ServerMainThread smtGuoBiao = new ServerMainThread(123, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao.setDaemon(true);
