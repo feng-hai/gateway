@@ -58,7 +58,7 @@ public class CommandConsumerThread implements Runnable {
 				e.printStackTrace();
 
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(10000);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
