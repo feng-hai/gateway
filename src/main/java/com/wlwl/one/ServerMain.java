@@ -17,9 +17,7 @@ import com.wlwl.enums.ProtocolEnum;
 import com.wlwl.kafka.CommandConsumer;
 import com.wlwl.kafka.SendDataTokafka;
 import com.wlwl.kafka.SendDataTokafkaForGB;
-import com.wlwl.model.ProtocolModel;
-import com.wlwl.model.VehicleInfo;
-import com.wlwl.utils.SourceMessage;
+
 
 public class ServerMain {
 
