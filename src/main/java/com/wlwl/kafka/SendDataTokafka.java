@@ -70,40 +70,42 @@ public class SendDataTokafka extends Thread {
 				// "+config.getSourcecodeTopic()+" message: "+ strMessage);
 				// }
 
-				try {
-					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					logger.info(sdf.format(time) + message.getDEVICE_ID()+strMessage);
-				} catch (Exception ex) {
-					logger.error("数据转化：", ex);
-				}
+//				try {
+//					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
+//					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//					logger.info(sdf.format(time) + message.getDEVICE_ID()+strMessage);
+//				} catch (Exception ex) {
+//					logger.error("数据转化：", ex);
+//				}
 				// logger.error(strMessage);
-				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
-				if (watchs.contains(message.getDEVICE_ID())) {
-					logger.warn(message.getRAW_OCTETS());
-				}
+//				List<String> watchs = java.util.Arrays.asList(config.get("terminals").split(","));
+//				if (watchs.contains(message.getDEVICE_ID())) {
+//					logger.warn(message.getRAW_OCTETS());
+//				}
 
 				producer.send(myrecord, new Callback() {
 
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
 							//initKafka();// 重新创建一个kafka对象
+							logger.error(e.toString());
 							try {
 								Thread.sleep(60000);
 							} catch (InterruptedException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							logger.error(e.toString());
+							logger.error("The offset of the record we just sent is: " + metadata.offset() + ","
+									+ metadata.topic());	
 						}
 
-						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
-								+ metadata.topic());
+						
 
 					}
 				});
 
 			} catch (Exception e) {
+			  logger.error("kafka存储错误",e);
 			}
 		}
 	}

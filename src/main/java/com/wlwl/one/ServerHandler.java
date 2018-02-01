@@ -80,9 +80,10 @@ public class ServerHandler extends IoHandlerAdapter {
 	
 
 		
-			logger.error("錯誤：" + session.getAttribute("ID") + session);
+			logger.warn("錯誤：" + session.getAttribute("ID") + session);
 
-			logger.error("exceptionCaught",cause);
+			logger.warn("exceptionCaught",cause);
+		
 
 //			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //			new AychWriter("发生异常关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
