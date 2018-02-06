@@ -80,7 +80,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	
 
 		
-			logger.error("錯誤：" + session.getAttribute("ID") + session,cause);
+			logger.warn("錯誤：" + session.getAttribute("ID") + session,cause);
 
 			logger.debug("exceptionCaught",cause);
 
