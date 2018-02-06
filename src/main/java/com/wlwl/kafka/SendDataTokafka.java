@@ -89,14 +89,13 @@ public class SendDataTokafka extends Thread {
 						if (e != null) {
 							//initKafka();// 重新创建一个kafka对象
 							logger.error(e.toString());
-							try {
-								Thread.sleep(60000);
-							} catch (InterruptedException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-							logger.error("The offset of the record we just sent is: " + metadata.offset() + ","
-									+ metadata.topic());	
+							try{
+								logger.error("The offset of the record we just sent GB is: " + metadata.offset() + ","
+										+ metadata.topic());
+								}catch(Exception ex)
+								{
+									logger.error("metadata值为空", ex);
+								}	
 						}
 
 						

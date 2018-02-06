@@ -81,7 +81,7 @@ public class ServerHandler extends IoHandlerAdapter {
 
 		
 			logger.warn("錯誤：" + session.getAttribute("ID") + session);
-
+			this.manager.removeSession( session);
 			logger.warn("exceptionCaught",cause);
 		
 

@@ -341,14 +341,23 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		pm.setIP4(ip);
 		try {
 			if (pm.getProto_unid().equals(ProtocolForG)) {
-				publicStaticMap.getSendGBQueue().put(pm);
+				if (publicStaticMap.getSendGBQueue().size() > 1000) {
+					logger.error("检查kafka是否有异常："+pm.toString());
+				} else {
+					publicStaticMap.getSendGBQueue().put(pm);
+				}
 			} else {
-				publicStaticMap.getSendQueue().put(pm);
+				if (publicStaticMap.getSendQueue().size() > 1000) {
+					logger.error("检查kafka是否有异常："+pm.toString());
+				} else {
+					publicStaticMap.getSendQueue().put(pm);
+				}
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+
 	public byte[] sendBefore(byte[] sendBytes, VehicleInfo vehicle) {
 		if (sendBytes[0] == (byte) 0x23 && sendBytes[1] == (byte) 0x23) {
 			return sendBytes;
@@ -382,7 +391,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 				return null;
 			}
 			if (veh.getVIN().equals(VIN) && veh.getICCID().equals(ICCID)) {
-				//return null;
+				// return null;
 			}
 			byte[] tempVIN = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getVIN(), 17));
 			byte[] tempICCID = ByteUtils.str2bytes(StrFormat.addZeroForNum(veh.getICCID(), 20));

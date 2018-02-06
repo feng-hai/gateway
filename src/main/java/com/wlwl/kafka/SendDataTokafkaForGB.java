@@ -42,7 +42,7 @@ public class SendDataTokafkaForGB extends Thread {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", config.get("kafka.server"));
 		props.put("acks", "1");
-		props.put("retries", 0);
+		props.put("retries", 2);
 		props.put("batch.size", 16384);
 		props.put("linger.ms", 1);
 		props.put("buffer.memory", 33554432);
@@ -92,8 +92,13 @@ public class SendDataTokafkaForGB extends Thread {
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
 							logger.error("生成者失败",e);
+							try{
 							logger.error("The offset of the record we just sent GB is: " + metadata.offset() + ","
 									+ metadata.topic());
+							}catch(Exception ex)
+							{
+								logger.error("metadata值为空", ex);
+							}
 						}
 
 						
