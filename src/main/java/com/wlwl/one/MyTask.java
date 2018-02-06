@@ -1,6 +1,5 @@
 package com.wlwl.one;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,29 +106,38 @@ public class MyTask extends TimerTask {
 			}
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
-			logger.error("数据库访问错误！",e);
-			if (jdbcUtils != null) {
-				jdbcUtils.releaseConn();
-				jdbcUtils=null;
-			}
+			logger.error("数据库访问错误！", e);
+
 		} finally {
 			if (jdbcUtils != null) {
 				jdbcUtils.releaseConn();
-				jdbcUtils=null;
+				jdbcUtils = null;
 			}
 		}
 	}
 
 	private Boolean isContains(VehicleInfo vi, Map<String, VehicleInfo> vehicles) {
-		return vehicles.containsKey(vi.getDEVICE_ID().trim());
+		if (vi.getDEVICE_ID() != null || !vi.getDEVICE_ID().isEmpty()) {
+			return vehicles.containsKey(vi.getDEVICE_ID().trim());
+		} else {
+			return true;
+		}
 	}
 
 	private Boolean isContainsForPhone(VehicleInfo vi, Map<String, VehicleInfo> vehicles) {
-		return vehicles.containsKey(vi.getCELLPHONE().trim());
+		if (vi.getCELLPHONE() != null || !vi.getCELLPHONE().isEmpty()) {
+			return vehicles.containsKey(vi.getCELLPHONE().trim());
+		} else {
+			return true;
+		}
 	}
 
 	private Boolean isContainsForVIN(VehicleInfo vi, Map<String, VehicleInfo> vehicles) {
-		return vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN().trim(), 17));
+		if (vi.getVIN() != null || !vi.getVIN().isEmpty()) {
+			return vehicles.containsKey(StrFormat.addZeroForNum(vi.getVIN().trim(), 17));
+		} else {
+			return true;
+		}
 	}
 
 }
