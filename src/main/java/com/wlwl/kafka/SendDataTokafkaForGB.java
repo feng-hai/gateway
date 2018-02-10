@@ -53,11 +53,29 @@ public class SendDataTokafkaForGB extends Thread {
 		producer = new KafkaProducer<String, String>(props);
 
 	}
+	
+	private Boolean isTrue=true;
 
 	public void run() {
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 	String topicName=	config.get("kafka.sourcecodeTopicForGB");
 		while (true) {
+			if(!isTrue)
+			{
+				if(producer!=null)
+				{
+					producer.close();
+					producer=null;
+				}
+				
+				try {
+					Thread.sleep(60000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				isTrue=true;
+			}
 			try {
 				ProtocolModel message = publicStaticMap.getSendGBQueue().take();
 				String strMessage = message.toString();
@@ -91,6 +109,7 @@ public class SendDataTokafkaForGB extends Thread {
 
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
+							isTrue=false;
 							logger.error("生成者失败",e);
 							try{
 							logger.error("The offset of the record we just sent GB is: " + metadata.offset() + ","

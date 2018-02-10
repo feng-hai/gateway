@@ -54,11 +54,29 @@ public class SendDataTokafka extends Thread {
 		producer = new KafkaProducer<String, String>(props);
 
 	}
+	
+	private Boolean isTrue=true;
 
 	public void run() {
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		while (true) {
 			try {
+				if(!isTrue)
+				{
+					if(producer!=null)
+					{
+						producer.close();
+						producer=null;
+					}
+					
+					try {
+						Thread.sleep(60000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					isTrue=true;
+				}
 				ProtocolModel message = publicStaticMap.getSendQueue().take();
 				String strMessage = message.toString();
 
@@ -88,6 +106,8 @@ public class SendDataTokafka extends Thread {
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
 							//initKafka();// 重新创建一个kafka对象
+							
+							isTrue=false;
 							logger.error(e.toString());
 							try{
 								logger.error("The offset of the record we just sent GB is: " + metadata.offset() + ","
@@ -104,7 +124,19 @@ public class SendDataTokafka extends Thread {
 				});
 
 			} catch (Exception e) {
-			  logger.error("kafka存储错误",e);
+				logger.error(e.toString());
+				if(producer!=null)
+				{
+					producer.close();
+					producer=null;
+				}
+				
+				try {
+					Thread.sleep(60000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
