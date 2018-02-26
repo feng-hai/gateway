@@ -74,6 +74,7 @@ public class SendDataTokafkaForGB extends Thread {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				initKafka();
 				isTrue=true;
 			}
 			try {
@@ -110,6 +111,7 @@ public class SendDataTokafkaForGB extends Thread {
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
 							isTrue=false;
+							
 							logger.error("生成者失败",e);
 							try{
 							logger.error("The offset of the record we just sent GB is: " + metadata.offset() + ","
@@ -127,13 +129,7 @@ public class SendDataTokafkaForGB extends Thread {
 
 			} catch (Exception e) {
 				logger.error("kafka存储错误", e);
-				try {
-					Thread.sleep(60000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				 initKafka();
+				 isTrue=false;
 			}
 		}
 	}
