@@ -284,6 +284,10 @@ public class JdbcUtils {
 		if (resultSet != null) {
 			try {
 				
+				if (connection != null) {
+						connection.close();
+						connection=null;
+				}
 				resultSet.close();
 				resultSet=null;
 			} catch (SQLException e) {
@@ -291,15 +295,7 @@ public class JdbcUtils {
 			}
 		}
 		
-		if (connection != null) {
-			try {
-				connection.close();
-				connection=null;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 	}
 
 	public void checkOnLine() {
