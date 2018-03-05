@@ -474,11 +474,11 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		int remain = in.remaining();
 		byte[] allData = new byte[remain];
 		in.get(allData);
-		if (!isMarker(allData[0]))// 标识符不对
+		//if (!isMarker(allData[0]))// 标识符不对
 		{
 			//session.close(true);
-			logger.error("消息头不对：" + ByteUtils.byte2HexStr(allData));
-			return false;
+			//logger.error("消息头不对：" + ByteUtils.byte2HexStr(allData));
+			//return false;
 		}
 		in.reset();
 		int startIndex = -1;
@@ -501,16 +501,19 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 					in.get(buf);
 					//out.write(buf);
 					return true;
+					//continue;
 				} else {
 					byte[] buf = new byte[len];
 					in.get(buf);
 					out.write(buf);
-					return true;
+					//continue;
+				return true;
 				}
 			}
 			if (i >= 0xffff) {
 				in.position(allData.length-1);
-				session.close(true);
+				//session.close(true);
+				logger.error("消息体长度不匹配"+ ByteUtils.byte2HexStr(allData));
 				System.out.println("消息体长度不匹配：" + ByteUtils.byte2HexStr(allData));
 				return true;
 			}
