@@ -80,7 +80,7 @@ public class MyTask extends TimerTask {
 		JdbcUtils jdbcUtils = null;
 		try {
 			jdbcUtils = new JdbcUtils();
-			jdbcUtils.getConnection();
+			
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID,vi.fiber_unid"
 					+ " from cube.BIG_VEHICLE vi "
@@ -92,7 +92,7 @@ public class MyTask extends TimerTask {
 			Map<String, VehicleInfo> vehicles = new ConcurrentHashMap<>();
 			for (VehicleInfo vi : list) {
 				if (!isContains(vi, vehicles)) {
-					vehicles.put(vi.getDEVICE_ID().trim(), vi);
+					vehicles.put(vi.getDEVICE_ID().trim(), vi); 
 				}
 				if (!isContainsForPhone(vi, vehicles)) {
 					vehicles.put(vi.getCELLPHONE().trim(), vi);
@@ -107,12 +107,7 @@ public class MyTask extends TimerTask {
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
 			logger.error("数据库访问错误！", e);
-
 		} finally {
-			if (jdbcUtils != null) {
-				jdbcUtils.releaseConn();
-				jdbcUtils = null;
-			}
 		}
 	}
 

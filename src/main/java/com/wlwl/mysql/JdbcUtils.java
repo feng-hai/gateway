@@ -19,25 +19,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.utils.Config;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 public class JdbcUtils {
-	// 数据库用户名
-	private static String USERNAME;
-	// 数据库密码
-	private static String PASSWORD;
-	// 驱动信息
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	// 数据库地址
-	private static String URL;
-	private Connection connection;
-	private PreparedStatement pstmt;
 
-	private ResultSet resultSet;
+	private static final Logger logger = LoggerFactory.getLogger(JdbcUtils.class);
 
 	// private Config _config;
 	/**
@@ -51,36 +47,6 @@ public class JdbcUtils {
 	public JdbcUtils() {
 		// this._config=config;
 
-		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
-
-		USERNAME = config.get("MYSQLUSERNAME");
-
-		PASSWORD = config.get("MYSQLPASSWORD");
-
-		URL = config.get("MYSQLURL");
-
-		// TODO Auto-generated constructor stub
-		try {
-			Class.forName(DRIVER);
-			System.out.println("数据库连接成功！");
-
-		} catch (Exception e) {
-
-		}
-	}
-
-	/**
-	 * 
-	 * @return 获得数据库的连接
-	 */
-	public Connection getConnection() {
-		try {
-			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return connection;
 	}
 
 	/**
@@ -92,22 +58,32 @@ public class JdbcUtils {
 	 * @throws SQLException
 	 */
 	public boolean updateByPreparedStatement(String sql, List<Object> params) throws SQLException {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+
 		boolean flag = false;
 		int result = -1;
-		if (connection==null||connection.isClosed()) {
-			getConnection();
-		}
-		pstmt = connection.prepareStatement(sql);
-		int index = 1;
-		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {
-				pstmt.setObject(index++, params.get(i));
+		try {
+			connection = C3P0DBUtil.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			int index = 1;
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
+				}
 			}
+			result = pstmt.executeUpdate();
+			flag = result > 0 ? true : false;
+
+		} catch (SQLException e) {
+			logger.error("保存车辆迁移日报表异常!" + e.toString());
+		} finally {
+			C3P0DBUtil.attemptClose(pstmt);
+			C3P0DBUtil.attemptClose(connection);
+
 		}
-		result = pstmt.executeUpdate();
-		flag = result > 0 ? true : false;
-		pstmt.close();
 		return flag;
+
 	}
 
 	/**
@@ -120,31 +96,38 @@ public class JdbcUtils {
 	 */
 	public Map<String, Object> findSimpleResult(String sql, List<Object> params) throws SQLException {
 		Map<String, Object> map = new HashMap<String, Object>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
 		int index = 1;
-		if (connection==null||connection.isClosed()) {
-			getConnection();
-		}
-		pstmt = connection.prepareStatement(sql);
-		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {
-				pstmt.setObject(index++, params.get(i));
-			}
-		}
-		resultSet = pstmt.executeQuery();// 返回查询结果
-		ResultSetMetaData metaData = resultSet.getMetaData();
-		int col_len = metaData.getColumnCount();
-		while (resultSet.next()) {
-			for (int i = 0; i < col_len; i++) {
-				String cols_name = metaData.getColumnName(i + 1);
-				Object cols_value = resultSet.getObject(cols_name);
-				if (cols_value == null) {
-					cols_value = "";
+		try {
+			connection = C3P0DBUtil.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
 				}
-				map.put(cols_name, cols_value);
 			}
+			resultSet = pstmt.executeQuery();// 返回查询结果
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int col_len = metaData.getColumnCount();
+			while (resultSet.next()) {
+				for (int i = 0; i < col_len; i++) {
+					String cols_name = metaData.getColumnName(i + 1);
+					Object cols_value = resultSet.getObject(cols_name);
+					if (cols_value == null) {
+						cols_value = "";
+					}
+					map.put(cols_name, cols_value);
+				}
+			}
+		} catch (SQLException e) {
+			logger.error("保存车辆迁移日报表异常!", e);
+		} finally {
+			C3P0DBUtil.attemptClose(resultSet);
+			C3P0DBUtil.attemptClose(connection);
+			C3P0DBUtil.attemptClose(pstmt);
 		}
-		releaseConn();
-		pstmt.close();
 		return map;
 	}
 
@@ -159,32 +142,39 @@ public class JdbcUtils {
 	public List<Map<String, Object>> findModeResult(String sql, List<Object> params) throws SQLException {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		int index = 1;
-		if (connection==null||connection.isClosed()) {
-			getConnection();
-		}
-		pstmt = connection.prepareStatement(sql);
-		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {
-				pstmt.setObject(index++, params.get(i));
-			}
-		}
-		resultSet = pstmt.executeQuery();
-		ResultSetMetaData metaData = resultSet.getMetaData();
-		int cols_len = metaData.getColumnCount();
-		while (resultSet.next()) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			for (int i = 0; i < cols_len; i++) {
-				String cols_name = metaData.getColumnName(i + 1);
-				Object cols_value = resultSet.getObject(cols_name);
-				if (cols_value == null) {
-					cols_value = "";
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		try {
+			connection = C3P0DBUtil.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
 				}
-				map.put(cols_name, cols_value);
 			}
-			list.add(map);
+			resultSet = pstmt.executeQuery();
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int cols_len = metaData.getColumnCount();
+			while (resultSet.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				for (int i = 0; i < cols_len; i++) {
+					String cols_name = metaData.getColumnName(i + 1);
+					Object cols_value = resultSet.getObject(cols_name);
+					if (cols_value == null) {
+						cols_value = "";
+					}
+					map.put(cols_name, cols_value);
+				}
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			logger.error("保存车辆迁移日报表异常!", e);
+		} finally {
+			C3P0DBUtil.attemptClose(resultSet);
+			C3P0DBUtil.attemptClose(connection);
+			C3P0DBUtil.attemptClose(pstmt);
 		}
-		releaseConn();
-		pstmt.close();
 		return list;
 	}
 
@@ -200,34 +190,42 @@ public class JdbcUtils {
 	public <T> T findSimpleRefResult(String sql, List<Object> params, Class<T> cls) throws Exception {
 		T resultObject = null;
 		int index = 1;
-		if (connection==null||connection.isClosed()) {
-			getConnection();
-		}
-		pstmt = connection.prepareStatement(sql);
-		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {
-				pstmt.setObject(index++, params.get(i));
-			}
-		}
-		resultSet = pstmt.executeQuery();
-		ResultSetMetaData metaData = resultSet.getMetaData();
-		int cols_len = metaData.getColumnCount();
-		while (resultSet.next()) {
-			// 通过反射机制创建一个实例
-			resultObject = cls.newInstance();
-			for (int i = 0; i < cols_len; i++) {
-				String cols_name = metaData.getColumnName(i + 1);
-				Object cols_value = resultSet.getObject(cols_name);
-				if (cols_value == null) {
-					cols_value = "";
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		try {
+			connection = C3P0DBUtil.getConnection();
+
+			pstmt = connection.prepareStatement(sql);
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
 				}
-				Field field = cls.getDeclaredField(cols_name);
-				field.setAccessible(true); // 打开javabean的访问权限
-				field.set(resultObject, cols_value);
 			}
+			resultSet = pstmt.executeQuery();
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int cols_len = metaData.getColumnCount();
+			while (resultSet.next()) {
+				// 通过反射机制创建一个实例
+				resultObject = cls.newInstance();
+				for (int i = 0; i < cols_len; i++) {
+					String cols_name = metaData.getColumnName(i + 1);
+					Object cols_value = resultSet.getObject(cols_name);
+					if (cols_value == null) {
+						cols_value = "";
+					}
+					Field field = cls.getDeclaredField(cols_name);
+					field.setAccessible(true); // 打开javabean的访问权限
+					field.set(resultObject, cols_value);
+				}
+			}
+		} catch (SQLException e) {
+			logger.error("保存车辆迁移日报表异常!", e);
+		} finally {
+			C3P0DBUtil.attemptClose(resultSet);
+			C3P0DBUtil.attemptClose(connection);
+			C3P0DBUtil.attemptClose(pstmt);
 		}
-		releaseConn();
-		pstmt.close();
 		return resultObject;
 
 	}
@@ -244,76 +242,65 @@ public class JdbcUtils {
 	public <T> List<T> findMoreRefResult(String sql, List<Object> params, Class<T> cls) throws Exception {
 		List<T> list = new ArrayList<T>();
 		int index = 1;
-		if (connection==null||connection.isClosed()) {
-			getConnection();
-		}
-		pstmt = connection.prepareStatement(sql);
-		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {
-				pstmt.setObject(index++, params.get(i));
-			}
-		}
-		resultSet = pstmt.executeQuery();
-		ResultSetMetaData metaData = resultSet.getMetaData();
-		int cols_len = metaData.getColumnCount();
-		while (resultSet.next()) {
-			// 通过反射机制创建一个实例
-			T resultObject = cls.newInstance();
-			for (int i = 0; i < cols_len; i++) {
-				String cols_name = metaData.getColumnName(i + 1);
-				Object cols_value = resultSet.getObject(cols_name);
-				if (cols_value == null) {
-					cols_value = "";
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		try {
+			connection = C3P0DBUtil.getConnection();
+			pstmt = connection.prepareStatement(sql);
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
 				}
-				Field field = cls.getDeclaredField(cols_name);
-				field.setAccessible(true); // 打开javabean的访问权限
-				field.set(resultObject, cols_value);
 			}
-			list.add(resultObject);
+			resultSet = pstmt.executeQuery();
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int cols_len = metaData.getColumnCount();
+			while (resultSet.next()) {
+				// 通过反射机制创建一个实例
+				T resultObject = cls.newInstance();
+				for (int i = 0; i < cols_len; i++) {
+					String cols_name = metaData.getColumnName(i + 1);
+					Object cols_value = resultSet.getObject(cols_name);
+					if (cols_value == null) {
+						cols_value = "";
+					}
+					Field field = cls.getDeclaredField(cols_name);
+					field.setAccessible(true); // 打开javabean的访问权限
+					field.set(resultObject, cols_value);
+				}
+				list.add(resultObject);
+			}
+		} catch (SQLException e) {
+			logger.error("保存车辆迁移日报表异常!", e);
+		} finally {
+			if (resultSet != null) {
+				C3P0DBUtil.attemptClose(resultSet);
+			}
+			if (connection != null) {
+				C3P0DBUtil.attemptClose(connection);
+			}
+			if (pstmt != null) {
+				C3P0DBUtil.attemptClose(pstmt);
+			}
 		}
-		releaseConn();
-		pstmt.close();
 		return list;
-	}
-
-	/**
-	 * 释放数据库连接
-	 */
-	public void releaseConn() {
-		
-		if (resultSet != null) {
-			try {
-				
-				if (connection != null) {
-						connection.close();
-						connection=null;
-				}
-				resultSet.close();
-				resultSet=null;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-	}
-
-	public void checkOnLine() {
-
-		// 获取所以车辆最新时间
-
-		// 更新车辆在线状态
-
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws SQLException {
-
+		//配置日志目录路径
+		try {
+			String path = new File(".").getCanonicalPath() + "/resource/log4j.properties";
+			
+			PropertyConfigurator.configure(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		JdbcUtils jdbcUtils = new JdbcUtils();
-		jdbcUtils.getConnection();
-
 		String sql = "select vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid "
 				+ " from cube.BIG_VEHICLE vi "
 				+ " inner join cube.BIG_DEVICE_VEHICLE_MAP map on vi.unid=map.vehicle_unid "
