@@ -1,40 +1,7 @@
-2017-11-24 10:08:16  [ main:0 ] - [ DEBUG ]  开始
-2017-11-24 10:08:16  [ main:12 ] - [ ERROR ]  dd
-2017-11-24 10:08:16  [ main:20 ] - [ ERROR ]  true
-2017-11-24 10:08:16  [ main:382 ] - [ DEBUG ]  开始
-2017-11-24 10:09:07  [ main:0 ] - [ DEBUG ]  开始
-2017-11-24 10:09:07  [ main:6 ] - [ ERROR ]  dd
-2017-11-24 10:09:07  [ main:14 ] - [ ERROR ]  true
-2017-11-24 10:09:08  [ main:382 ] - [ DEBUG ]  开始
-2017-11-24 10:28:11  [ main:0 ] - [ DEBUG ]  开始
-2017-11-24 10:28:11  [ main:16 ] - [ ERROR ]  dd
-2017-11-24 10:28:11  [ main:16 ] - [ ERROR ]  true
-2017-11-24 10:28:11  [ main:363 ] - [ DEBUG ]  开始
-2017-12-15 09:25:29  [ main:0 ] - [ DEBUG ]  开始
-2017-12-15 09:25:29  [ main:7 ] - [ ERROR ]  dd
-2017-12-15 09:25:29  [ main:14 ] - [ ERROR ]  true
-2017-12-15 09:25:29  [ main:402 ] - [ DEBUG ]  开始
-2017-12-15 09:30:44  [ main:0 ] - [ DEBUG ]  开始
-2017-12-15 09:30:44  [ main:5 ] - [ ERROR ]  dd
-2017-12-15 09:30:44  [ main:10 ] - [ ERROR ]  true
-2017-12-15 09:30:45  [ main:1035 ] - [ DEBUG ]  开始
-2017-12-15 17:57:49  [ main:0 ] - [ DEBUG ]  开始
-2017-12-15 17:57:49  [ main:24 ] - [ ERROR ]  dd
-2017-12-15 17:57:49  [ main:30 ] - [ ERROR ]  true
-2017-12-15 17:57:49  [ main:554 ] - [ DEBUG ]  开始
-2018-01-16 09:58:30  [ main:0 ] - [ DEBUG ]  开始
-2018-01-16 09:58:30  [ main:4 ] - [ ERROR ]  dd
-2018-01-16 09:58:30  [ main:9 ] - [ ERROR ]  true
-2018-01-16 09:58:30  [ main:310 ] - [ DEBUG ]  开始
-2018-01-16 10:43:08  [ main:0 ] - [ DEBUG ]  开始
-2018-01-16 10:43:08  [ main:6 ] - [ ERROR ]  dd
-2018-01-16 10:43:08  [ main:19 ] - [ ERROR ]  true
-2018-01-16 10:43:08  [ main:566 ] - [ DEBUG ]  开始
-2018-01-16 10:45:16  [ main:0 ] - [ DEBUG ]  开始
-2018-01-16 10:45:16  [ main:6 ] - [ ERROR ]  dd
-2018-01-16 10:45:16  [ main:10 ] - [ ERROR ]  true
-2018-01-16 10:45:16  [ main:532 ] - [ DEBUG ]  开始
-2018-01-16 11:01:43  [ main:0 ] - [ DEBUG ]  开始
-2018-01-16 11:01:43  [ main:9 ] - [ ERROR ]  dd
-2018-01-16 11:01:43  [ main:16 ] - [ ERROR ]  true
-2018-01-16 11:01:43  [ main:524 ] - [ DEBUG ]  开始
+2018-03-07 11:52:30  [ main:0 ] - [ DEBUG ]  开始
+2018-03-07 11:52:30  [ main:9 ] - [ ERROR ]  dd
+2018-03-07 11:52:30  [ main:15 ] - [ ERROR ]  true
+2018-03-07 11:52:30  [ main:312 ] - [ DEBUG ]  开始
+2018-03-07 13:51:34  [ main:0 ] - [ INFO ]  MLog clients using log4j logging.
+2018-03-07 13:51:34  [ main:551 ] - [ INFO ]  Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2018-03-07 13:51:34  [ main:645 ] - [ INFO ]  Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@2104806 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@d6dfec99 [ acquireIncrement -> 3, acquireRetryAttempts -> 60, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 10000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgepz59t1yr9sg1ytxmpv|1445d7f, idleConnectionTestPeriod -> 120, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 600, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 25, maxStatements -> 20, maxStatementsPerConnection -> 10, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@b1beccf3 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hgepz59t1yr9sg1ytxmpv|27a5f880, jdbcUrl -> jdbc:mysql://10.60.60.90:3306/cube, properties -> {driverClass=com.mysql.cj.jdbc.Driver, user=******, password=******, jdbcUrl=jdbc:mysql://10.60.60.90:3306/cube} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hgepz59t1yr9sg1ytxmpv|146044d7, numHelperThreads -> 3 ]

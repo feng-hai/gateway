@@ -11,15 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
-import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.wlwl.config.PropertyResource;
 import com.wlwl.model.VehicleInfo;
 import com.wlwl.mysql.JdbcUtils;
-import com.wlwl.mysql.SingletonJDBC;
-import com.wlwl.utils.Config;
 import com.wlwl.utils.StrFormat;
 import com.wlwl.utils.publicStaticMap;
 
@@ -30,30 +26,6 @@ public class MyTask extends TimerTask {
 	public MyTask() {
 		// loadData();
 	}
-	// public static List<String> getList() {
-	// List<String> temp = new ArrayList();
-	// try {
-	// Workbook wb;
-	// wb = Workbook.getWorkbook(new File("D://myFile.xls"));
-	// Sheet s = wb.getSheet("车辆绑定信息");
-	//
-	// for (int i = 1; i < 5111; i++) {
-	// Cell c = s.getCell(0, i);
-	// String deviceId = c.getContents().trim();
-	// if (!temp.contains(deviceId)) {
-	// temp.add(deviceId);
-	// }
-	// }
-	//
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// } catch (BiffException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return temp;
-	// }
 
 	@Override
 	public void run() {
@@ -82,7 +54,7 @@ public class MyTask extends TimerTask {
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;
 		try {
-			jdbcUtils = SingletonJDBC.getJDBC();
+			jdbcUtils = new JdbcUtils();
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID,vi.fiber_unid"
 					+ " from cube.BIG_VEHICLE vi "
@@ -108,11 +80,9 @@ public class MyTask extends TimerTask {
 			}
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("数据库加载错误", e);
 		} finally {
-			if (jdbcUtils != null) {
-				jdbcUtils.releaseConn();
-			}
+
 		}
 	}
 
