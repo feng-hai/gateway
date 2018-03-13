@@ -82,8 +82,7 @@ public class MyTask extends TimerTask {
 		// 查询数据库
 		JdbcUtils jdbcUtils = null;
 		try {
-			jdbcUtils = new JdbcUtils();
-			jdbcUtils.getConnection();
+			jdbcUtils = new JdbcUtils();	
 			logger.info("数据库初始化，正在加载数据中...");
 			String sql = "select vi.vin,vi.unid ,device.device_id ,device.cellphone ,pro.root_proto_unid ,device.ICCID,vi.fiber_unid"
 					+ " from cube.BIG_VEHICLE vi "
@@ -107,15 +106,9 @@ public class MyTask extends TimerTask {
 			publicStaticMap.setVehicles(vehicles);
 			logger.info("数据库加载成功，加载数据的个数为：{}", publicStaticMap.getVehicles().size() / 3);
 		} catch (Exception e) {
-			if (jdbcUtils != null) {
-				jdbcUtils.releaseConn();
-			}
-			jdbcUtils=null;
+			logger.error("数据库访问异常",e);
 		} finally {
-			if (jdbcUtils != null) {
-				jdbcUtils.releaseConn();
-			}
-			jdbcUtils=null;
+	
 		}
 	}
 	private Boolean isContains(VehicleInfo vi,Map<String,VehicleInfo >vehicles) {
