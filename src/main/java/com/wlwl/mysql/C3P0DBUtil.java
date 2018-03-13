@@ -1,5 +1,6 @@
 package com.wlwl.mysql;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -34,7 +35,7 @@ public class C3P0DBUtil {
 	private static final void initDBSource() {
 		Properties c3p0Pro = new Properties();
 		try {
-			c3p0Pro = PropertiesTools.loadProperties("c3p0.properties", System.getProperty("user.dir")+"\\resource");
+			c3p0Pro = PropertiesTools.loadProperties("c3p0.properties", new File(".").getCanonicalPath() + "/resource/");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
