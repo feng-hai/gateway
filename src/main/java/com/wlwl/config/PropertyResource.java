@@ -31,10 +31,11 @@ public class PropertyResource
 	{
 		Properties prop = new Properties();
 		String path;
+		InputStream in=null;
 		try
 		{
 			path = new File( "." ).getCanonicalPath() + "/resource/cfg.properties";
-			InputStream in = new BufferedInputStream( new FileInputStream( path ) );
+			 in= new BufferedInputStream( new FileInputStream( path ) );
 			prop.load( in );
 			Iterator<String> it = prop.stringPropertyNames().iterator();
 			while (it.hasNext())
@@ -43,10 +44,21 @@ public class PropertyResource
 				properties.put( key, prop.getProperty( key ).trim() );
 			}
 			in.close();
+			
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
+		}finally{
+			if(in!=null)
+			{
+				try {
+					in.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

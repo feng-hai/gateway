@@ -61,7 +61,7 @@ public class MyTask extends TimerTask {
 
 	private void loadData() {
 		// 重新加载配置文件中数据
-		PropertyResource.getInstance().reLoadProperty();
+		//PropertyResource.getInstance().reLoadProperty();
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		if (config.get("log.level").equals("INFO")) {
 			LogManager.getRootLogger().setLevel(Level.INFO);

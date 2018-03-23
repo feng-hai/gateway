@@ -2,6 +2,7 @@ package com.wlwl.thread;
 
 import java.util.Scanner;
 
+import com.wlwl.config.PropertyResource;
 import com.wlwl.utils.publicStaticMap;
 
 public class ReadInputMessage extends Thread {
@@ -25,7 +26,12 @@ public class ReadInputMessage extends Thread {
 				System.out.println("cc:查询在线车辆数");
 				System.out.println("v:查询车辆信息");
 				System.out.println("vc:查询车辆信息");
+				System.out.println("reloder:重新加载配置文件");
 				break;
+			}
+			case "reloder":{
+				
+				PropertyResource.getInstance().reLoadProperty();
 			}
 			case "c": {
 				// 启动监控
@@ -99,6 +105,7 @@ public class ReadInputMessage extends Thread {
 				System.out.println("cc:查询在线车辆数");
 				System.out.println("v:查询车辆信息");
 				System.out.println("vc:查询车辆信息");
+				System.out.println("reloder:重新加载配置文件");
 				break;
 			}
 		}

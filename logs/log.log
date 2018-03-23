@@ -457,3 +457,221 @@
 2018-03-07 18:24:47  [ main:9 ] - [ ERROR ]  dd
 2018-03-07 18:24:47  [ main:15 ] - [ ERROR ]  true
 2018-03-07 18:24:48  [ main:325 ] - [ DEBUG ]  ��ʼ
+2018-03-13 19:00:12  [ main:0 ] - [ DEBUG ]  ��ʼ
+2018-03-13 19:00:12  [ main:6 ] - [ ERROR ]  dd
+2018-03-13 19:00:12  [ main:9 ] - [ ERROR ]  true
+2018-03-13 19:00:12  [ main:370 ] - [ DEBUG ]  ��ʼ
+2018-03-13 19:05:58  [ Timer-0:1 ] - [ INFO ]  数据库初始化，正在加载数据中...
+2018-03-13 19:05:58  [ Timer-0:53 ] - [ INFO ]  MLog clients using log4j logging.
+2018-03-13 19:05:58  [ main:58 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [dn00-dev.wlwl.com:9092, dn01-dev.wlwl.com:9092, dn02-dev.wlwl.com:9092, dn03-dev.wlwl.com:9092, dn04-dev.wlwl.com:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2018-03-13 19:05:58  [ Timer-0:839 ] - [ INFO ]  Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2018-03-13 19:05:58  [ main:885 ] - [ INFO ]  ProducerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [dn00-dev.wlwl.com:9092, dn01-dev.wlwl.com:9092, dn02-dev.wlwl.com:9092, dn03-dev.wlwl.com:9092, dn04-dev.wlwl.com:9092]
+	ssl.keystore.type = JKS
+	sasl.mechanism = GSSAPI
+	max.block.ms = 60000
+	interceptor.classes = null
+	ssl.truststore.password = null
+	client.id = producer-1
+	ssl.endpoint.identification.algorithm = null
+	request.timeout.ms = 30000
+	acks = 1
+	receive.buffer.bytes = 32768
+	ssl.truststore.type = JKS
+	retries = 0
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	send.buffer.bytes = 131072
+	compression.type = none
+	metadata.fetch.timeout.ms = 60000
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	batch.size = 16384
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	linger.ms = 1
+
+2018-03-13 19:05:58  [ main:892 ] - [ INFO ]  Kafka version : 0.10.0.1
+2018-03-13 19:05:58  [ main:892 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2018-03-13 19:05:58  [ main:921 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [dn00-dev.wlwl.com:9092, dn01-dev.wlwl.com:9092, dn02-dev.wlwl.com:9092, dn03-dev.wlwl.com:9092, dn04-dev.wlwl.com:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2018-03-13 19:05:58  [ main:932 ] - [ INFO ]  ConsumerConfig values: 
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	partition.assignment.strategy = [org.apache.kafka.clients.consumer.RangeAssignor]
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	max.partition.fetch.bytes = 1048576
+	bootstrap.servers = [dn00-dev.wlwl.com:9092, dn01-dev.wlwl.com:9092, dn02-dev.wlwl.com:9092, dn03-dev.wlwl.com:9092, dn04-dev.wlwl.com:9092]
+	ssl.keystore.type = JKS
+	enable.auto.commit = true
+	sasl.mechanism = GSSAPI
+	interceptor.classes = null
+	exclude.internal.topics = true
+	ssl.truststore.password = null
+	client.id = consumer-1
+	ssl.endpoint.identification.algorithm = null
+	max.poll.records = 2147483647
+	check.crcs = true
+	request.timeout.ms = 40000
+	heartbeat.interval.ms = 3000
+	auto.commit.interval.ms = 1000
+	receive.buffer.bytes = 65536
+	ssl.truststore.type = JKS
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	fetch.min.bytes = 1
+	send.buffer.bytes = 131072
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	group.id = gateway01
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.trustmanager.algorithm = PKIX
+	ssl.key.password = null
+	fetch.max.wait.ms = 500
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	session.timeout.ms = 30000
+	metrics.num.samples = 2
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.keystore.location = null
+	ssl.cipher.suites = null
+	security.protocol = PLAINTEXT
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	auto.offset.reset = latest
+
+2018-03-13 19:05:58  [ Timer-0:933 ] - [ INFO ]  Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@28311369 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@f08bbc47 [ acquireIncrement -> 3, acquireRetryAttempts -> 60, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 10000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgepz59u8m160rqy5ndh|28ebc3ea, idleConnectionTestPeriod -> 120, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 600, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 25, maxStatements -> 20, maxStatementsPerConnection -> 10, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@d07bd139 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hgepz59u8m160rqy5ndh|2a1b8346, jdbcUrl -> jdbc:mysql://10.60.60.90:3306/cube, properties -> {driverClass=com.mysql.cj.jdbc.Driver, user=******, password=******, jdbcUrl=jdbc:mysql://10.60.60.90:3306/cube} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hgepz59u8m160rqy5ndh|cf77a01, numHelperThreads -> 3 ]
+2018-03-13 19:05:59  [ main:967 ] - [ INFO ]  Kafka version : 0.10.0.1
+2018-03-13 19:05:59  [ main:967 ] - [ INFO ]  Kafka commitId : a7a17cdec9eaa6c5
+2018-03-13 19:05:59  [ pool-1-thread-1:971 ] - [ WARN ]  topicName--：octets_down
+2018-03-13 19:05:59  [ Timer-0:1910 ] - [ INFO ]  数据库加载成功，加载数据的个数为：12145

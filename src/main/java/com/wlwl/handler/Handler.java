@@ -113,12 +113,12 @@ public class Handler {
 				//byte[] data = (byte[]) message;
 				logger.info("终端源码：" + ByteUtils.byte2HexStr(data));
 //			
-//			if (this._config.getIsDebug() == 2) {
-//				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//				new AychWriter("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session,
-//						"closeSession").start();
-//			}
-			//session.closeOnFlush();
+		
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				logger.warn("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session
+						);
+		
+			session.closeOnFlush();
 			return;
 		}
 		

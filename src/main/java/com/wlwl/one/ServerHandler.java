@@ -71,8 +71,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		if (!session.containsAttribute("old")) {
 			this.manager.removeSession(session);
 		}
-			logger.warn("关闭链接：" + session.getAttribute("ID") + "--" + session);
-		
+			logger.warn("关闭链接：" + session.getAttribute("ID") + "--" + session);		
 	}
 
 	@Override
