@@ -67,6 +67,11 @@ public class Handler {
 				}
 				analysis.setMsg(data);
 				deviceId = analysis.getDeviceId();
+				if(deviceId.equals("w12345")||deviceId.equals("181111") )
+				{
+					session.close();
+					return;
+				}
 				if (deviceId.equals("12345690978679801") && this.manager.getDevice("211005")) {
 					IoSession current = this.manager.getSession("211005");
 					logger.warn("有数据:"+current.getId()+":");
