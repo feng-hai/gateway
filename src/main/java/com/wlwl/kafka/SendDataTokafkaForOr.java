@@ -80,19 +80,19 @@ public class SendDataTokafkaForOr extends Thread {
 //					new AychWriter(message.getRAW_OCTETS(), "Octests").start();
 //				}
 
-//				producer.send(myrecord, new Callback() {
-//
-//					public void onCompletion(RecordMetadata metadata, Exception e) {
-//						if (e != null) {
-//							//initKafka();// 重新创建一个kafka对象
-//							logger.error(e.toString());
-//						}
-//
-//						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
-//								+ metadata.topic());
-//
-//					}
-//				});
+				producer.send(myrecord, new Callback() {
+
+					public void onCompletion(RecordMetadata metadata, Exception e) {
+						if (e != null) {
+							//initKafka();// 重新创建一个kafka对象
+							logger.error(e.toString());
+						}
+
+						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
+								+ metadata.topic());
+
+					}
+				});
 
 			} catch (Exception e) {
 			}
