@@ -370,14 +370,16 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 	public void toJson(VehicleInfo vi, String ip, byte[] bytes) {
 		// TODO Auto-generated method stub
 		try {
-			publicStaticMap.getCmdQueueOr().put(ByteUtils.bytesToHexString(bytes));	
+			ProtocolModel pm1 = new ProtocolModel();
+			pm1.setRAW_OCTETS(ByteUtils.bytesToHexString(bytes));
+			pm1.setUnid(vi.getUNID());
+			publicStaticMap.getCmdQueueOr().put(pm1);	
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		ProtocolModel pm = new ProtocolModel();
 		pm.setDEVICE_ID(vi.getDEVICE_ID());
 		pm.setCELLPHONE(vi.getCELLPHONE());
-
 		pm.setNode_unid(getNode());
 		pm.setUnid(vi.getUNID());
 		

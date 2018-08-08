@@ -24,13 +24,13 @@ public class publicStaticMap {
 	private static BlockingQueue<ProtocolModel> sendQueue = new LinkedBlockingQueue<ProtocolModel>();
 	private static BlockingQueue<SourceMessage> cmdQueue = new LinkedBlockingQueue<SourceMessage>();
 	//原始数据列表
-	private static BlockingQueue<String> cmdQueueOr = new LinkedBlockingQueue<String>();
+	private static BlockingQueue<ProtocolModel> cmdQueueOr = new LinkedBlockingQueue<ProtocolModel>();
 	
-	public static BlockingQueue<String> getCmdQueueOr() {
+	public static BlockingQueue<ProtocolModel> getCmdQueueOr() {
 		return cmdQueueOr;
 	}
 
-	public static void setCmdQueueOr(BlockingQueue<String> cmdQueueOr) {
+	public static void setCmdQueueOr(BlockingQueue<ProtocolModel> cmdQueueOr) {
 		publicStaticMap.cmdQueueOr = cmdQueueOr;
 	}
 

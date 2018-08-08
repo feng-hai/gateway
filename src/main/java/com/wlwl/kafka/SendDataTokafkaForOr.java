@@ -57,10 +57,10 @@ public class SendDataTokafkaForOr extends Thread {
 		HashMap<String, String> config = PropertyResource.getInstance().getProperties();
 		while (true) {
 			try {
-				String strMessage = publicStaticMap.getCmdQueueOr().take();
+				ProtocolModel message = publicStaticMap.getCmdQueueOr().take();
 
 				ProducerRecord<String, String> myrecord = new ProducerRecord<String, String>(
-						config.get("kafka.sourcecodeTopicForOr"), strMessage);
+						config.get("kafka.sourcecodeTopicForOr"),message.getUnid(), message.getRAW_OCTETS());
 
 				// if(config.getIsDebug()==1){
 				// System.out.println("kafka sending! topic:
