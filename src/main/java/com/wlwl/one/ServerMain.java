@@ -101,7 +101,7 @@ public class ServerMain {
 //		ServerMainThread smtGuoBiao = new ServerMainThread(20292, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao.setDaemon(true);
 //		smtGuoBiao.start();
-		ServerMainThread smtGuoBiao01 = new ServerMainThread(20293, ProtocolEnum.GUOBIAO, sessionManager);
+		ServerMainThread smtGuoBiao01 = new ServerMainThread(20294, ProtocolEnum.GUOBIAO, sessionManager);
 		smtGuoBiao01.setDaemon(true);
 		smtGuoBiao01.start();
 
