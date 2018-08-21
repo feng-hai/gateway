@@ -90,7 +90,7 @@ public class SendDataTokafka extends Thread {
 						if (e != null) {
 							
 							//initKafka();// 重新创建一个kafka对象
-							logger.error(e.toString());
+							//logger.error(e.toString());
 						}
 
 						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
