@@ -29,6 +29,7 @@ public class PropertiesTools {
 		// 加载配置文件
 		// 默认使用外部配置文件
 		// 外部文件加载不到的情况下,使用内部的配置
+		System.out.println("读取 "+fileDir+" 外部配置文件成功!");
 		File propFile = new File(fileDir + "/" + fileName);
 		if (propFile.exists()) {
 			prop.load(new FileInputStream(propFile));

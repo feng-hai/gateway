@@ -34,7 +34,8 @@ public class C3P0DBUtil {
 	private static final void initDBSource() {
 		Properties c3p0Pro = new Properties();
 		try {
-			c3p0Pro = PropertiesTools.loadProperties("c3p0.properties", System.getProperty("user.dir")+"\\resource");
+			System.out.println(System.getProperty("user.dir")+"/resource/");
+			c3p0Pro = PropertiesTools.loadProperties("c3p0.properties", System.getProperty("user.dir")+"/resource/");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
