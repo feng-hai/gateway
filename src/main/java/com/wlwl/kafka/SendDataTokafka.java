@@ -27,6 +27,8 @@ public class SendDataTokafka extends Thread {
 	//private BlockingQueue<ProtocolModel> sendQueue;
 
 	private Producer<String, String> producer;
+	
+	private Boolean tag=false;
 
 	private static final Logger logger = LoggerFactory.getLogger(SendDataTokafka.class);
 
@@ -70,6 +72,10 @@ public class SendDataTokafka extends Thread {
 				// System.out.println("kafka sending! topic:
 				// "+config.getSourcecodeTopic()+" message: "+ strMessage);
 				// }
+				if(tag)
+				{
+					Thread.sleep(6000);
+				}
 
 				try {
 					Date time = new Date(Long.parseLong(message.getTIMESTAMP()));
@@ -88,10 +94,14 @@ public class SendDataTokafka extends Thread {
 
 					public void onCompletion(RecordMetadata metadata, Exception e) {
 						if (e != null) {
-							
+							tag=true;
 							//initKafka();// 重新创建一个kafka对象
 							//logger.error(e.toString());
+						}else
+						{
+							tag=false;
 						}
+						
 
 						logger.debug("The offset of the record we just sent is: " + metadata.offset() + ","
 								+ metadata.topic());
