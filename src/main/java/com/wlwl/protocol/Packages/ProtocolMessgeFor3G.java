@@ -232,7 +232,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 	
 	
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 		
 		this.msg = descape(bytes);
 		// String temp = ByteUtils.byte2HexStr(this.msg);
@@ -288,7 +288,7 @@ public class ProtocolMessgeFor3G implements IProtocolAnalysis, Serializable, Clo
 		return this.Protocol;
 	}
 
-	public byte[] answerMsg() {
+	public byte[] answerMsg(Boolean right) {
 		
 	
 		if (ByteUtils.getShort(this.msg, 1) == (short) 0x0181||ByteUtils.getShort(this.msg, 1) == (short) 0x02E7||ByteUtils.getShort(this.msg, 1) == (short) 0x038F || ByteUtils.getShort(this.msg, 5) == (short) 0x02E7

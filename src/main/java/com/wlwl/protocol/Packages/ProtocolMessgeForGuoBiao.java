@@ -169,7 +169,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		return this.gpsId;
 	}
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 		this.msg = bytes;
 		// 车辆VIN号
 		this.gpsId = ByteUtils.bytesToAsciiString(this.msg, 4, 17);
@@ -179,7 +179,7 @@ public class ProtocolMessgeForGuoBiao implements IProtocolAnalysis, Serializable
 		return this.Protocol;
 	}
 
-	public byte[] answerMsg() {
+	public byte[] answerMsg(Boolean right) {
 
 		Byte commonId = this.msg[2];
 

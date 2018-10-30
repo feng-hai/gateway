@@ -232,7 +232,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	}
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 		this.msg = bytes;
 		this.gpsCommandId = this.msg[1];// 获取消息id
 		this.msg=descape(this.msg);
@@ -291,7 +291,7 @@ public class ProtocolMessgeForJinLong implements IProtocolAnalysis, Serializable
 
 	}
 
-	public byte[] answerMsg() {
+	public byte[] answerMsg(Boolean right) {
      
 		switch (this.gpsCommandId) {
 		case 0x01:// 心跳

@@ -92,7 +92,10 @@ public class MyTask extends TimerTask {
 			Map<String, VehicleInfo> vehicles = new ConcurrentHashMap<>();
 			for (VehicleInfo vi : list) {
 				if (!isContains(vi, vehicles)) {
+					//if(vi.getDEVICE_ID().equals("25678"))
+					System.out.println(StrFormat.addZeroForNumPre(vi.getDEVICE_ID().trim(), 8));
 					vehicles.put(vi.getDEVICE_ID().trim(), vi); 
+					vehicles.put(StrFormat.addZeroForNumPre(vi.getDEVICE_ID().trim(), 8), vi); 
 				}
 				if (!isContainsForPhone(vi, vehicles)) {
 					vehicles.put(vi.getCELLPHONE().trim(), vi);

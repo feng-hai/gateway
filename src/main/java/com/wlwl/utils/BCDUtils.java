@@ -20,7 +20,19 @@ public class BCDUtils {
         return temp.toString().substring(0, 1).equalsIgnoreCase("0") ? temp  
                 .toString().substring(1) : temp.toString();  
     }  
-  
+    /** 
+     * 功能: BCD码转为10进制串(阿拉伯数据) 
+     * 参数: BCD码 
+     * 结果: 10进制串 
+     */  
+    public static String bcd2Str2(byte[] bytes) {  
+        StringBuffer temp = new StringBuffer(bytes.length * 2);  
+        for (int i = 0; i < bytes.length; i++) {  
+            temp.append((byte) ((bytes[i] & 0xf0) >>> 4));  
+            temp.append((byte) (bytes[i] & 0x0f));  
+        }  
+        return  temp.toString();  
+    }  
     /** 
      * 功能: 10进制串转为BCD码 
      * 参数: 10进制串 

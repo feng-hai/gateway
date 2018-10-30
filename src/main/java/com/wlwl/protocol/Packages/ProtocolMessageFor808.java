@@ -99,7 +99,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 		  return teleStr;
 	}
 
-	public void setMsg(byte[] bytes) {
+	public void setMsg(byte[] bytes,IoSession session) {
 		this.msg = descape(bytes);
 		this.commandId=ByteUtils.getShortForLarge(this.msg, 1);
 		this.serialNumber=ByteUtils.getShortForLarge(this.msg, 11);
@@ -108,7 +108,7 @@ public class ProtocolMessageFor808 implements IProtocolAnalysis, Serializable, C
 	public String getProtocol() {
 		return this.Protocol;
 	}
-	public byte[] answerMsg() {
+	public byte[] answerMsg(Boolean right) {
 		byte[] answerBytes ;
 		switch (this.commandId) {
 		case (short) 0x0100:// 注册

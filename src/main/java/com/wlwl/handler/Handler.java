@@ -46,6 +46,37 @@ public class Handler {
 		this.message=message;
 		this.session=session;
 	}
+	//应答
+	private void answerMsg(IProtocolAnalysis analysis,Boolean right)
+	{
+		// 普通上传指令应答
+					try {
+						byte[] answerMsg = analysis.answerMsg(right);
+						if (answerMsg != null) {
+							session.write(answerMsg);
+							
+								//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//								new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
+//										deviceId).start();
+						
+						}
+						byte[] extraAnswerMsg = analysis.extraAnswerMsg();
+						if (extraAnswerMsg != null) {
+												
+							session.write(extraAnswerMsg);
+							//logger.info("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
+					
+//								SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//								new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
+//										deviceId).start();
+						
+						}
+					} catch (Exception ex) {
+						
+						logger.error("解析出错：",ex);
+					} 
+		
+	}
 	public void excute()
 	{
 //		List<String> watchs = this._config.getWatchVehiclesList();
@@ -64,35 +95,15 @@ public class Handler {
 				
 				return;
 			}
-			analysis.setMsg(data);
+			analysis.setMsg(data,session);
 			String deviceId = analysis.getDeviceId();
+			if(deviceId==null||deviceId.isEmpty())
+			{
+				session.closeOnFlush();
+				return;
+			}
 			logger.debug(analysis.getDeviceId()+"-before-"+ ByteUtils.byte2HexStr(data));
-			// 普通上传指令应答
-			try {
-				byte[] answerMsg = analysis.answerMsg();
-				if (answerMsg != null) {
-					session.write(answerMsg);
-					
-						//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(answerMsg),
-//								deviceId).start();
-				
-				}
-				byte[] extraAnswerMsg = analysis.extraAnswerMsg();
-				if (extraAnswerMsg != null) {
-										
-					session.write(extraAnswerMsg);
-					logger.info("回复数据：" + deviceId + "--" + ByteUtils.byte2HexStr(extraAnswerMsg));
 			
-//						SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//						new AychWriter("写入数据：" + df.format(new Date()) + "--" + ByteUtils.byte2HexStr(extraAnswerMsg),
-//								deviceId).start();
-				
-				}
-			} catch (Exception ex) {
-				
-				logger.error("解析出错：",ex);
-			} 
 			
 
 		
@@ -105,9 +116,11 @@ public class Handler {
 			return;
 		}
 		logger.debug(analysis.getDeviceId()+"-after-"+ ByteUtils.byte2HexStr(data));
+		
 		// 检查终端的合法性，和数据库中的数据对比
 		VehicleInfo vi = publicStaticMap.getVehicles().get(analysis.getDeviceId());
 		if (vi == null) {
+			answerMsg(analysis,false);
 		
 				logger.info("车辆在数据库中不存在:" + analysis.getDeviceId());
 				//byte[] data = (byte[]) message;
@@ -117,11 +130,10 @@ public class Handler {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				logger.warn("车辆不存在关闭链接：" + session.getAttribute("ID") + df.format(new Date()) + "--" + session
 						);
-		
 			session.closeOnFlush();
 			return;
 		}
-		
+		answerMsg(analysis,true);
 		session.setAttribute("pEnum", pEnum);
 		session.setAttribute("vehicleObject", vi);
 		

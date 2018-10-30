@@ -13,6 +13,15 @@ import com.wlwl.model.VehicleInfo;
  * @author FH
  *
  */
+/**   
+*    
+* 项目名称：gateway01   
+* 类名称：IProtocolAnalysis   
+* 类描述：   
+* 创建人：FH   
+* 创建时间：2018年10月23日 下午1:09:50   
+* @version        
+*/
 public interface IProtocolAnalysis {
 
 //	/**
@@ -43,13 +52,13 @@ public interface IProtocolAnalysis {
 	 * @param bytes
 	 *            设置原始数据信息
 	 */
-	void setMsg(byte[] bytes);
+	void setMsg(byte[] bytes,IoSession session );
 
 	String getProtocol();
 	
 	String getNode();
 
-	byte[] answerMsg();
+	byte[] answerMsg(Boolean right);
 
 	/**
 	 * @return 设置额外应答

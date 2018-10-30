@@ -5,5 +5,5 @@ package com.wlwl.enums;
  *
  */
 public enum ProtocolEnum {
-	P3G,P808,PJINLONG,GUOBIAO
+	P3G,P808,PJINLONG,GUOBIAO,YUCHAI
 }

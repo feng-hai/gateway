@@ -93,9 +93,9 @@ public class ServerMain {
 	
 		ReadInputMessage readMessage=new ReadInputMessage();
 		readMessage.start();
-//		ServerMainThread smtGuoBiao = new ServerMainThread(123, ProtocolEnum.GUOBIAO, sessionManager);
-//		smtGuoBiao.setDaemon(true);
-//		smtGuoBiao.start();
+		ServerMainThread smtYuchai = new ServerMainThread(4443, ProtocolEnum.YUCHAI, sessionManager);
+		smtYuchai.setDaemon(true);
+		smtYuchai.start();
 //		ServerMainThread smtGuoBiao01 = new ServerMainThread(20293, ProtocolEnum.GUOBIAO, sessionManager);
 //		smtGuoBiao01.setDaemon(true);
 //		smtGuoBiao01.start();
