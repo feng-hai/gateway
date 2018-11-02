@@ -250,7 +250,7 @@ public class ProtocolMessgeForYuChai implements IProtocolAnalysis, Serializable,
 		if ((this.gpsCommandId & 0xFF) == 0x80) {// 登录
 			logger.debug("登录开始" + ByteUtils.bytesToHexString(this.msg));
 			byte[] tempDevice = ByteUtils.getSubBytes(this.msg, 8, 4);
-			String deviceId = BCDUtils.bcd2Str2(tempDevice);
+			String deviceId = ByteUtils.byte2HexStr(tempDevice);
 			this.setGpsId(deviceId);
 			session.setAttribute("ID", deviceId);
 			logger.debug("登录成功：终端编号" + deviceId + ":" + ByteUtils.bytesToHexString(this.msg));
@@ -258,7 +258,7 @@ public class ProtocolMessgeForYuChai implements IProtocolAnalysis, Serializable,
 		} else if ((this.gpsCommandId & 0xff) == 0x81) {// 登出
 			logger.debug("登出开始" + ByteUtils.bytesToHexString(this.msg));
 			byte[] tempDevice = ByteUtils.getSubBytes(this.msg, 8, 4);
-			String deviceId = BCDUtils.bcd2Str2(tempDevice);
+			String deviceId = ByteUtils.byte2HexStr(tempDevice);
 			this.setGpsId(deviceId);
 			session.setAttribute("ID", deviceId);
 			logger.debug("登出成功：终端编号" + deviceId + ":" + ByteUtils.bytesToHexString(this.msg));
@@ -320,11 +320,12 @@ public class ProtocolMessgeForYuChai implements IProtocolAnalysis, Serializable,
 
 		byte[] answerBytes;
 		switch (this.gpsCommandId & 0xFF) {
-		case (short) 0x80:// 注册
-		case (short) 0x81:// 注销
-		case (short) 0x70:
-		case (short) 0x50:
-		case (short) 0x52: {
+		case (short) 0x80:// 注册或登录
+		case (short) 0x81:// 注销或登出
+		case (short) 0x70://终端上报警情
+		case (short) 0x50://终端上传CAN数据采集
+		case (short) 0x52://1终端上传精细数据包
+		{
 			answerBytes = new byte[13];
 			answerBytes[0] = 0x7b;// 标识符
 			answerBytes[answerBytes.length - 1] = 0x7d;// 标识符
