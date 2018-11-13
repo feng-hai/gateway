@@ -90,10 +90,11 @@ public class MyTask extends TimerTask {
 			List<Object> params = new ArrayList<Object>();
 			List<VehicleInfo> list = (List<VehicleInfo>) jdbcUtils.findMoreRefResult(sql, params, VehicleInfo.class);
 			Map<String, VehicleInfo> vehicles = new ConcurrentHashMap<>();
+			System.out.println("加载的车辆数据："+list.size());
 			for (VehicleInfo vi : list) {
 				if (!isContains(vi, vehicles)) {
 					//if(vi.getDEVICE_ID().equals("25678"))
-					System.out.println(StrFormat.addZeroForNumPre(vi.getDEVICE_ID().trim(), 8));
+					//System.out.println(StrFormat.addZeroForNumPre(vi.getDEVICE_ID().trim(), 8));
 					vehicles.put(vi.getDEVICE_ID().trim(), vi); 
 					vehicles.put(StrFormat.addZeroForNumPre(vi.getDEVICE_ID().trim(), 8), vi); 
 				}
